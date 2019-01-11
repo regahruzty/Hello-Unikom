@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         KucingService kucingService = new KucingService();
         try {
-            kucingService.selectPemilikKucing();
+            kucingService.selectKucing();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
