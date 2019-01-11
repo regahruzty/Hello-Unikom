@@ -18,6 +18,7 @@
 --
 -- Table structure for table `motor`
 --
+CREATE SCHEMA IF NOT EXISTS boothcamp;
 
 DROP TABLE IF EXISTS `motor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
