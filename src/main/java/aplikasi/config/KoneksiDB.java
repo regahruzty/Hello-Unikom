@@ -17,6 +17,6 @@ public class KoneksiDB {
             "jdbc:mysql://localhost/learn_jdbc";
 
     public static final String USER = "root";
-    public static final String PASS = "root";
+    public static final String PASS = "";
 
 }
