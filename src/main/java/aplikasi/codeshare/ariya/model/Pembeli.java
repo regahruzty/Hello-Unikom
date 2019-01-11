@@ -1,4 +1,5 @@
-public static class Pembeli {
+package main.java.aplikasi.codeshare.ariya.model;
+public class Pembeli {
 
     String nama_pembeli, pekerjaan, alamat;
     int id_pembeli;
