@@ -11,12 +11,12 @@ package main.java.aplikasi.config;
 public class KoneksiDB {
 
     public static final String JDBC_DRIVER_MYSQL =
-            "com.mysql.jdbc.Driver";
+            "com.mysql.cj.jdbc.Driver";
 
     public static final String DB_URL =
-            "jdbc:mysql://localhost/learn_jdbc";
+            "jdbc:mysql://localhost/mobil";
 
     public static final String USER = "root";
-    public static final String PASS = "root";
+    public static final String PASS = "";
 
 }
