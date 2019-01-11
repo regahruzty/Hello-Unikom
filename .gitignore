@@ -34,3 +34,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+sh.exe.stackdump
+
