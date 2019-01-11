@@ -7,5 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" name="mysql-connector-java-8.0.13 (2)" level="project" />
+>>>>>>> 863e1249efc207cdff7047c65b3bf25435bcad3c
   </component>
 </module>
