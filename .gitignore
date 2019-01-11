@@ -25,3 +25,15 @@ out/
 
 upload-dir/
 uploads/
+
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+sh.exe.stackdump
+
