@@ -1,5 +1,9 @@
 package main.java.aplikasi.codeshare.ariya;//STEP 1. Import required packages
 import java.sql.*;
+<<<<<<< HEAD
+=======
+//import main.java.aplikasi.codeshare.ariya.model;
+>>>>>>> db11e0acb108b4f79c206eebe5005e701979b72a
 import main.java.aplikasi.codeshare.ariya.model.Motor;
 import main.java.aplikasi.codeshare.ariya.model.Pembeli;
 import main.java.aplikasi.codeshare.ariya.model.Transaksi;
@@ -12,7 +16,11 @@ public class Main {
 
     //  Database credentials
     static final String USER = "root";
+<<<<<<< HEAD
     static final String PASS = "root";
+=======
+    static final String PASS = "";
+>>>>>>> db11e0acb108b4f79c206eebe5005e701979b72a
 
     public static void main(String[] args) {
         Connection conn = null;
