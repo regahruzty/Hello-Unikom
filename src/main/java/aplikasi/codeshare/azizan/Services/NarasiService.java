@@ -49,11 +49,12 @@ public class NarasiService {
                     smartphone.setRam(rs.getInt("ram"));
 
                     temp = temp + "tentara beranama " + tentara.getNama();
-                    temp = temp + "tentara beranama " + tentara.getNama();
+                    temp = temp + ", tentara beranama " + tentara.getNama();
 
                     narasiList.add(temp);
+                    System.out.println(""+ temp);
                 }
-                System.out.println("Selamat Core");
+
                 return narasiList;
 
             } catch (Exception e) {
