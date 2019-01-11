@@ -1,4 +1,6 @@
-public static class Transaksi {
+package main.java.aplikasi.codeshare.ariya.model;
+import java.util.*;
+public class Transaksi {
     int id_transaksi, id_pembeli, id_motor, jumlah_pembelian;
     Date tanggal_pembelian;
 

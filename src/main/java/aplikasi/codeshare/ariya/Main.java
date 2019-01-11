@@ -1,6 +1,6 @@
 package main.java.aplikasi.codeshare.ariya;//STEP 1. Import required packages
 import java.sql.*;
-
+import main.java.aplikasi.codeshare.ariya.model;
 
 
 public class Main {

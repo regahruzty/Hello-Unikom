@@ -1,4 +1,5 @@
-public static class Motor {
+package main.java.aplikasi.codeshare.ariya.model;
+public class Motor {
 
     String merk_motor, nama_motor;
     int id_motor, harga;
