@@ -11,6 +11,8 @@ public class ObjectPractice {
 
         IkanHiu ikanHiu = new IkanHiu();
 
+        ikanHiu.setIdHiu(1);
+
         SifatIkan sifatIkanHiu = new SifatIkan();
 
         SifatInsang sifatInsangHiu = new SifatInsang();
@@ -23,7 +25,6 @@ public class ObjectPractice {
         sifatIkanHiu.setBersisik(false);
         sifatIkanHiu.setKarnivor(true);
 
-        ikanHiu.setIdHiu(1);
         ikanHiu.setSifatIkan(sifatIkanHiu);
 
         System.out.println("Ini Ikan Hiu dengan ID "+ikanHiu.getIdHiu()+" lalu Sifat Ikan Ini : ");
