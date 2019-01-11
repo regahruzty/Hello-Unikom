@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package main.java.aplikasi.codeshare.Kelompok_3.src.app;
+
 import java.sql.*;
-import app.Class_.*;
+import main.java.aplikasi.codeshare.Kelompok_3.src.app.Class_.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
