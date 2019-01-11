@@ -6,7 +6,7 @@ import java.sql.*;
 public class Main {
 
     public static void main (String[] args){
-        NarasiService narasi = new NarasiService();
+        NarasiService narasiService = new NarasiService();
         try {
             NarasiService.Menarasikan();
         } catch (SQLException | ClassNotFoundException e) {
