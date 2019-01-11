@@ -6,7 +6,6 @@ import main.java.aplikasi.codeshare.azizan.Model.Anjing;
 import main.java.aplikasi.codeshare.azizan.Model.Tentara;
 import main.java.aplikasi.codeshare.azizan.Model.Obat;
 
-import javax.print.DocFlavor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +15,15 @@ public class NarasiService {
         Class.forName(KoneksiDB.JDBC_DRIVER_MYSQL);
         Connection conn = DriverManager.getConnection(KoneksiDB.DB_URL, KoneksiDB.USER, KoneksiDB.PASS);
         Statement stmt = conn.createStatement();
-        KucingServiceUtils.initProcess(conn, stmt);
+        NarasiServiceUtils.initProcess(conn, stmt);
     }
 
-    static class KucingServiceUtils {
+    static class NarasiServiceUtils {
         public static List<String> coreProcess(Statement stmt, String sql) {
             try {
                 ResultSet rs = stmt.executeQuery(sql);
 
                 List<String> narasiList = new ArrayList<>();
-
 
                 System.out.println("ini hasil inisialisasi awal " + narasiList);
 
@@ -37,18 +35,18 @@ public class NarasiService {
                 String temp = "";
 
                 while (rs.next()) {
-                    tentara.setNama(rs.getString("nama tentara"));
-                    tentara.setMatra(rs.getString("matra tentara"));
-                    tentara.setPangkat(rs.getString("pangkat tentara"));
-                    anjing.setNama((rs.getString("nama anjing")));
-                    anjing.setJenis(rs.getString("jenis anjing"));
-                    anjing.setKebiasaan(rs.getString("kebiasaan anjing"));
-                    obat.setNama_obat(rs.getString("nama obat"));
-                    obat.setDosis_obat(rs.getString("dosis obat"));
-                    obat.setKeterangan_obat(rs.getString("keterangan obat"));
-                    smartphone.setMerk(rs.getString("merk hp"));
-                    smartphone.setType(rs.getString("tipe hp"));
-                    smartphone.setRam(rs.getInt("ram hp"));
+                    tentara.setNama(rs.getString("nama_tentara"));
+                    tentara.setMatra(rs.getString("matra"));
+                    tentara.setPangkat(rs.getString("pangkat"));
+                    anjing.setNama((rs.getString("nama_anjing")));
+                    anjing.setJenis(rs.getString("jenis_anjing"));
+                    anjing.setKebiasaan(rs.getString("kebiasaan_anjing"));
+                    obat.setNama_obat(rs.getString("nama_obat"));
+                    obat.setDosis_obat(rs.getString("dosis"));
+                    obat.setKeterangan_obat(rs.getString("keterangan"));
+                    smartphone.setMerk(rs.getString("merk"));
+                    smartphone.setType(rs.getString("tipe"));
+                    smartphone.setRam(rs.getInt("ram"));
 
                     temp = temp + "tentara beranama " + tentara.getNama();
                     temp = temp + "tentara beranama " + tentara.getNama();
@@ -57,6 +55,7 @@ public class NarasiService {
                 }
                 System.out.println("Selamat Core");
                 return narasiList;
+
             } catch (Exception e) {
                 throw new RuntimeException("Masuk Jurang Core");
             }
@@ -66,16 +65,18 @@ public class NarasiService {
         public static void initProcess(Connection conn, Statement stmt) {
             try {
                 String sqlNarasi;
-                String sqlObat;
-                String sqlAnjing;
-                String sqlSmartphone;
 
-                sqlNarasi = "SELECT tentara.nama, tentara.matra, tentara.pangkat, anjing.nama, anjing.jenis, anjing.kebiasaan, obat.nama_obat, obat.dosis, obat.Keterangan, smartphone.merk, smartphone.type, smartphone.ram\n" +
-                        "FROM narasi, anjing, tentara, obat, smartphone\n" +
-                        "WHERE narasi.id_anjing = anjing.id_anjing AND narasi.id_tentara = tentara.id_tentara AND narasi.id_obat = obat.id_obat AND narasi.smartphone_id = smartphone.smartphone_id;";
+                sqlNarasi = "SELECT t.nama AS nama_tentara, t.pangkat AS pangkat, t.matra AS Matra,\n" +
+                        " o.nama_obat AS nama_obat, o.dosis AS dosis, o.Keterangan AS keterangan,\n" +
+                        " s.merk AS merk, s.type AS tipe, s.ram AS ram, s.camera AS camera,\n" +
+                        " a.nama AS nama_anjing, a.jenis AS jenis_anjing, a.kebiasaan AS kebiasaan_anjing \n" +
+                        "FROM narasi n JOIN obat o ON n.id_obat = o.id_obat\n" +
+                        "        JOIN smartphone s ON n.smartphone_id = s.smartphone_id\n" +
+                        "        JOIN tentara t ON n.id_tentara = t.id_tentara\n" +
+                        "        JOIN anjing a ON n.id_anjing = a.id_anjing;";
 
 
-                List<String>  narasiList = coreProcess(stmt, sqlNarasi);
+                List<String> narasiList = coreProcess(stmt, sqlNarasi);
 
                 System.out.println("Selamat");
             } catch (
