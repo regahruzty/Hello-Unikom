@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.Class_;
+package main.java.aplikasi.codeshare.Kelompok_3.src.app.Class_;
 
 /**
  *
