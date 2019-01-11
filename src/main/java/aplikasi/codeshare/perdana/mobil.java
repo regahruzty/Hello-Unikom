@@ -87,4 +87,5 @@ class Main {
                 this.jumlahBan = jumlahBan;
             }
         }
+        
     }

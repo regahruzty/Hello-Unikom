@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class KucingService{
 
-    public void selectPemilikKucing() throws SQLException, ClassNotFoundException {
+    public void selectKucing() throws SQLException, ClassNotFoundException {
         Class.forName(KoneksiDB.JDBC_DRIVER_MYSQL);
         Connection conn = DriverManager.getConnection(KoneksiDB.DB_URL,KoneksiDB.USER,KoneksiDB.PASS);
         Statement stmt = conn.createStatement();
