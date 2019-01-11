@@ -31,7 +31,7 @@ public class Main{
             String sql;
             sql = "select komputer.nama, komputer.procie, tipe.nama, pemilik.nama from komputer join tipe on komputer.id_tipe = tipe.id_tipe join pemilik on komputer.id_komputer = pemilik.id_komputer;";
             ResultSet rs = stmt.executeQuery(sql);
-            List<Komputer> narasiList = new ArrayList<>();
+            List<Komputer> komputerList = new ArrayList<>();
 
             while(rs.next()){
                 //Retrieve by column name
@@ -44,7 +44,7 @@ public class Main{
             }
 
             //Display values
-            /*for (Komputer komputer : narasiList) {
+            /*for (Komputer komputer : komputerList) {
 
             }*/
             //STEP 6: Clean-up environment
