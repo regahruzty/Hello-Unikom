@@ -1,0 +1,36 @@
+# system file
+.DS_Store
+
+# intellji idea
+.idea/
+*.iml
+*.xml
+*.mf
+*.md
+
+nbproject/
+build/
+lib/
+
+
+# eclipse project
+.classpath
+.settings/
+.project
+
+# maven project
+target/
+bin/
+out/
+
+upload-dir/
+uploads/
+
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

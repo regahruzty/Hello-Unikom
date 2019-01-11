@@ -77,7 +77,7 @@ public class Hima {
     }
     
     public static void main(String[] args) {
-        Hima hm = new Hima();
+        Hima hm = new Hima()   ;
         Anggota agg= new Anggota();
         Divisi div = new Divisi();
         Proker brg = new Proker();
