@@ -8,10 +8,10 @@ package main.java.aplikasi.codeshare.azizan.Config;
 public class KoneksiDB {
 
     public static final String JDBC_DRIVER_MYSQL =
-            "com.mysql.cj.jdbc.Driver";
+            "com.mysql.jdbc.Driver";
 
     public static final String DB_URL =
-            "jdbc:mysql://localhost/learn_jdbc";
+            "jdbc:mysql://localhost/kelompok3";
 
     public static final String USER = "root";
     public static final String PASS = "";
