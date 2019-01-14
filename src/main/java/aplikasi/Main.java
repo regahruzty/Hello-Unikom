@@ -13,10 +13,10 @@ public class Main {
         KucingService kucingService = new KucingService(KoneksiDB.getDataSource());
         try {
             Kucing kucing = new Kucing();
-            kucing.setNama("Johnny");
-            kucing.setJenis("Angora");
-            kucing.setLiar(false);
-            kucing.setJumlahKaki(4);
+            kucing.setNama("Johnny1");
+            kucing.setJenis("Angora1");
+            kucing.setLiar(true);
+            kucing.setJumlahKaki(5);
             kucing.setTanggalLahir(new Date());
 
             kucing = kucingService.save(kucing);
