@@ -15,10 +15,10 @@ public class DBMigrate {
     }
 }
 
-class Utils{
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/learn_migration_robby";
+    class Utils{
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/belajar_jdbc";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "";
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
 
     private static void migrate(){
