@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class TransactionToJDBC {
 
     public static void main(String[] args) {
-        Utils.createTableSatu();
+        Utils.migrate();
     }
 
 }
@@ -22,9 +22,13 @@ class Utils{
     private static final String PASSWORD =
             "root";
 
+    public static void migrate(){
+        createTableSatu();
+        createTableDua();
+        createTableTiga();
+    }
 
-
-    public static void createTableSatu(){
+    private static void createTableSatu(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
@@ -44,7 +48,7 @@ class Utils{
         }
     }
 
-    public static void createTableDua(){
+    private static void createTableDua(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
@@ -64,7 +68,7 @@ class Utils{
         }
     }
 
-    public static void createTableTiga(){
+    private static void createTableTiga(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
