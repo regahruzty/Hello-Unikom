@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `anjing`;
 
 CREATE TABLE `anjing` (
   `id_anjing` int(2) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(20) NOT NULL,
+  `namaGroup` varchar(20) NOT NULL,
   `jenis` enum('pitbul','husky','pug','buldog','chow chow','pudel') NOT NULL,
   `kebiasaan` varchar(25) NOT NULL,
   PRIMARY KEY (`id_anjing`)
@@ -30,7 +30,7 @@ CREATE TABLE `anjing` (
 
 /*Data for the table `anjing` */
 
-insert  into `anjing`(`id_anjing`,`nama`,`jenis`,`kebiasaan`) values 
+insert  into `anjing`(`id_anjing`,`namaGroup`,`jenis`,`kebiasaan`) values
 (1,'Roger','husky','ngupil'),
 (2,'Kimmi','pug','mencuri'),
 (3,'Layla','pudel','menabung');
@@ -114,7 +114,7 @@ DROP TABLE IF EXISTS `tentara`;
 
 CREATE TABLE `tentara` (
   `id_tentara` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `matra` varchar(255) NOT NULL,
   `pangkat` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tentara`)
@@ -122,7 +122,7 @@ CREATE TABLE `tentara` (
 
 /*Data for the table `tentara` */
 
-insert  into `tentara`(`id_tentara`,`nama`,`matra`,`pangkat`) values 
+insert  into `tentara`(`id_tentara`,`namaGroup`,`matra`,`pangkat`) values
 (1,'Ucok','Angkatan Udara','Kapten'),
 (2,'Asep','Angkatan Laut','Mayor'),
 (3,'Tono','Angkatan Darat','Kolonel');

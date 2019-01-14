@@ -48,7 +48,7 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `qty`, `harga`) VALUES
 
 CREATE TABLE `kucing` (
   `id_kucing` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `warna` varchar(255) NOT NULL,
   `umur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -57,7 +57,7 @@ CREATE TABLE `kucing` (
 -- Dumping data untuk tabel `kucing`
 --
 
-INSERT INTO `kucing` (`id_kucing`, `nama`, `warna`, `umur`) VALUES
+INSERT INTO `kucing` (`id_kucing`, `namaGroup`, `warna`, `umur`) VALUES
 (1, 'Angora', 'Kuning', 3);
 
 -- --------------------------------------------------------
@@ -68,7 +68,7 @@ INSERT INTO `kucing` (`id_kucing`, `nama`, `warna`, `umur`) VALUES
 
 CREATE TABLE `mobil` (
   `id_mobil` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `jenis` varchar(255) NOT NULL,
   `jumlahban` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -77,7 +77,7 @@ CREATE TABLE `mobil` (
 -- Dumping data untuk tabel `mobil`
 --
 
-INSERT INTO `mobil` (`id_mobil`, `nama`, `jenis`, `jumlahban`) VALUES
+INSERT INTO `mobil` (`id_mobil`, `namaGroup`, `jenis`, `jumlahban`) VALUES
 (1, 'Ayla', 'Low Mpv', 4),
 (2, 'Hilux', 'Pickup', 4),
 (3, 'Fuso', 'Truck', 6);
@@ -128,7 +128,7 @@ INSERT INTO `organ_dalam` (`id_organ`, `jenis_organ`, `jumlah_organ`) VALUES
 
 CREATE TABLE `pohon` (
   `id_pohon` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `jenismonodiko` bit(1) NOT NULL,
   `jumlahbuah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -137,7 +137,7 @@ CREATE TABLE `pohon` (
 -- Dumping data untuk tabel `pohon`
 --
 
-INSERT INTO `pohon` (`id_pohon`, `nama`, `jenismonodiko`, `jumlahbuah`) VALUES
+INSERT INTO `pohon` (`id_pohon`, `namaGroup`, `jenismonodiko`, `jumlahbuah`) VALUES
 (1, 'Apel', b'1', 2);
 
 --

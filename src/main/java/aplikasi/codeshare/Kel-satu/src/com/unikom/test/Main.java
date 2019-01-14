@@ -68,7 +68,7 @@ public class Main {
             if (rsbarang.next()) {
                 Barang barang = new Barang();
                 barang.setNama(rsbarang.getString("nama_barang"));
-                //System.out.print(" Mengangkut " + barang.getNama());
+                //System.out.print(" Mengangkut " + barang.getNamaGroup());
                 narasii.setId_barang(barang);
             }
             // AMBIL DATA KUCING
@@ -77,7 +77,7 @@ public class Main {
             if (rskucing.next()) {
                 Kucing kucing = new Kucing();
                 kucing.setNama(rskucing.getString("nama_kucing"));
-                //System.out.print(" Menabrak kucing " + kucing.getNama());
+                //System.out.print(" Menabrak kucing " + kucing.getNamaGroup());
                 narasii.setId_kucing(kucing);
             }
             // AMBIL DATA ORGAN DALAM

@@ -5,7 +5,7 @@ use learn_jdbc;
 CREATE TABLE pemilik_kucing(
 id_kucing int(11) not null primary key auto_increment,
 jenis varchar(255) not null,
-nama varchar(255) not null,
+namaGroup varchar(255) not null,
 is_liar bit(1) not null,
 tanggal_lahir date not null
 );

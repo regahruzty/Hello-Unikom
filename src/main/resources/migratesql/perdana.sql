@@ -68,7 +68,7 @@ CREATE TABLE `kondisi` (
 
 CREATE TABLE `produk` (
   `id_produk` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `merk` varchar(255) NOT NULL,
   `waktu_pembuatan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

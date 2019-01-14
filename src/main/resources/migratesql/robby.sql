@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `komputer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `komputer` (
   `id_komputer` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `procie` varchar(255) NOT NULL,
   `mobo` varchar(255) NOT NULL,
   `memory` varchar(255) NOT NULL,
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `pemilik`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pemilik` (
   `id_pemilik` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   `id_komputer` int(11) NOT NULL,
   PRIMARY KEY (`id_pemilik`),
   KEY `fk_idKomputer` (`id_komputer`),
@@ -84,7 +84,7 @@ DROP TABLE IF EXISTS `tipe`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipe` (
   `id_tipe` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(255) NOT NULL,
+  `namaGroup` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tipe`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

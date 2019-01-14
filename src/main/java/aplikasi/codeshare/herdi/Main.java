@@ -112,7 +112,7 @@ public class Main {
         //class merpati
 //        Merpati merpati = new Merpati("Merpati ODC","5 tahun","Hitam kecoklatan","Runcing, Kecil", new Date());
 //
-//        System.out.println("Burung ini bernama "+merpati.getNama());
+//        System.out.println("Burung ini bernama "+merpati.getNamaGroup());
 //        System.out.println("Burung ini berusia "+merpati.getUsia());
 //        System.out.println("Burung ini berwarna "+merpati.getWarna());
 //        System.out.println("Burung ini mempunyai paruh yang "+merpati.getParuh());
@@ -126,7 +126,7 @@ public class Main {
 //
 //        //class Elang
 //        Elang elang = new Elang("Elang Jawa", "10 tahun", "Coklat", "Kuat, Tajam", new Date());
-//        System.out.println("Burung ini bernama "+elang.getNama());
+//        System.out.println("Burung ini bernama "+elang.getNamaGroup());
 //        System.out.println("Burung ini berusia "+elang.getUsia());
 //        System.out.println("Burung ini berwarna "+elang.getWarna());
 //        System.out.println("Burung ini mempunyai paruh yang "+elang.getParuh());
