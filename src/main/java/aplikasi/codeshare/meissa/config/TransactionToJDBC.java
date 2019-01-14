@@ -21,7 +21,7 @@ class Utils{
     private static final String USER =
             "root";
     private static final String PASSWORD =
-            "root";
+            "";
 
     public static void migrate(){
         createTableMahasiswa();
