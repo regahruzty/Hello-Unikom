@@ -95,18 +95,13 @@ class Utils{
 
         List <Motor> motorList = new ArrayList<>();
 
-        motor.setNama_motor("Mio Fino");
-        motor.setMerk_motor("Yamaha");
-        motor.setHarga(18000000);
+        motor.setId_motor(1);
         motorList.add(motor);
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " DELETE FROM motor_ariya WHERE id_motor = '"+motor.getId_motor()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
@@ -121,6 +116,7 @@ class Utils{
 
         List <Motor> motorList = new ArrayList<>();
 
+        motor.setId_motor(3);
         motor.setNama_motor("Mio Fino");
         motor.setMerk_motor("Yamaha");
         motor.setHarga(18000000);
@@ -129,10 +125,11 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " UPDATE motor_ariya SET " +
+                    "nama_motor = '"+motor.getNama_motor()+"', " +
+                    "merk_motor = '"+motor.getMerk_motor()+"'," +
+                    "harga_motor = '"+motor.getHarga()+"'" +
+                    " WHERE id_motor = '"+motor.getId_motor()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
@@ -192,20 +189,15 @@ class Utils{
     }
     public static void deleteDataPembeli(){
 
-        List <Motor> motorList = new ArrayList<>();
+        List <Pembeli> pembeliList = new ArrayList<>();
 
-        motor.setNama_motor("Mio Fino");
-        motor.setMerk_motor("Yamaha");
-        motor.setHarga(18000000);
-        motorList.add(motor);
+        pembeli.setId_pembeli(1);
+        pembeliList.add(pembeli);
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " DELETE FROM pembeli WHERE id_pembeli= '"+pembeli.getId_pembeli()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
@@ -218,20 +210,22 @@ class Utils{
     }
     public static void updateDataPembeli(){
 
-        List <Motor> motorList = new ArrayList<>();
+        List <Pembeli> pembeliList = new ArrayList<>();
 
-        motor.setNama_motor("Mio Fino");
-        motor.setMerk_motor("Yamaha");
-        motor.setHarga(18000000);
-        motorList.add(motor);
+        pembeli.setId_pembeli(3);
+        pembeli.setNama_pembeli("Mio Fino");
+        pembeli.setAlamat("Yamaha");
+        pembeli.setPekerjaan("USAHA");
+        pembeliList.add(pembeli);
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " UPDATE pembeli SET " +
+                    "nama_pembeli = '"+pembeli.getNama_pembeli()+"', " +
+                    "alamat_pembeli = '"+pembeli.getAlamat()+"'," +
+                    "pekerjaan = '"+pembeli.getPekerjaan()+"'" +
+                    " WHERE id_pembeli = '"+pembeli.getId_pembeli()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
@@ -297,20 +291,15 @@ class Utils{
     }
     public static void deleteDataTransaksi(){
 
-        List <Motor> motorList = new ArrayList<>();
+        List <Transaksi> transaksiList = new ArrayList<>();
 
-        motor.setNama_motor("Mio Fino");
-        motor.setMerk_motor("Yamaha");
-        motor.setHarga(18000000);
-        motorList.add(motor);
+        transaksi.setId_transaksi(1);
+        transaksiList.add(transaksi);
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " DELETE FROM transaksi WHERE id_transaksi = '"+transaksi.getId_transaksi()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
@@ -323,20 +312,25 @@ class Utils{
     }
     public static void updateDataTransaksi(){
 
-        List <Motor> motorList = new ArrayList<>();
+        List <Transaksi> transaksiList = new ArrayList<>();
 
-        motor.setNama_motor("Mio Fino");
-        motor.setMerk_motor("Yamaha");
-        motor.setHarga(18000000);
-        motorList.add(motor);
+        pembeli.setId_pembeli(1);
+        motor.setId_motor(1);
+        transaksi.setId_transaksi(3);
+        transaksi.setId_pembeli(pembeli);
+        transaksi.setId_motor(motor);
+        transaksi.setTanggal_pembelian("2019-02-02");
+        transaksiList.add(transaksi);
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " insert into motor_ariya (nama_motor, merk_motor, harga_motor) VALUES " +
-                    "('"+motor.getNama_motor()+"', " +
-                    "'"+motor.getMerk_motor()+"', " +
-                    "'"+motor.getHarga()+"' )";
+            String sql = " UPDATE transaksi SET " +
+                    "id_pembeli = '"+transaksi.getId_pembeli().getId_pembeli()+"', " +
+                    "id_motor = '"+transaksi.getId_motor().getId_motor()+"'," +
+                    "tanggal_pembelian = '"+transaksi.getTanggal_pembelian()+"', " +
+                    "jumlah_pembelian = '"+transaksi.getJumlah_pembelian()+"'" +
+                    " WHERE id_transaksi = '"+transaksi.getId_transaksi()+"'";
 
             statement.executeUpdate(sql);
             System.out.println("INI CONNECTION SAYA : "+conn);
