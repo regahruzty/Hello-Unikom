@@ -17,12 +17,12 @@ import java.util.logging.Logger;
 public class App {
 
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/kelompok3";
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "";
+    static final String PASS = "root";
 
     public static void main(String[] args) {
         //Connection conn = null;
@@ -32,7 +32,7 @@ public class App {
         java.sql.Connection conect = con.connectDB();
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Connecting to database...");
             conect = DriverManager.getConnection(DB_URL,USER,PASS);
 
