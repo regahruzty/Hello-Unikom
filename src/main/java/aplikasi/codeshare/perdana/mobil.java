@@ -10,7 +10,7 @@ class Main {
     static final String JDBC_DRIVER =
             "com.mysql.cj.jdbc.Driver";
     static final String DB_URL =
-            "jdbc:mysql://localhost/mobil";
+            "jdbc:mysql://localhost/mobil_perdana";
 
     //    Database credentials
     static final String USER = "root";
