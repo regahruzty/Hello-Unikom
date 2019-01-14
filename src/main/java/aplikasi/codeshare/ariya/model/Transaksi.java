@@ -1,17 +1,17 @@
 package main.java.aplikasi.codeshare.ariya.model;
-import java.util.*;
+
 public class Transaksi{
     int id_transaksi, jumlah_pembelian;
     String tanggal_pembelian;
 
-    Pembeli id_pembeli;
-    Motor id_motor;
+    int id_pembeli;
+    int id_motor;
 
     public Transaksi(){
 
     }
 
-    public Transaksi(int id_transaksi, Pembeli id_pembeli, Motor id_motor, int jumlah_pembelian, String tanggal_pembelian) {
+    public Transaksi(int id_transaksi, int id_pembeli, int id_motor, int jumlah_pembelian, String tanggal_pembelian) {
         this.id_transaksi = id_transaksi;
         this.id_pembeli = id_pembeli;
         this.id_motor = id_motor;
@@ -27,19 +27,19 @@ public class Transaksi{
         this.id_transaksi = id_transaksi;
     }
 
-    public Pembeli getId_pembeli() {
+    public int getId_pembeli() {
         return id_pembeli;
     }
 
-    public void setId_pembeli(Pembeli id_pembeli) {
+    public void setId_pembeli(int id_pembeli) {
         this.id_pembeli = id_pembeli;
     }
 
-    public Motor getId_motor() {
+    public int getId_motor() {
         return id_motor;
     }
 
-    public void setId_motor(Motor id_motor) {
+    public void setId_motor(int id_motor) {
         this.id_motor = id_motor;
     }
 

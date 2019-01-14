@@ -13,10 +13,12 @@ public class Main {
         KucingService kucingService = new KucingService(KoneksiDB.getDataSourceMysqlLearnJDBC());
         try {
             Kucing kucing = new Kucing();
-            kucing.setNama("Sammy");
-            kucing.setJenis("Persian");
-            kucing.setLiar(true);
-            kucing.setJumlahKaki(4);
+
+            kucing.setNama("Jasmine");
+            kucing.setJenis("Scottish Fold");
+            kucing.setLiar(false);
+               kucing.setJumlahKaki(4);
+
             kucing.setTanggalLahir(new Date());
 
             kucing = kucingService.save(kucing);

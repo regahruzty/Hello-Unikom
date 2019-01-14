@@ -1,5 +1,7 @@
 package main.java.aplikasi.practice;
 
+import main.java.aplikasi.codeshare.azizan.Config.KoneksiDB;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,7 +22,7 @@ class Utils{
     private static final String USER =
             "root";
     private static final String PASSWORD =
-            "root";
+            "";
 
     public static void migrate(){
         createTableSatu();
