@@ -1,14 +1,14 @@
-package main.java.aplikasi.practice;
+package main.java.aplikasi.codeshare.perdana;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TransactionToJDBC {
+public class Migrate {
 
     public static void main(String[] args) {
-        Utils.migrate();
+        main.java.aplikasi.codeshare.perdana.Utils.migrate();
     }
 
 }
@@ -16,11 +16,11 @@ public class TransactionToJDBC {
 class Utils{
 
     private static final String DB_URL =
-            "jdbc:mysql://localhost:3306/belajar_jdbc";
+            "jdbc:mysql://localhost:3306/mobil_perdana";
     private static final String USER =
             "root";
     private static final String PASSWORD =
-            "root";
+            "";
 
     public static void migrate(){
         createTableSatu();
@@ -34,11 +34,11 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE table_satu ( " +
-                    "   id_table_satu INT(11) not null PRIMARY KEY auto_increment, " +
-                    "   description VARCHAR(255) not null, " +
-                    "   create_user VARCHAR(255) not null, " +
-                    "   create_date DATE not null " +
+            String sql = " CREATE TABLE produk ( " +
+                    "   id_produk INT(11) not null PRIMARY KEY auto_increment, " +
+                    "   nama VARCHAR(255) not null, " +
+                    "   merk VARCHAR(255) not null, " +
+                    "   waktu_pembuatan DATE not null " +
                     "   )";
             statement.executeUpdate(sql);
             System.out.println("CREATE TABLE SATU SUCCESS ");
@@ -52,11 +52,10 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE table_dua ( " +
-                    "   id_table_dua INT(11) not null PRIMARY KEY auto_increment, " +
-                    "   description VARCHAR(255) not null, " +
-                    "   create_user VARCHAR(255) not null, " +
-                    "   create_date DATE not null " +
+            String sql = " CREATE TABLE jenis ( " +
+                    "   id_jenis INT(11) not null PRIMARY KEY auto_increment, " +
+                    "   jenis VARCHAR(255) not null, " +
+                    "   keterangan VARCHAR(255) not null " +
                     "   )";
             statement.executeUpdate(sql);
             System.out.println("CREATE TABLE DUA SUCCESS ");
@@ -70,10 +69,10 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE table_tiga ( " +
-                    "   id_table_tiga INT(11) not null PRIMARY KEY auto_increment, " +
-                    "   description VARCHAR(255) not null, " +
-                    "   create_user VARCHAR(255) not null, " +
+            String sql = " CREATE TABLE kondisi ( " +
+                    "   id_kondisi INT(11) not null PRIMARY KEY auto_increment, " +
+                    "   body VARCHAR(255) not null, " +
+                    "   mesin VARCHAR(255) not null, " +
                     "   create_date DATE not null " +
                     "   )";
             statement.executeUpdate(sql);
@@ -90,9 +89,9 @@ class Utils{
             Statement statement = conn.createStatement();
             String sql = " CREATE TABLE joined_id ( " +
                     "   id_joined_id INT(11) not null PRIMARY KEY auto_increment, " +
-                    "   id_table_satu INT(11) not null , " +
-                    "   id_table_dua INT(11) not null , " +
-                    "   id_table_tiga INT(11) not null  " +
+                    "   id_produk INT(11) not null , " +
+                    "   id_jenis INT(11) not null , " +
+                    "   id_kondisi INT(11) not null  " +
                     "   )";
             statement.executeUpdate(sql);
             System.out.println("CREATE TABLE JOIN_ID SUCCESS ");
@@ -107,13 +106,13 @@ class Utils{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
             String sql = " alter table joined_id add constraint " +
-                    " fk_table_satu foreign key (id_table_satu) references table_satu (id_table_satu) ";
+                    " fk_table_produk foreign key (id_produk) references produk (id_produk) ";
             statement.executeUpdate(sql);
             sql = " alter table joined_id add constraint " +
-                    " fk_table_dua foreign key (id_table_dua) references table_dua (id_table_dua) ";
+                    " fk_table_jenis foreign key (id_jenis) references jenis (id_jenis) ";
             statement.executeUpdate(sql);
             sql = " alter table joined_id add constraint " +
-                    " fk_table_tiga foreign key (id_table_tiga) references table_tiga (id_table_tiga) ";
+                    " fk_table_kondisi foreign key (id_kondisi) references kondisi (id_kondisi) ";
             statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
         } catch (SQLException e){
