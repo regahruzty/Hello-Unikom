@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.meissa.model;
+package main.java.aplikasi.codeshare.meissa.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -73,7 +73,7 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE joined_id ( " +
+            String sql = " CREATE TABLE joined_id_meissa ( " +
                     "   id_joined INT(11) not null PRIMARY KEY auto_increment, " +
                     "   nim INT(11) not null , " +
                     "   nip INT(30) not null  " +
@@ -90,11 +90,12 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " alter table joined_id add constraint " +
+            String sql = " alter table joined_id_meissa add constraint " +
                     " fk_tabel_mahasiswa foreign key (nim) references mahasiswa (nim) ";
             statement.executeUpdate(sql);
-            sql = " alter table joined_id add constraint " +
+            sql = " alter table joined_id_meissa add constraint " +
                     " fk_tabel_dosen foreign key (nip) references dosen (nip) ";
+            statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
         } catch (SQLException e){
             System.out.println("ADD FOREIGN KEY CONSTRAINT FAILED ");

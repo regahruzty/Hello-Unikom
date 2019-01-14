@@ -21,7 +21,7 @@ public class DBMigrate {
     private static final String PASS = "";
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
 
-    private static void migrate(){
+    public static void migrate(){
         createTableKomputer();
         createTableTipeKomputer();
         createTablePemilikKomputer();

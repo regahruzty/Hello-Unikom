@@ -18,7 +18,7 @@ public class TransactionToBurung {
 
 class Utils{
     private static final String DB_URL =
-            "jdbc:mysql://localhost:3306/learn_jdbc";
+            "jdbc:mysql://localhost:3306/belajar_jdbc";
     private static final String USER =
             "root";
     private static final String PASSWORD =
@@ -79,7 +79,7 @@ class Utils{
             Statement state = conn.createStatement();
 
             String ADD = "ALTER TABLE burung ADD CONSTRAINT " +
-                    "fk_rajawali FOREIGN KEY (id_rajawali) REFERENCES burung (id_burung) ";
+                    "fk_rajawali FOREIGN KEY (id_rajawali) REFERENCES rajawali (id_rajawali) ";
 
             state.executeUpdate(ADD);
 
