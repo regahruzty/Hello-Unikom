@@ -131,7 +131,7 @@ public class Main {
             sql = "select * "
                     + "from transaksi "
                     + "join motor on transaksi.id_motor = motor.id_motor "
-                    + "join pembeli on transaksi.id_pembeli = pembeli.id_pembeli";
+                    + "join pembeli on transaksi.id_pembeli = pembeli.id_pembeli ORDER BY tanggal_pembelian ASC ";
             ResultSet rs = stmt.executeQuery(sql);
             List<Transaksi> transaksiList = new ArrayList<>();
 
