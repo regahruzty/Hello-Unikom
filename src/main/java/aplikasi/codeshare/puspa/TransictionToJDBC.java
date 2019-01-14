@@ -77,14 +77,14 @@ public class TransictionToJDBC {
                 Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
                 Statement statement = conn.createStatement();
                 String sql = " CREATE TABLE joined_id_puspa ( " +
-                        "   id_joined_pohon INT(11) not null PRIMARY KEY auto_increment, " +
+                        "   id_joined_puspa INT(11) not null PRIMARY KEY auto_increment, " +
                         "   id_pohon1 INT(11) not null , " +
-                        "   id_harga INT(11) not null , " +
+                        "   id_harga INT(11) not null " +
                         "   )";
                 statement.executeUpdate(sql);
-                System.out.println("CREATE TABLE JOIN_ID_PUSPA SUCCESS ");
+                System.out.println("CREATE TABLE JOINED_ID_PUSPA SUCCESS ");
             } catch (SQLException e) {
-                System.out.println("CREATE TABLE JOIN_ID_PUSPA FAILED ");
+                System.out.println("CREATE TABLE JOINED_ID_PUSPA FAILED ");
                 e.printStackTrace();
             }
         }
@@ -93,10 +93,10 @@ public class TransictionToJDBC {
             try {
                 Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
                 Statement statement = conn.createStatement();
-                String sql = " alter table joined_id add constraint " +
+                String sql = " alter table joined_id_puspa add constraint " +
                         " fk_pohon1 foreign key (id_pohon1) references pohon1 (id_pohon1) ";
                 statement.executeUpdate(sql);
-                sql = " alter table joined_id add constraint " +
+                sql = " alter table joined_id_puspa add constraint " +
                         " fk_harga foreign key (id_harga) references harga (id_harga) ";
                 statement.executeUpdate(sql);
                 System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
