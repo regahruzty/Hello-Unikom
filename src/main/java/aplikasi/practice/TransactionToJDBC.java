@@ -26,6 +26,8 @@ class Utils{
         createTableSatu();
         createTableDua();
         createTableTiga();
+        createTableJoinedId();
+        addConstraintForeignKey();
     }
 
     private static void createTableSatu(){
@@ -39,11 +41,9 @@ class Utils{
                     "   create_date DATE not null " +
                     "   )";
             statement.executeUpdate(sql);
-            System.out.println("INI CONNECTION SAYA : "+conn);
-            System.out.println("CREATE TABLE SUCCESS ");
+            System.out.println("CREATE TABLE SATU SUCCESS ");
         } catch (SQLException e){
-            System.out.println("GET CONNECTION FAILED");
-            System.out.println("CREATE TABLE FAILED ");
+            System.out.println("CREATE TABLE SATU FAILED ");
             e.printStackTrace();
         }
     }
@@ -59,11 +59,9 @@ class Utils{
                     "   create_date DATE not null " +
                     "   )";
             statement.executeUpdate(sql);
-            System.out.println("INI CONNECTION SAYA : "+conn);
-            System.out.println("CREATE TABLE SUCCESS ");
+            System.out.println("CREATE TABLE DUA SUCCESS ");
         } catch (SQLException e){
-            System.out.println("GET CONNECTION FAILED");
-            System.out.println("CREATE TABLE FAILED ");
+            System.out.println("CREATE TABLE DUA FAILED ");
             e.printStackTrace();
         }
     }
@@ -79,11 +77,47 @@ class Utils{
                     "   create_date DATE not null " +
                     "   )";
             statement.executeUpdate(sql);
-            System.out.println("INI CONNECTION SAYA : "+conn);
-            System.out.println("CREATE TABLE SUCCESS ");
+            System.out.println("CREATE TABLE TIGA SUCCESS ");
         } catch (SQLException e){
-            System.out.println("GET CONNECTION FAILED");
-            System.out.println("CREATE TABLE FAILED ");
+            System.out.println("CREATE TABLE TIGA FAILED ");
+            e.printStackTrace();
+        }
+    }
+
+    private static void createTableJoinedId(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement statement = conn.createStatement();
+            String sql = " CREATE TABLE joined_id ( " +
+                    "   id_joined_id INT(11) not null PRIMARY KEY auto_increment, " +
+                    "   id_table_satu INT(11) not null , " +
+                    "   id_table_dua INT(11) not null , " +
+                    "   id_table_tiga INT(11) not null  " +
+                    "   )";
+            statement.executeUpdate(sql);
+            System.out.println("CREATE TABLE JOIN_ID SUCCESS ");
+        } catch (SQLException e){
+            System.out.println("CREATE TABLE JOIN_ID FAILED ");
+            e.printStackTrace();
+        }
+    }
+
+    private static void addConstraintForeignKey(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement statement = conn.createStatement();
+            String sql = " alter table joined_id add constraint " +
+                    " fk_table_satu foreign key (id_table_satu) references table_satu (id_table_satu) ";
+            statement.executeUpdate(sql);
+            sql = " alter table joined_id add constraint " +
+                    " fk_table_dua foreign key (id_table_dua) references table_dua (id_table_dua) ";
+            statement.executeUpdate(sql);
+            sql = " alter table joined_id add constraint " +
+                    " fk_table_tiga foreign key (id_table_tiga) references table_tiga (id_table_tiga) ";
+            statement.executeUpdate(sql);
+            System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
+        } catch (SQLException e){
+            System.out.println("ADD FOREIGN KEY CONSTRAINT FAILED ");
             e.printStackTrace();
         }
     }
