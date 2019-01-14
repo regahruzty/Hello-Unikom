@@ -6,11 +6,13 @@ public class Tentara {
     private String nama;
     private String pangkat;
     private String matra;
+    private Long id;
 
     private Tentara(String nama, String pangkat, String matra) {
         this.nama = nama;
         this.pangkat = pangkat;
         this.matra = matra;
+        this.id = id;
     }
 
     public Tentara() {
@@ -40,6 +42,15 @@ public class Tentara {
     public void setMatra(String matra) {
         this.matra = matra;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,12 +58,12 @@ public class Tentara {
         Tentara tentara = (Tentara) o;
         return Objects.equals(nama, tentara.nama) &&
                 Objects.equals(pangkat, tentara.pangkat) &&
-                Objects.equals(matra, tentara.matra);
+                Objects.equals(matra, tentara.matra) &&
+                Objects.equals(id, tentara.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nama, pangkat, matra);
+        return Objects.hash(nama, pangkat, matra, id);
     }
-
 }
