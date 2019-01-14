@@ -15,13 +15,13 @@ public class DBMigrate {
     }
 }
 
-class Utils{
+class Utils {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/belajar_jdbc";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "";
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
 
-    public static void migrate(){
+    public static void migrate() {
         createTableKomputer();
         createTableTipeKomputer();
         createTablePemilikKomputer();
@@ -29,7 +29,7 @@ class Utils{
         addConstraintForeignKey();
     }
 
-    private static void createTableKomputer(){
+    private static void createTableKomputer() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -46,7 +46,7 @@ class Utils{
         }
     }
 
-    private static void createTableTipeKomputer(){
+    private static void createTableTipeKomputer() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -62,7 +62,7 @@ class Utils{
         }
     }
 
-    private static void createTablePemilikKomputer(){
+    private static void createTablePemilikKomputer() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -78,7 +78,7 @@ class Utils{
         }
     }
 
-    private static void createTableJoinedId(){
+    private static void createTableJoinedId() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -90,13 +90,13 @@ class Utils{
                     "   )";
             statement.executeUpdate(sql);
             System.out.println("CREATE TABLE JOIN_ID SUCCESS ");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("CREATE TABLE JOIN_ID FAILED ");
             e.printStackTrace();
         }
     }
 
-    private static void addConstraintForeignKey(){
+    private static void addConstraintForeignKey() {
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -110,7 +110,7 @@ class Utils{
                     " fk_table_tipe_komputer foreign key (id_tipe_komputer) references tipe_komputer(id_tipe_komputer) ";
             statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("ADD FOREIGN KEY CONSTRAINT FAILED ");
             e.printStackTrace();
         }
