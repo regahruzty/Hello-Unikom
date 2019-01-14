@@ -6,6 +6,7 @@ import java.util.Objects;
 // INI OBJECT KUCING
 public class Kucing {
     //  INI VARIABEL-VARIABEL KUCING
+    private Long kucingId;
     private String nama;
     private String jenis;
     private Boolean isLiar;
@@ -13,7 +14,8 @@ public class Kucing {
     private Date tanggalLahir;
 
     //  INI ALL ARGS CONSTRUCTOR KUCING
-    public Kucing(String nama, String jenis, Boolean isLiar, Integer jumlahKaki, Date tanggalLahir) {
+    public Kucing(Long kucingId, String nama, String jenis, Boolean isLiar, Integer jumlahKaki, Date tanggalLahir) {
+        this.kucingId = kucingId;
         this.nama = nama;
         this.jenis = jenis;
         this.isLiar = isLiar;
@@ -26,6 +28,14 @@ public class Kucing {
     }
 
     //  INI METHOD GETTER SETTER OBJECT KUCING
+    public Long getKucingId() {
+        return kucingId;
+    }
+
+    public void setKucingId(Long kucingId) {
+        this.kucingId = kucingId;
+    }
+
     public String getNama() {
         return nama;
     }
@@ -71,7 +81,8 @@ public class Kucing {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Kucing kucing = (Kucing) o;
-        return Objects.equals(nama, kucing.nama) &&
+        return Objects.equals(kucingId, kucing.kucingId) &&
+                Objects.equals(nama, kucing.nama) &&
                 Objects.equals(jenis, kucing.jenis) &&
                 Objects.equals(isLiar, kucing.isLiar) &&
                 Objects.equals(jumlahKaki, kucing.jumlahKaki) &&
@@ -80,6 +91,18 @@ public class Kucing {
 
     @Override
     public int hashCode() {
-        return Objects.hash(nama, jenis, isLiar, jumlahKaki, tanggalLahir);
+        return Objects.hash(kucingId, nama, jenis, isLiar, jumlahKaki, tanggalLahir);
+    }
+
+    @Override
+    public String toString() {
+        return "Kucing{" +
+                "kucingId=" + kucingId +
+                ", nama='" + nama + '\'' +
+                ", jenis='" + jenis + '\'' +
+                ", isLiar=" + isLiar +
+                ", jumlahKaki=" + jumlahKaki +
+                ", tanggalLahir=" + tanggalLahir +
+                '}';
     }
 }

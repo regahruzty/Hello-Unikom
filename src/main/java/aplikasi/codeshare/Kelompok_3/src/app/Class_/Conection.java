@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.Class_;
+package main.java.aplikasi.codeshare.Kelompok_3.src.app.Class_;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,8 +19,8 @@ public class Conection {
  
   public static Connection connectDB(){
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kelompok3","root", "");
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kelompok3","root", "root");
              
                 return conn;
             } catch (ClassNotFoundException | SQLException e) {

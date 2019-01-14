@@ -54,9 +54,14 @@ CREATE TABLE `narasi` (
   CONSTRAINT `narasi_ibfk_2` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `narasi_ibfk_3` FOREIGN KEY (`id_smartphone`) REFERENCES `smartphone` (`smartphone_id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `narasi_ibfk_4` FOREIGN KEY (`id_tentara`) REFERENCES `tentara` (`id_tentara`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `narasi` */
+
+insert  into `narasi`(`id_narasi`,`id_anjing`,`id_obat`,`id_smartphone`,`id_tentara`) values 
+(1,1,3,6,2),
+(2,2,1,9,3),
+(3,3,4,6,1);
 
 /*Table structure for table `obat` */
 
@@ -113,9 +118,14 @@ CREATE TABLE `tentara` (
   `matra` varchar(255) NOT NULL,
   `pangkat` varchar(255) NOT NULL,
   PRIMARY KEY (`id_tentara`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tentara` */
+
+insert  into `tentara`(`id_tentara`,`nama`,`matra`,`pangkat`) values 
+(1,'Ucok','Angkatan Udara','Kapten'),
+(2,'Asep','Angkatan Laut','Mayor'),
+(3,'Tono','Angkatan Darat','Kolonel');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
