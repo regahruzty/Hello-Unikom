@@ -10,5 +10,6 @@ package main.java.aplikasi.codeshare.fauzi;
  * @author acer
  */
 public class TokoHp {
-    
+    public Toko Toko = new Toko();
+    public Smartphone Smartphone = new Smartphone();
 }
