@@ -20,6 +20,7 @@ class Utils{
         createTabelTentara();
         createTabelBatalyon();
         createTabelTentaraAktif();
+        createTabelTNI();
         addConstraintForeignKey();
     }
 
@@ -29,7 +30,7 @@ class Utils{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
             String sql = "CREATE TABLE `batalyon` (" +
-                    "  `id_batalyon` int(11) NOT NULL," +
+                    "  `id_batalyon` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                     "  `id_tentara` int(11) NOT NULL," +
                     "  `jabatan` varchar(50) NOT NULL" +
                     ")";
@@ -47,7 +48,7 @@ class Utils{
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
             String sql = "CREATE TABLE `tentara` (" +
-                    "  `id_tentara` int(11) NOT NULL," +
+                    "  `id_tentara` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                     "  `nama` varchar(50) NOT NULL," +
                     "  `umur` int(5) NOT NULL," +
                     "  `tanggal_lahir` date NOT NULL," +
@@ -69,9 +70,9 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
-            String sql = "CREATE TABLE `tentara_aktif` (\n" +
-                    "  `id_tentara_aktif` int(11) NOT NULL,\n" +
-                    "  `id_tentara` int(11) NOT NULL\n" +
+            String sql = "CREATE TABLE `tentara_aktif` (" +
+                    "  `id_tentara_aktif` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                    "  `id_tentara` int(11) NOT NULL" +
                     ")";
             statement.executeUpdate(sql);
             System.out.println("CREATE TABLE TENTARA AKTIF SUKSES!");
@@ -81,15 +82,34 @@ class Utils{
         }
     }
 
+    public static void createTabelTNI(){
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = "CREATE TABLE `tni` (" +
+                    "  `id_tni` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                    "  `id_tentara` int(11) NOT NULL," +
+                    "  `id_tentara_aktif` int(11) NOT NULL," +
+                    "  `id_batalyon` int(11) NOT NULL" +
+                    ")";
+            statement.executeUpdate(sql);
+            System.out.println("CREATE TABLE TNI SUKSES!");
+        } catch (SQLException e) {
+            System.out.println("CREATE TABLE TNI ERROR!");
+            e.printStackTrace();
+        }
+    }
+
     public static void addConstraintForeignKey(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
-            String sql = "ALTER TABLE `tni` ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
+            String sql = "ALTER TABLE tni ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
             statement.executeUpdate(sql);
-            sql = "ALTER TABLE `tni` ADD FOREIGN KEY (id_tentara_aktif) REFERENCES tentara_aktif(id_tentara_aktif)";
+            sql = "ALTER TABLE tni ADD FOREIGN KEY (id_tentara_aktif) REFERENCES tentara_aktif(id_tentara_aktif)";
             statement.executeUpdate(sql);
-            sql = "ALTER TABLE `tni` ADD FOREIGN KEY (id_batalyon) REFERENCES batalyon(id_batalyon);";
+            sql = "ALTER TABLE tni ADD FOREIGN KEY (id_batalyon) REFERENCES batalyon(id_batalyon)";
             statement.executeUpdate(sql);
             System.out.println("CREATE FOREIGN KEY SUKSES!");
 
