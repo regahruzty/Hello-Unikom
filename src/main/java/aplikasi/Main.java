@@ -10,12 +10,12 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
-        KucingService kucingService = new KucingService(KoneksiDB.getDataSource());
+        KucingService kucingService = new KucingService(KoneksiDB.getDataSourceMysqlLearnJDBC());
         try {
             Kucing kucing = new Kucing();
-            kucing.setNama("Johnny");
-            kucing.setJenis("Angora");
-            kucing.setLiar(false);
+            kucing.setNama("Sammy");
+            kucing.setJenis("Persian");
+            kucing.setLiar(true);
             kucing.setJumlahKaki(4);
             kucing.setTanggalLahir(new Date());
 
