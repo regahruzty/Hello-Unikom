@@ -21,7 +21,7 @@ class Utils{
     private static final String PASS = "root";
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
 
-    public static void migrate(){
+    private static void migrate(){
         createTableKomputer();
         createTableTipeKomputer();
         createTablePemilikKomputer();
@@ -29,7 +29,7 @@ class Utils{
         addConstraintForeignKey();
     }
 
-    public static void createTableKomputer(){
+    private static void createTableKomputer(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -51,7 +51,7 @@ class Utils{
         }
     }
 
-    public static void createTableTipeKomputer(){
+    private static void createTableTipeKomputer(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
@@ -67,7 +67,7 @@ class Utils{
         }
     }
 
-    public static void createTablePemilikKomputer(){
+    private static void createTablePemilikKomputer(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
