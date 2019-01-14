@@ -13,9 +13,9 @@ import java.util.List;
  * @author acer
  */
 public class Main {
-    
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/smartphone";
+
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost/belajar_jdbc";
     
     static final String USER = "root";
     static final String PASS = "";

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package main.java.aplikasi.codeshare.azizan.Model;
-
-import main.java.aplikasi.codeshare.azizan.Model.*;
 /**
  *
  * @author acer
