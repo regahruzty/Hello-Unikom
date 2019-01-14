@@ -21,7 +21,7 @@ class Utils{
     private static final String PASS = "root";
     private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
 
-    static void migrate(){
+    public static void migrate(){
         createTableKomputer();
         createTableTipeKomputer();
         createTablePemilikKomputer();
