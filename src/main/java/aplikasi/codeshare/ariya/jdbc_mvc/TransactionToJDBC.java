@@ -1,6 +1,5 @@
 package main.java.aplikasi.codeshare.ariya.jdbc_mvc;
 
-import javax.rmi.CORBA.Util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
