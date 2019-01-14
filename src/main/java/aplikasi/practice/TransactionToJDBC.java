@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class TransactionToJDBC {
 
@@ -28,6 +29,7 @@ class Utils{
         createTableTiga();
         createTableJoinedId();
         addConstraintForeignKey();
+        insertIntoTableSatu();
     }
 
     private static void createTableSatu(){
@@ -118,6 +120,20 @@ class Utils{
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
         } catch (SQLException e){
             System.out.println("ADD FOREIGN KEY CONSTRAINT FAILED ");
+            e.printStackTrace();
+        }
+    }
+
+    private static void insertIntoTableSatu(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Statement statement = conn.createStatement();
+            String sql = " Insert into table_satu (description, create_user, create_date) " +
+                    "values ('DESCRIPTION_TABEL_SATU', 'MIGRATION', "+new java.sql.Date(new Date().getTime())+") ";
+            statement.executeUpdate(sql);
+            System.out.println("INSERT TABLE SATU SUCCESS ");
+        } catch (SQLException e){
+            System.out.println("INSERT TABLE SATU FAILED ");
             e.printStackTrace();
         }
     }
