@@ -1,5 +1,6 @@
 package main.java.aplikasi.codeshare.azizan.TransactionToJDBC;
 
+import main.java.aplikasi.codeshare.azizan.Model.Batalyon;
 import main.java.aplikasi.codeshare.azizan.Model.Tentara;
 import main.java.aplikasi.codeshare.azizan.Model.TentaraAktif;
 import main.java.aplikasi.model.Kucing;
@@ -33,10 +34,19 @@ class Azizan{
         tentaraDua.setPangkat("Sersan");
 
         TentaraAktif tentaraAktifSatu = new TentaraAktif();
-        tentaraAktifSatu.setId_tentara(3);
+        tentaraAktifSatu.setId_tentara(2);
 
         TentaraAktif tentaraAktifDua = new TentaraAktif();
-        tentaraAktifDua.setId_tentara(4);
+        tentaraAktifDua.setId_tentara(1);
+
+        Batalyon batalyonSatu = new Batalyon();
+        batalyonSatu.setId_tentara(2);
+        batalyonSatu.setJabatan("Komandan");
+
+        Batalyon batalyonDua = new Batalyon();
+        batalyonDua.setId_tentara(1);
+        batalyonDua.setJabatan("Staff");
+
 
         List<Tentara> tentaraList = new ArrayList<>();
         tentaraList.add(tentaraSatu);
@@ -46,6 +56,10 @@ class Azizan{
         tentaraAktifList.add(tentaraAktifSatu);
         tentaraAktifList.add(tentaraAktifDua);
 
+        List<Batalyon> batalyonList = new ArrayList<>();
+        batalyonList.add(batalyonSatu);
+        batalyonList.add(batalyonDua);
+
         createTabelTentara();
         createTabelBatalyon();
         createTabelTentaraAktif();
@@ -53,6 +67,23 @@ class Azizan{
         addConstraintForeignKey();
         insertIntoTentara(tentaraList);
         insertIntoTentaraAktif(tentaraAktifList);
+        insertIntoBatalyon(batalyonList);
+
+//        dropDatabase();
+
+    }
+
+        public static void dropDatabase(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = "DROP DATABASE belajar_jdbc";
+            statement.executeUpdate(sql);
+            System.out.println("DROP DATABASE belajar_jdbc SUKSES!");
+        } catch (SQLException e) {
+            System.out.println("DROP DATABASE belajar_jdbc ERROR!");
+            e.printStackTrace();
+        }
     }
 
     public static void createTabelBatalyon(){
@@ -140,6 +171,10 @@ class Azizan{
             statement.executeUpdate(sql);
             sql = "ALTER TABLE tni ADD FOREIGN KEY (id_batalyon) REFERENCES batalyon(id_batalyon)";
             statement.executeUpdate(sql);
+            sql = "ALTER TABLE tentara_aktif ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
+            statement.executeUpdate(sql);
+            sql = "ALTER TABLE batalyon ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
+            statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY SUKSES!");
 
         } catch (SQLException e) {
@@ -176,6 +211,25 @@ class Azizan{
             for(TentaraAktif tentaraAktif : tentaraAktifList) {
                 String sql = "INSERT INTO tentara_aktif (id_tentara) " +
                         "VALUES ('" + tentaraAktifList.get(idx).getId_tentara() + "')";
+                idx++;
+                statement.executeUpdate(sql);
+            }
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF SUKSES!!");
+
+        } catch (SQLException e) {
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF GAGAL!");
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertIntoBatalyon(List<Batalyon> batalyonList){
+        try {
+            int idx = 0;
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            for(Batalyon batalyon : batalyonList) {
+                String sql = "INSERT INTO batalyon (id_tentara, jabatan) " +
+                        "VALUES ('" + batalyonList.get(idx).getId_tentara() + "','" + batalyonList.get(idx).getJabatan()+ "')";
                 idx++;
                 statement.executeUpdate(sql);
             }
