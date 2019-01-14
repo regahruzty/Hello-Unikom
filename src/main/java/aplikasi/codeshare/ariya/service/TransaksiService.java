@@ -17,6 +17,7 @@ public class TransaksiService implements TransaksiRepository {
         this.ds = ds;
     }
 
+
     @Override
     public List<Transaksi> selectTransaksi() throws SQLException {
         Connection conn = ds.getConnection();
@@ -71,8 +72,8 @@ class Save {
 
     public static long coreProcess(Connection conn, String sql, Transaksi value) throws SQLException {
         PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        ps.setInt(1, value.getId_pembeli());
-        ps.setInt(2, value.getId_motor());
+        ps.setInt(1, value.getId_pembeli().getId_pembeli());
+        ps.setInt(2, value.getId_motor().getId_motor());
         ps.setString(3, value.getTanggal_pembelian());
         ps.setInt(4, value.getJumlah_pembelian());
         int affectedRows = ps.executeUpdate();
@@ -130,8 +131,8 @@ class SelectTransaksi {
             pembeli.setNama_pembeli(rs.getString("nama_pembeli"));
             transaksi.setJumlah_pembelian(rs.getInt("jumlah_pembelian"));
             transaksi.setTanggal_pembelian(rs.getString("tanggal_pembelian"));
-            transaksi.setId_motor(motor.getId_motor());
-            transaksi.setId_pembeli(pembeli.getId_pembeli());
+            transaksi.setId_motor(motor);
+            transaksi.setId_pembeli(pembeli);
 
             transaksiList.add(transaksi);
         }
