@@ -35,9 +35,9 @@ class Utils{
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             String sql = "drop table if EXISTS smartphone;";
             statement = conn.createStatement();
-            
+
             statement.execute(sql);
-            
+
             sql =    "create table smartphone(" +
                 "    id int(11) not null primary key auto_increment," +
                 "    merk varchar(15) not null," +
@@ -45,7 +45,7 @@ class Utils{
                 "    ram int(2) not null," +
                 "    camera int(2) not null" +
                 "    );";
-            
+
            statement.execute(sql);
             System.out.println("Create table smartphone success");
         }catch (SQLException se) {
@@ -61,10 +61,10 @@ class Utils{
 
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = conn.createStatement();
- 
+
             String sql = "drop table if EXISTS toko;";
             statement.execute(sql);
-            
+
             sql = "Create table toko("
                 + "id int(11) not null primary key auto_increment,"
                 + "name varchar(50) not null,"
@@ -88,10 +88,10 @@ class Utils{
 
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = conn.createStatement();
- 
+
             String sql = "drop table if EXISTS toko_hp;";
             statement.execute(sql);
-            
+
             sql = "Create table toko_hp("
                 + "id int(11) not null primary key auto_increment,"
                 + "toko_id int(11) not null,"
@@ -99,7 +99,7 @@ class Utils{
                 + ");";
            statement.execute(sql);
            System.out.println("create Table Toko HP Success");
-           
+
 // foreign key -> toko
             sql = "alter table toko_hp add foreign key (toko_id)"
                     + "references toko(id);";
@@ -120,5 +120,5 @@ class Utils{
             System.out.println("Test");
         }
     }
-        
+
 }
