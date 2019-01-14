@@ -47,14 +47,34 @@ public class NarasiService {
                     smartphone.setMerk(rs.getString("merk"));
                     smartphone.setType(rs.getString("tipe"));
                     smartphone.setRam(rs.getInt("ram"));
+                    smartphone.setCamera(rs.getInt("camera"));
 
-                    temp = temp + "tentara beranama " + tentara.getNama();
-                    temp = temp + ", tentara beranama " + tentara.getNama();
+                    temp = temp + " Ada Tentara Beranama "+ tentara.getNama();
+                    temp = temp + " Berpangkat "+ tentara.getPangkat();
+                    temp = temp + " Bermatra : "+ tentara.getMatra();
+
+                    temp = temp + " Punya Nama Anjing "+ anjing.getNama();
+                    temp = temp + " dengan Jenis "+ anjing.getJenis();
+                    temp = temp + " yang kebiasaannya : "+ anjing.getKebiasaan();
+
+                    temp = temp + " Meminum obat "+ obat.getNama_obat();
+                    temp = temp + " Sebanyak "+ obat.getDosis_obat();
+                    temp = temp + " Untuk "+ obat.getKeterangan_obat();
+
+                    temp = temp + " unutk Membeli "+ smartphone.getMerk();
+                    temp = temp + " dengan tipe "+ smartphone.getType();
+                    temp = temp + " kameranya "+ smartphone.getCamera();
+                    temp = temp + " dan ram "+ smartphone.getRam();
 
                     narasiList.add(temp);
-                    System.out.println(""+ temp);
+
+                    temp = "";
+
                 }
 
+                for (int i = 0; i < narasiList.size(); i++) {
+                    System.out.println(narasiList.get(i));
+                }
                 return narasiList;
 
             } catch (Exception e) {
