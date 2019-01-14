@@ -76,7 +76,7 @@ public class Main {
             ResultSet rskucing = stmt.executeQuery(sqlkucing);
             if (rskucing.next()) {
                 Kucing kucing = new Kucing();
-                kucing.setNama(rskucing.getString("nama"));
+                kucing.setNama(rskucing.getString("nama_kucing"));
                 //System.out.print(" Menabrak kucing " + kucing.getNama());
                 narasii.setId_kucing(kucing);
             }
@@ -94,7 +94,7 @@ public class Main {
             ResultSet rspohon = stmt.executeQuery(sqlpohon);
             if (rspohon.next()) {
                 Pohon pohon = new Pohon();
-                pohon.setnama(rspohon.getString("nama"));
+                pohon.setnama(rspohon.getString("nama_pohon"));
                 //System.out.print(" Dikuburkan Dibawah Pohon " + pohon.getnama());
                 narasii.setId_pohon(pohon);
                 narasiList.add(narasii);
