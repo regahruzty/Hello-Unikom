@@ -5,18 +5,21 @@
  */
 package main.java.aplikasi.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import javax.sql.DataSource;
+
 /**
  * @author dimmaryanto
  */
 public class KoneksiDB {
 
-    public static final String JDBC_DRIVER_MYSQL =
-            "com.mysql.cj.jdbc.Driver";
-
-    public static final String DB_URL =
-            "jdbc:mysql://localhost/mobil";
-
-    public static final String USER = "root";
-    public static final String PASS = "";
-
+    public static DataSource getDataSource() {
+        BasicDataSource ds = new BasicDataSource();
+        ds.setUsername("root");
+        ds.setPassword("root");
+        ds.setUrl("jdbc:mysql://localhost:3306/learn_jdbc");
+        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        return ds;
+    }
 }

@@ -47,11 +47,4 @@ public class Pembeli {
         this.id_pembeli = id_pembeli;
     }
 
-    public void outputPembeli(){
-        System.out.println("Nama Pembeli : "+getNama_pembeli());
-        System.out.println("Pekerjaan : "+getPekerjaan());
-        System.out.println("Alamat : "+getAlamat());
-
-    }
-
 }

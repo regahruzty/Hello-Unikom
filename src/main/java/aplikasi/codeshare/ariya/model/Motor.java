@@ -49,13 +49,4 @@ public class Motor {
         this.harga = harga;
     }
 
-
-    public void outputMotor(){
-        System.out.println("Merk Motor : "+getMerk_motor());
-        System.out.println("Nama Motor : "+getNama_motor());
-        System.out.println("Harga Motor : "+getHarga());
-
-    }
-
-
 }
