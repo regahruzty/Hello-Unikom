@@ -35,12 +35,7 @@ class Utils{
             Statement statement = conn.createStatement();
             String sql = " create table komputer(" +
                     "id_komputer INT(11) not null auto_increment primary key," +
-                    "nama varchar(255) not null," +
-                    "procie varchar(255) not null," +
-                    "mobo varchar(255) not null," +
-                    "memory varchar(255) not null," +
-                    "monitor varchar(255)," +
-                    "key_mouse bit not null," +
+                    "merk varchar(255) not null," +
                     "tanggal_bangun date not null" +
                     ");";
             statement.executeUpdate(sql);
