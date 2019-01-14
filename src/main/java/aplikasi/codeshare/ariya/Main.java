@@ -8,8 +8,6 @@ import main.java.aplikasi.codeshare.ariya.model.*;
 import main.java.aplikasi.codeshare.ariya.service.*;
 import main.java.aplikasi.codeshare.ariya.config.*;
 
-
-
 public class Main {
 
     public static void main(String[] args) {
@@ -19,17 +17,17 @@ public class Main {
 
         try {
             Transaksi transaksi = new Transaksi();
-            transaksi.setId_pembeli(1);
+            transaksi.setId_pembeli(2);
             transaksi.setId_motor(1);
             transaksi.setTanggal_pembelian("2019-01-14");
-            transaksi.setJumlah_pembelian(1);
+            transaksi.setJumlah_pembelian(5);
             transaksi = transaksiService.save(transaksi);
             System.out.println(transaksi.toString());
             System.out.println("Data Transaksi Tertambah");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
 }

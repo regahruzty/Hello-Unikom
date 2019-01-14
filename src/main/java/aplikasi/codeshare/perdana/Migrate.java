@@ -16,7 +16,7 @@ public class Migrate {
 class Utils{
 
     private static final String DB_URL =
-            "jdbc:mysql://localhost:3306/mobil_perdana";
+            "jdbc:mysql://localhost:3306/belajar_jdbc";
     private static final String USER =
             "root";
     private static final String PASSWORD =
@@ -87,7 +87,7 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE joined_id ( " +
+            String sql = " CREATE TABLE joined_id_perdana ( " +
                     "   id_joined_id INT(11) not null PRIMARY KEY auto_increment, " +
                     "   id_produk INT(11) not null , " +
                     "   id_jenis INT(11) not null , " +
@@ -105,13 +105,13 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             Statement statement = conn.createStatement();
-            String sql = " alter table joined_id add constraint " +
+            String sql = " alter table joined_id_perdana add constraint " +
                     " fk_table_produk foreign key (id_produk) references produk (id_produk) ";
             statement.executeUpdate(sql);
-            sql = " alter table joined_id add constraint " +
+            sql = " alter table joined_id_perdana add constraint " +
                     " fk_table_jenis foreign key (id_jenis) references jenis (id_jenis) ";
             statement.executeUpdate(sql);
-            sql = " alter table joined_id add constraint " +
+            sql = " alter table joined_id_perdana add constraint " +
                     " fk_table_kondisi foreign key (id_kondisi) references kondisi (id_kondisi) ";
             statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
