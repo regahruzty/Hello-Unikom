@@ -1,5 +1,7 @@
 package main.java.aplikasi.practice;
 
+import main.java.aplikasi.codeshare.azizan.Config.KoneksiDB;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +14,7 @@ public class TransactionToJDBC {
     private static final String USER =
             "root";
     private static final String PASSWORD =
-            "root";
+            "";
 //    private static final String DRIVER =
 //            "com.mysql.cj.jdbc.Driverajsdfkljas;dlfj;";
 
@@ -24,7 +26,7 @@ public class TransactionToJDBC {
         System.out.println("INI PASS DB SAYA : "+PASSWORD);
 //        System.out.println("INI DRIVER JDBC SAYA : "+DRIVER);
         try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            conn = DriverManager.getConnection(KoneksiDB.DB_URL, USER, PASSWORD);
             statement = conn.createStatement();
             String sql = " CREATE TABLE table_satu ( " +
                     "   id_table_satu INT(11) not null PRIMARY KEY auto_increment, " +
