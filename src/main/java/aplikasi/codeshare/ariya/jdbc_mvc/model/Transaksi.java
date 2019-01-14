@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.ariya.model;
+package main.java.aplikasi.codeshare.ariya.jdbc_mvc.model;
 
 public class Transaksi{
     int id_transaksi, jumlah_pembelian;

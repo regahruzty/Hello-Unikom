@@ -11,14 +11,21 @@ import main.java.aplikasi.codeshare.ariya.config.*;
 public class Main {
 
     public static void main(String[] args) {
+
+        insertTransaksi();
+    }
+
+
+    static void insertTransaksi(){
         TransaksiService transaksiService = new TransaksiService(KoneksiDB.getDataSource());
-
-
-
         try {
             Transaksi transaksi = new Transaksi();
-            transaksi.setId_pembeli(2);
-            transaksi.setId_motor(1);
+            Motor motor = new Motor();
+            Pembeli pembeli = new Pembeli();
+            motor.setId_motor(1);
+            pembeli.setId_pembeli(1);
+            transaksi.setId_pembeli(pembeli);
+            transaksi.setId_motor(motor);
             transaksi.setTanggal_pembelian("2019-01-14");
             transaksi.setJumlah_pembelian(5);
             transaksi = transaksiService.save(transaksi);
@@ -31,3 +38,4 @@ public class Main {
     }
 
 }
+
