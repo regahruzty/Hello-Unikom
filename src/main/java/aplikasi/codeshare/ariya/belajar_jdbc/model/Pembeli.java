@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.ariya.jdbc_mvc.model;
+package main.java.aplikasi.codeshare.ariya.belajar_jdbc.model;
 public class Pembeli {
 
     String nama_pembeli, pekerjaan, alamat;

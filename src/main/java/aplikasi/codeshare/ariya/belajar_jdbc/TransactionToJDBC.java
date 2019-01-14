@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.ariya.jdbc_mvc;
+package main.java.aplikasi.codeshare.ariya.belajar_jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.aplikasi.codeshare.ariya.jdbc_mvc.model.*;
+import main.java.aplikasi.codeshare.ariya.belajar_jdbc.model.*;
 public class TransactionToJDBC {
 
     public static final Transaksi transaksi =  new Transaksi();
