@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.aplikasi.config;
+package main.java.aplikasi.codeshare.ariya.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -14,20 +14,11 @@ import javax.sql.DataSource;
  */
 public class KoneksiDB {
 
-    public static DataSource getDataSourceMysqlLearnJDBC() {
+    public static DataSource getDataSource() {
         BasicDataSource ds = new BasicDataSource();
         ds.setUsername("root");
         ds.setPassword("");
-        ds.setUrl("jdbc:mysql://localhost:3306/learn_jdbc");
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
-        return ds;
-    }
-
-    public static DataSource getDataSourceMariaDBLearnJDBC2() {
-        BasicDataSource ds = new BasicDataSource();
-        ds.setUsername("root");
-        ds.setPassword("");
-        ds.setUrl("jdbc:mysql://localhost:3306/learn_jdbc");
+        ds.setUrl("jdbc:mysql://localhost/boothcamp");
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return ds;
     }

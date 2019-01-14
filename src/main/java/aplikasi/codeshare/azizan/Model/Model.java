@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.unikom;
+package main.java.aplikasi.codeshare.azizan.Model;
 
 /**
  *
  * @author acer
  */
-public class HelloUnikom {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("OKE");
-    }
+public class Model {
     
+    protected void belongsTo(Model model){
+         
+    }
 }

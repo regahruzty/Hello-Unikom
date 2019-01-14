@@ -71,7 +71,8 @@ class Save {
     public static long initProcess(Connection conn, Kucing value) throws SQLException {
         String sql;
 
-        sql = "INSERT INTO pemilik_kucing (jenis, nama, is_liar, tanggal_lahir) VALUES (?, ?, ?, ?)";
+        sql = "INSERT INTO pemilik_kucing (jenis, nama, is_liar, tanggal_lahir, jumlah_kaki) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
         long generatedId = coreProcess(conn, sql, value);
         return generatedId;
@@ -82,6 +83,7 @@ class Save {
                 Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, value.getJenis());
         ps.setString(2, value.getNama());
+        ps.setInt(5, value.getJumlahKaki());
         ps.setBoolean(3, value.getLiar());
         ps.setDate(4, new java.sql.Date(value.getTanggalLahir().getTime()));
         int affectedRows = ps.executeUpdate();
