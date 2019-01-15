@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.migration;
 
-import config.KoneksiDB;
-import service.SinnohService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.SinnohService;
 
 import java.sql.SQLException;
 

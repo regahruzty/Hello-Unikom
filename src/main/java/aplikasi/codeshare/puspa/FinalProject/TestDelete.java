@@ -1,12 +1,12 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject;
 
-import config.KoneksiDB;
-import model.Fire;
-import model.Sinnoh;
-import model.Water;
-import service.FireService;
-import service.SinnohService;
-import service.WaterService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Fire;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Sinnoh;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Water;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.FireService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.SinnohService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.WaterService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

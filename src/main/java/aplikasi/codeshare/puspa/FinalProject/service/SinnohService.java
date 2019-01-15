@@ -1,9 +1,9 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.service;
 
-import model.Fire;
-import model.Sinnoh;
-import model.Water;
-import repository.SinnohRepository;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Fire;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Sinnoh;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Water;
+import main.java.aplikasi.codeshare.puspa.FinalProject.repository.SinnohRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

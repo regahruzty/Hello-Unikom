@@ -1,8 +1,8 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject;
 
-import config.KoneksiDB;
-import model.Water;
-import service.WaterService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Water;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.WaterService;
 
 import java.sql.SQLException;
 

@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.service;
 
-import model.Fire;
-import repository.FireRepository;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Fire;
+import main.java.aplikasi.codeshare.puspa.FinalProject.repository.FireRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

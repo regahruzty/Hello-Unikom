@@ -1,8 +1,8 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject;
 
-import config.KoneksiDB;
-import model.Fire;
-import service.FireService;
+import main.java.aplikasi.codeshare.puspa.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Fire;
+import main.java.aplikasi.codeshare.puspa.FinalProject.service.FireService;
 
 import java.sql.SQLException;
 import java.util.List;
