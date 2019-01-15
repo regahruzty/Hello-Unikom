@@ -32,7 +32,7 @@ public class TestUpdate {
         List<Burung> burungList = burungService.findAll();
 
         for(Burung burung1 : burungList){
-            System.out.println(burungList.toString());
+            System.out.println(burung1.toString());
         }
 
     }

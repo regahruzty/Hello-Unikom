@@ -79,6 +79,28 @@ public class JoinedHerdiService implements JoinedHerdiRepository {
                     "   )";
             statement.executeUpdate(sql);
 
+            sql = " CREATE TABLE burung ( " +
+                "   id_burung INT(11) not null PRIMARY KEY auto_increment, " +
+                "   nama VARCHAR(50) not null , " +
+                "   warna VARCHAR(50) not null , " +
+                "   paruh VARCHAR(50) not null  " +
+                "   )";
+        statement.executeUpdate(sql);
+
+        sql = " CREATE TABLE jenis ( " +
+                "   id_jenis INT(11) not null PRIMARY KEY auto_increment, " +
+                "   jenis VARCHAR(50) not null , " +
+                "   desc_jenis VARCHAR(255) not null , " +
+                "   )";
+        statement.executeUpdate(sql);
+
+        sql = " CREATE TABLE sifat ( " +
+                "   id_sifat INT(11) not null PRIMARY KEY auto_increment, " +
+                "   sifat VARCHAR(50) not null , " +
+                "   desc_sifat VARCHAR(255) not null , " +
+                "   )";
+        statement.executeUpdate(sql);
+
             sql = "ALTER TABLE joined_herdi ADD CONSTRAINT " +
                     "fk_burung_id FOREIGN KEY (id_burung) REFERENCES burung (id_burung) ";
 
