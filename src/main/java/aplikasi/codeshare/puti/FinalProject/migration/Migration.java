@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puti.FinalProject.migration;
 
-import config.KoneksiDB;
-import service.FakturService;
+import main.java.aplikasi.codeshare.puti.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puti.FinalProject.service.FakturService;
 
 import java.sql.SQLException;
 
