@@ -10,35 +10,29 @@ import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TNIService;
 import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TentaraAktifService;
 import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TentaraService;
 
+import javax.swing.JOptionPane;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        System.out.println("Masukkan nama tentara : ");
-        Scanner scannerNamaTentara = new Scanner(System.in);
-        String namaTentara = scannerNamaTentara.nextLine();
+        String namaTentara;
+        namaTentara = JOptionPane.showInputDialog("Masukkan Nama Tentara");
 
-        System.out.println("Masukkan pangkat tentara : ");
-        Scanner scannerPangkat = new Scanner(System.in);
-        String pangkat = scannerPangkat.nextLine();
+        String pangkat;
+        pangkat = JOptionPane.showInputDialog("Mmasukkan Pangkat Tentara");
 
-        System.out.println("Masukkan matra tentara : ");
-        Scanner scannerMatra = new Scanner(System.in);
-        String matra = scannerMatra.nextLine();
+        String matra;
+        matra = JOptionPane.showInputDialog("Masukkan Matra Tentara");
 
-        System.out.println("apakah tentara perwira? ");
-        Scanner scannerPerwira = new Scanner(System.in);
-        Boolean perwira = Boolean.valueOf(scannerPerwira.nextLine());
+        Boolean perwira;
+        perwira = Boolean.valueOf(JOptionPane.showInputDialog("Apakah Seorang Perwira?"));
 
-        System.out.println("status tentara");
-        Scanner scannerStatus = new Scanner(System.in);
-        String statusTentara = scannerStatus.nextLine();
+        String statusTentara;
+        statusTentara = JOptionPane.showInputDialog("Masukkan Status Tentara");
 
-        System.out.println("nama batalyon tentara");
-        Scanner scannerNamaBatalyon = new Scanner(System.in);
-        String namaBatalyon = scannerNamaBatalyon.nextLine();
+        String namaBatalyon;
+        namaBatalyon = JOptionPane.showInputDialog("Masukkan Nama Batalyon");
 
         Tentara tentara = new Tentara();
         tentara.setNamaTentara(namaTentara);
