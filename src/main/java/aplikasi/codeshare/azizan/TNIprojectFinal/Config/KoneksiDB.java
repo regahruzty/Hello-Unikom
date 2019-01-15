@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.riyan.config;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -6,9 +6,9 @@ import javax.sql.DataSource;
 
 public class KoneksiDB {
 
-    public  static DataSource getKoneksi(){
+    public static DataSource getKoneksi(){
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306/db_finalproject");
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/tni");
         basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("");

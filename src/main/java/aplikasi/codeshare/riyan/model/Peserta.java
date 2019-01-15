@@ -3,12 +3,12 @@ package main.java.aplikasi.codeshare.riyan.model;
 import java.util.Objects;
 
 public class Peserta {
-    Integer id_peserta;
-    String nama_peserta;
-    String no_telp;
-    String alamat;
+    private Long id_peserta;
+    private String nama_peserta;
+    private String no_telp;
+    private String alamat;
 
-    public Peserta(Integer id_peserta, String nama_peserta, String no_telp, String alamat) {
+    public Peserta(Long id_peserta, String nama_peserta, String no_telp, String alamat) {
         this.id_peserta = id_peserta;
         this.nama_peserta = nama_peserta;
         this.no_telp = no_telp;
@@ -18,11 +18,11 @@ public class Peserta {
     public Peserta() {
     }
 
-    public Integer getId_peserta() {
+    public Long getId_peserta() {
         return id_peserta;
     }
 
-    public void setId_peserta(Integer id_peserta) {
+    public void setId_peserta(Long id_peserta) {
         this.id_peserta = id_peserta;
     }
 
