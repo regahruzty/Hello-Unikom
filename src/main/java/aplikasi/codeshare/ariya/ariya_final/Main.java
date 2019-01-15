@@ -34,7 +34,7 @@ public class Main {
         TransaksiService transaksiService = new TransaksiService(KoneksiDB.getKoneksi());
         transaksi = transaksiService.save(transaksi);
 
-        System.out.println("EKOSISTEM : "+transaksi.toString());
+        System.out.println("TRANSAKSI : "+transaksi.toString());
 
     }
 }
