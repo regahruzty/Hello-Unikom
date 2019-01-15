@@ -3,12 +3,12 @@ package main.java.aplikasi.codeshare.riyan.model;
 import java.util.Objects;
 
 public class Boothcamp {
-    Integer id_boothcamp;
-    String nama_boothcamp;
-    String lokasi;
-    String alamat;
+    private Long id_boothcamp;
+    private String nama_boothcamp;
+    private String lokasi;
+    private String alamat;
 
-    public Boothcamp(Integer id_boothcamp, String nama_boothcamp, String lokasi, String alamat) {
+    public Boothcamp(Long id_boothcamp, String nama_boothcamp, String lokasi, String alamat) {
         this.id_boothcamp = id_boothcamp;
         this.nama_boothcamp = nama_boothcamp;
         this.lokasi = lokasi;
@@ -18,11 +18,11 @@ public class Boothcamp {
     public Boothcamp() {
     }
 
-    public Integer getId_boothcamp() {
+    public Long getId_boothcamp() {
         return id_boothcamp;
     }
 
-    public void setId_boothcamp(Integer id_boothcamp) {
+    public void setId_boothcamp(Long id_boothcamp) {
         this.id_boothcamp = id_boothcamp;
     }
 
