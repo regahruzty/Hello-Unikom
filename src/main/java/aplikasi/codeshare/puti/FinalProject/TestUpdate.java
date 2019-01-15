@@ -1,8 +1,8 @@
 package main.java.aplikasi.codeshare.puti.FinalProject;
 
-import config.KoneksiDB;
-import model.Barang;
-import service.BarangService;
+import main.java.aplikasi.codeshare.puti.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Barang;
+import main.java.aplikasi.codeshare.puti.FinalProject.service.BarangService;
 
 import java.sql.SQLException;
 import java.util.List;

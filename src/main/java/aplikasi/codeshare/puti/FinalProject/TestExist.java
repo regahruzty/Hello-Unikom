@@ -1,8 +1,8 @@
 package main.java.aplikasi.codeshare.puti.FinalProject;
 
-import config.KoneksiDB;
-import model.Pembeli;
-import service.PembeliService;
+import main.java.aplikasi.codeshare.puti.FinalProject.config.KoneksiDB;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Pembeli;
+import main.java.aplikasi.codeshare.puti.FinalProject.service.PembeliService;
 
 import java.sql.SQLException;
 

@@ -1,6 +1,6 @@
 package main.java.aplikasi.codeshare.puti.FinalProject.repository;
 
-import model.Faktur;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Faktur;
 
 import java.sql.SQLException;
 

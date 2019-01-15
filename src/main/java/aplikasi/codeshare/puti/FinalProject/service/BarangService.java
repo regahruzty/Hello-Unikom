@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puti.FinalProject.service;
 
-import model.Barang;
-import repository.BarangRepository;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Barang;
+import main.java.aplikasi.codeshare.puti.FinalProject.repository.BarangRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

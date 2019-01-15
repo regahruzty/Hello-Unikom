@@ -1,9 +1,9 @@
 package main.java.aplikasi.codeshare.puti.FinalProject.service;
 
-import model.Barang;
-import model.Faktur;
-import model.Pembeli;
-import repository.FakturRepository;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Barang;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Faktur;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Pembeli;
+import main.java.aplikasi.codeshare.puti.FinalProject.repository.FakturRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

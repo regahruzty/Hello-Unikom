@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puti.FinalProject.service;
 
-import model.Pembeli;
-import repository.PembeliRepository;
+import main.java.aplikasi.codeshare.puti.FinalProject.model.Pembeli;
+import main.java.aplikasi.codeshare.puti.FinalProject.repository.PembeliRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
