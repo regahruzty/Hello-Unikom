@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.herdi.migration;
 
-import main.java.aplikasi.codeshare.herdi.config.KoneksiDB;
 import main.java.aplikasi.codeshare.herdi.service.JoinedHerdiService;
+import main.java.finalproject.config.KoneksiDB;
 
 import java.sql.SQLException;
 
