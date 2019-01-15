@@ -15,10 +15,10 @@ public class TestSave {
     public static void main(String[] args) throws SQLException {
 
         Hewan hewan = new Hewan();
-        hewan.setNamaHewan("Singa");
+        hewan.setNamaHewan("Penguin");
 
         Tumbuhan tumbuhan = new Tumbuhan();
-        tumbuhan.setNamaTumbuhan("Gedang");
+        tumbuhan.setNamaTumbuhan("Rumput Laut");
 
         HewanService hewanService = new HewanService(KoneksiDB.getKoneksi());
         hewan = hewanService.save(hewan);
