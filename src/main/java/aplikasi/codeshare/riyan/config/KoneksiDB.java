@@ -4,17 +4,16 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.sql.DataSource;
 
-/**
- * @author dimmaryanto
- */
-
 public class KoneksiDB {
-    public static DataSource getDataSource(){
-        BasicDataSource ds = new BasicDataSource();
-        ds.setUsername("root");
-        ds.setPassword("");
-        ds.setUrl("jdbc:mysql://localhost/belajar_jdbc");
-        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        return ds;
+
+    public  static DataSource getKoneksi(){
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/db_finalproject");
+        basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        basicDataSource.setUsername("root");
+        basicDataSource.setPassword("");
+
+        return basicDataSource;
     }
+
 }
