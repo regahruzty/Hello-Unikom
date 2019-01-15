@@ -1,9 +1,15 @@
-package main.java.aplikasi.codeshare.riyan;
+package main.java.aplikasi.codeshare.riyan.belajar_jdbc;
+
+import main.java.aplikasi.codeshare.riyan.belajar_jdbc.model.Boothcamp;
+import main.java.aplikasi.codeshare.riyan.belajar_jdbc.model.Pengajar;
+import main.java.aplikasi.codeshare.riyan.belajar_jdbc.model.Peserta;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionToBoothcamp {
 
@@ -13,6 +19,10 @@ public class TransactionToBoothcamp {
 }
 
 class Utils{
+    //membuat object
+    public static final Boothcamp boothcamp = new Boothcamp();
+    public static final Pengajar pengajar = new Pengajar();
+    public static final Peserta peserta = new Peserta();
 
     public static final String DB_URL =
             "jdbc:mysql://localhost:3306/belajar_jdbc";
@@ -20,14 +30,22 @@ class Utils{
     public static final String PASS = "";
 
     public static void migrate(){
+        //Memanggil semua method boothcamp
         createTableBoothcamp();
+        insertDataBoothcamp();
+        //Memanggil semua method pengajar
         createTablePengajar();
+        insertDataPengajar();
+        //Memanggil semua method peserta
         createTablePeserta();
+        insertDataPeserta();
+
         createTableJoinedIdRiyan();
         addConstraintForeignKey();
     }
 
-    private static void createTableBoothcamp(){
+    //Method untuk boothcamp
+    public static void createTableBoothcamp(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             Statement statement = conn.createStatement();
@@ -44,9 +62,34 @@ class Utils{
             e.printStackTrace();
         }
     }
+    public static void insertDataBoothcamp(){
+        List <Boothcamp> boothcampList = new ArrayList<>();
 
+        boothcamp.setId_boothcamp(1);
+        boothcamp.setNama_boothcamp("Indonesia Android Kejar");
+        boothcamp.setLokasi("UNIKOM");
+        boothcamp.setAlamat("Dipatiukur no 112-114");
+        boothcampList.add(boothcamp);
 
-    private static void createTablePengajar(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = " insert into boothcamp (id_boothcamp, nama_boothcamp, lokasi, alamat) VALUES " +
+                    "('"+boothcamp.getId_boothcamp()+"', " +
+                    "'"+boothcamp.getNama_boothcamp()+"', " +
+                    "'"+boothcamp.getLokasi()+"', " +
+                    "'"+boothcamp.getAlamat()+"' )";
+
+            statement.executeUpdate(sql);
+            System.out.println("Insert Data Boothcamp Sukses");
+        }catch (SQLException e){
+            System.out.println("Insert Data Boothcamp Gagal");
+            e.printStackTrace();
+        }
+    }
+
+    //Method untuk pengajar
+    public static void createTablePengajar(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             Statement statement = conn.createStatement();
@@ -63,8 +106,34 @@ class Utils{
             e.printStackTrace();
         }
     }
+    public static void insertDataPengajar(){
+        List <Pengajar> pengajarList = new ArrayList<>();
 
-    private static void createTablePeserta(){
+        pengajar.setId_pengajar(1);
+        pengajar.setNama_pengajar("Anne");
+        pengajar.setNo_telp("08522133698");
+        pengajar.setSpesialis("Java");
+        pengajarList.add(pengajar);
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = " insert into pengajar (id_pengajar, nama_pengajar, no_telp, spesialis) VALUES " +
+                    "('"+pengajar.getId_pengajar()+"', " +
+                    "'"+pengajar.getNama_pengajar()+"', " +
+                    "'"+pengajar.getNo_telp()+"', " +
+                    "'"+pengajar.getSpesialis()+"' )";
+
+            statement.executeUpdate(sql);
+            System.out.println("Insert Data Pengajar Sukses");
+        }catch (SQLException e){
+            System.out.println("Insert Data Pengajar Gagal");
+            e.printStackTrace();
+        }
+    }
+
+    //Method untuk peserta
+    public static void createTablePeserta(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             Statement statement = conn.createStatement();
@@ -81,9 +150,33 @@ class Utils{
             e.printStackTrace();
         }
     }
+    public static void insertDataPeserta(){
+        List <Peserta> pesertaList = new ArrayList<>();
 
+        peserta.setId_peserta(1);
+        peserta.setNama_peserta("Riyan Nur Rizal");
+        peserta.setNo_telp("085723624509");
+        peserta.setAlamat("Kubang Selatan N0 1");
+        pesertaList.add(peserta);
 
-    private static void createTableJoinedIdRiyan(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = " insert into peserta (id_peserta, nama_peserta, no_telp, alamat) VALUES " +
+                    "('"+peserta.getId_peserta()+"', " +
+                    "'"+peserta.getNama_peserta()+"', " +
+                    "'"+peserta.getNo_telp()+"', " +
+                    "'"+peserta.getAlamat()+"' )";
+
+            statement.executeUpdate(sql);
+            System.out.println("Insert Data Peserta Sukses");
+        }catch (SQLException e){
+            System.out.println("Insert Data Peserta Gagal");
+            e.printStackTrace();
+        }
+    }
+
+    public static void createTableJoinedIdRiyan(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             Statement statement = conn.createStatement();
@@ -101,7 +194,7 @@ class Utils{
         }
     }
 
-    private static void addConstraintForeignKey(){
+    public static void addConstraintForeignKey(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
