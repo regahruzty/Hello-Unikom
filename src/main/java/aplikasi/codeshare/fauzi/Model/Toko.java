@@ -8,6 +8,8 @@ package main.java.aplikasi.codeshare.fauzi.Model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import static main.java.aplikasi.codeshare.fauzi.Model.Model.sql;
 
 /**
@@ -101,6 +103,31 @@ public class Toko extends Model{
             se.printStackTrace();
         }
         return this;
+    }
+    
+    public List<Toko> all() throws SQLException{
+        List<Toko> tokos = new ArrayList<>();
+
+        conn = ds.getConnection();
+        stmt = conn.createStatement();
+
+        String sql = "select * from toko";
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while (resultSet.next()) {
+            this.setId(resultSet.getInt("id"));
+            this.setName(resultSet.getString("name"));
+            this.setProvince(resultSet.getString("province"));
+            this.setPhone(resultSet.getString("phone"));
+            tokos.add(this);
+        }
+
+        resultSet.close();
+        stmt.close();
+        conn.close();
+
+        return smartphones;
     }
 
     @Override

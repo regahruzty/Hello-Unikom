@@ -26,7 +26,7 @@ public class SmartphoneService implements SmartphoneRepository{
 
     @Override
     public Smartphone update(Smartphone value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return value.update(value.getId());
     }
 
     @Override
