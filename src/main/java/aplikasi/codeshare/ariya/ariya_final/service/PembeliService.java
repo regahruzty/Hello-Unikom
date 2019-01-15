@@ -66,7 +66,7 @@ public class PembeliService implements PembeliRepository {
     @Override
     public List<Pembeli> findAll() throws SQLException {
         List<Pembeli> pembeliList= new ArrayList<>();
-        Pembeli pembeli = new Pembeli();
+
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
@@ -76,6 +76,7 @@ public class PembeliService implements PembeliRepository {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
+            Pembeli pembeli = new Pembeli();
             pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
             pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
             pembeli.setAlamat_pembeli(resultSet.getString("alamat_pembeli"));
