@@ -26,7 +26,7 @@ public class TokoHpService implements TokoHpRepository{
 
     @Override
     public TokoHp update(TokoHp value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override

@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.sql.DataSource;
-import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
 
 /**
  *
@@ -72,31 +70,37 @@ public class Smartphone extends Model{
 
     @Override
     public String toString() {
-        return "Smartphone{" + "merk=" + merk + ", type=" + type + ", ram=" + ram + ", camera=" + camera + ", id=" + id + '}';
+        return "Smartphone{" + "merk=" + merk + ", type=" + type + ", ram=" + ram + ", camera=" + camera + ", id=" + id + "}\n";
     }
 
-    public Smartphone insert(){
-        try{
-            conn = ds.getConnection();
-            stmt = conn.createStatement();
-            sql = "insert into "+this.getClass().getSimpleName().toLowerCase()+" ("
-                    + "merk, "
-                    + "type, "
-                    + "ram, "
-                    + "camera) "
-                    + "values ('"
-                    + merk +"', '"
-                    + type + "', '"
-                    + ram +"', '"
-                    + camera+"');";
-            System.out.println(sql);
-            
-            stmt.execute(sql);
-            System.out.println("success to save Smartphone");
-        }catch(SQLException se){
-            System.out.println("failed to save Smartphone");
-            se.printStackTrace();
+    public Smartphone insert() throws SQLException{
+        
+        int generatedId =0;
+        sql = "insert into smartphone(merk,type,ram,camera)"
+                + "values(?,?,?,?)";
+        conn = ds.getConnection();
+        ps = conn.prepareStatement(sql,
+            Statement.RETURN_GENERATED_KEYS);
+
+
+        ps.setString(1, this.getMerk());
+        ps.setString(2, this.getType());
+        ps.setInt(3, this.getRam());
+        ps.setInt(4, this.getCamera());
+
+        ps.executeUpdate();
+
+        ResultSet getGeneratedKeys = ps.getGeneratedKeys();
+        while (getGeneratedKeys.next()) {
+            generatedId = getGeneratedKeys.getInt(1);
         }
+
+        id = generatedId;
+
+        getGeneratedKeys.close();
+        ps.close();
+        conn.close();
+        
         return this;
     }
     
@@ -121,30 +125,30 @@ public class Smartphone extends Model{
         return this;
     }
     
-//    public List<String> all(){
-//        List<String> data = new ArrayList<>();
-//        try{
-//            
-//        conn = ds.getConnection();
-//        stmt = conn.createStatement();
-//        sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+"";
-//        System.out.println(sql);
-//
-//        ResultSet rs = stmt.executeQuery(sql);
-//        
-//        while(rs.next()){
-//            
-//            this.setMerk(rs.getString("merk"));
-//            this.setType(rs.getString("type"));
-//            this.setRam(Integer.parseInt(rs.getString("ram")));
-//            this.setCamera(Integer.parseInt(rs.getString("camera")));
-//        }
-//        }catch(SQLException se){
-//            System.out.println("Failed to get Data"+this.getClass().getSimpleName());
-//            se.printStackTrace();
-//        }
-//        return data;
-//    }
+    public List<Smartphone> all() throws SQLException{
+        List<Smartphone> smartphones = new ArrayList<>();
+
+        conn = ds.getConnection();
+        stmt = conn.createStatement();
+
+        String sql = "select * from smartphone";
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while (resultSet.next()) {
+            this.setId(resultSet.getInt("id"));
+            this.setMerk(resultSet.getString("merk"));
+            this.setRam(Integer.parseInt(resultSet.getString("ram")));
+            this.setCamera(Integer.parseInt(resultSet.getString("camera")));
+            smartphones.add(this);
+        }
+
+        resultSet.close();
+        stmt.close();
+        conn.close();
+
+        return smartphones;
+    }
 //    
     
 }
