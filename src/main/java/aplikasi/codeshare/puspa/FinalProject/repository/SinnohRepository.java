@@ -1,6 +1,6 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.repository;
 
-import model.Sinnoh;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Sinnoh;
 
 import java.sql.SQLException;
 

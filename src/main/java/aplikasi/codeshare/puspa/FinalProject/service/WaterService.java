@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.service;
 
-import model.Water;
-import repository.WaterRepository;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Water;
+import main.java.aplikasi.codeshare.puspa.FinalProject.repository.WaterRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

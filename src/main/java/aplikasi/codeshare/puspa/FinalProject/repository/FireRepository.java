@@ -1,6 +1,6 @@
 package main.java.aplikasi.codeshare.puspa.FinalProject.repository;
 
-import model.Fire;
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Fire;
 
 
 public interface FireRepository extends BaseRepository<Fire, Long>{
