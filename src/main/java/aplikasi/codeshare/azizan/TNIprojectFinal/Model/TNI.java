@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Model;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model;
 
 import java.util.Objects;
 
@@ -69,7 +69,7 @@ public class TNI {
 
     @Override
     public String toString() {
-        return "TNI{" +
+        return "TNIprojectFinal{" +
                 "idTNI=" + idTNI +
                 ", tentara=" + tentara +
                 ", tentaraAktif=" + tentaraAktif +

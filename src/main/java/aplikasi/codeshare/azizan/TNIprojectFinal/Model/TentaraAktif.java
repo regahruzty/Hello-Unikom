@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Model;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model;
 
 import java.util.Objects;
 

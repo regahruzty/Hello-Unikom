@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Repository;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Repository;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,7 +1,7 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Service;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service;
 
-import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
-import main.java.aplikasi.codeshare.azizan.TNI.Repository.TentaraRepository;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Repository.TentaraRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Config;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

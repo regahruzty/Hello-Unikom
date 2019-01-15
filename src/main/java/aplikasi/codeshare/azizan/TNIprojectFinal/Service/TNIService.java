@@ -1,10 +1,10 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Service;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service;
 
-import main.java.aplikasi.codeshare.azizan.TNI.Model.Batalyon;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.TNI;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.TentaraAktif;
-import main.java.aplikasi.codeshare.azizan.TNI.Repository.TNIRepository;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.Batalyon;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.TNI;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.TentaraAktif;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Repository.TNIRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

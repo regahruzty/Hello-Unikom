@@ -1,8 +1,8 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Testing;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Testing;
 
-import main.java.aplikasi.codeshare.azizan.TNI.Config.KoneksiDB;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
-import main.java.aplikasi.codeshare.azizan.TNI.Service.TentaraService;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Config.KoneksiDB;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TentaraService;
 
 import java.sql.SQLException;
 

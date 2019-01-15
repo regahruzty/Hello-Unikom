@@ -1,90 +1,85 @@
-package main.java.aplikasi.codeshare.azizan.TNI.Service;
+package main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service;
 
-import main.java.aplikasi.codeshare.azizan.Config.KoneksiDB;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
-import main.java.aplikasi.codeshare.azizan.TNI.Model.TentaraAktif;
-import main.java.aplikasi.codeshare.azizan.TNI.Repository.TentaraAktifRepository;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Model.Batalyon;
+import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Repository.BatalyonRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TentaraAktifService implements TentaraAktifRepository {
+public class BatalyonService implements BatalyonRepository {
+
     private DataSource dataSource;
 
-    public TentaraAktifService(DataSource dataSource) throws SQLException {
+    public BatalyonService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public TentaraAktif save(TentaraAktif tentaraAktif) throws SQLException {
-
+    public Batalyon save(Batalyon batalyon) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        Long generatedIid = null;
+        Long generatedId = null;
 
-        String sql = "INSERT INTO tentara_aktif (status_tentara)" +
-                "VALUES(?)";
-
+        String sql = "INSERT INTO batalyon(nama_batalyon) " +
+                "VALUES (?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
-
-        preparedStatement.setString(1, tentaraAktif.getStatusTentara());
-
+        preparedStatement.setString(1, batalyon.getNamaBatalyon());
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
         while (getGeneratedKeys.next()){
-            generatedIid = getGeneratedKeys.getLong(1);
+            generatedId = getGeneratedKeys.getLong(1);
         }
 
-        tentaraAktif.setIdTentaraAktif(generatedIid);
+        batalyon.setIdBayalyon(generatedId);
 
-        return tentaraAktif;
+        return batalyon;
     }
 
     @Override
-    public TentaraAktif update(TentaraAktif tentara) throws SQLException {
+    public Batalyon update(Batalyon batalyon) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "UPDATE tentara_aktif SET status_tentara = ? WHERE id_tentara_aktif = ?";
+        String sql = "UPDATE batalyon SET nama_batalyon = ? WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, tentara.getStatusTentara());
-        preparedStatement.setLong(2, tentara.getIdTentaraAktif());
+        preparedStatement.setString(1, batalyon.getNamaBatalyon());
+        preparedStatement.setLong(2, batalyon.getIdBayalyon());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return tentara;
+        return batalyon;
     }
 
     @Override
-    public List<TentaraAktif> findAll() throws SQLException {
-        List<TentaraAktif> tentaraAktifs = new ArrayList<>();
+    public List<Batalyon> findAll() throws SQLException {
+        List<Batalyon> batalyons = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "SELECT * FROM tentara_aktif";
+        String sql = "SELECT * FROM batalyon";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()){
-            TentaraAktif tentaraAktif = new TentaraAktif();
-            tentaraAktif.setIdTentaraAktif(resultSet.getLong("id_tentara_aktif"));
-            tentaraAktif.setStatusTentara(resultSet.getString("status_tentara"));
-            tentaraAktifs.add(tentaraAktif);
+            Batalyon batalyon = new Batalyon();
+            batalyon.setIdBayalyon(resultSet.getLong("id_batalyon"));
+            batalyon.setNamaBatalyon(resultSet.getString("nama_batalyon"));
+            batalyons.add(batalyon);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return tentaraAktifs;
+        return batalyons;
     }
 
     @Override
@@ -93,7 +88,7 @@ public class TentaraAktifService implements TentaraAktifRepository {
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "SELECT COUNT(*) FROM tentara_aktif WHERE id_tentara_aktif = ?";
+        String sql = "SELECT COUNT(*) FROM batalyon WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -115,7 +110,7 @@ public class TentaraAktifService implements TentaraAktifRepository {
     public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "DELETE FROM tentara_aktif WHERE id_tentara_aktif = ?";
+        String sql = "DELETE FROM batalyon WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
