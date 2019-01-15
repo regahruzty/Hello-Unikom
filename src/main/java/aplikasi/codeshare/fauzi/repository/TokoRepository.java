@@ -3,21 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.aplikasi.codeshare.fauzi.Services;
+package main.java.aplikasi.codeshare.fauzi.repository;
 
-import javax.sql.DataSource;
+import main.java.aplikasi.codeshare.fauzi.Model.Toko;
 
 /**
  *
  * @author acer
  */
-public class TokoServices {
-    
-    private DataSource ds;
-
-    public TokoServices(DataSource ds) {
-        this.ds = ds;
-    }
-    
+public interface TokoRepository extends BaseRepository<Toko, Integer>{
     
 }

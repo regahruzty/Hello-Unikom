@@ -13,10 +13,19 @@ import java.sql.SQLException;
  */
 public class Toko extends Model{
     private String name;
+    private int id;
     private String province;
     private String phone;
     public Toko(){
         
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public void setName(String name){
@@ -83,4 +92,11 @@ public class Toko extends Model{
         }
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Toko{" + "name=" + name + ", id=" + id + ", province=" + province + ", phone=" + phone + '}';
+    }
+    
+    
 }

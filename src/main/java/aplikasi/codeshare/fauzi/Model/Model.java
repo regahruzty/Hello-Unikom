@@ -6,6 +6,7 @@
 package main.java.aplikasi.codeshare.fauzi.Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
  * @author acer
  */
 public class Model {
-    protected DataSource ds = KoneksiDB.getDataSource();
-    protected Connection conn = null;
-    protected Statement stmt = null;
-    protected String sql = null;
+    protected static DataSource ds = KoneksiDB.getDataSource();
+    protected static Connection conn = null;
+    protected static Statement stmt = null;
+    protected static String sql = null;
     
     public Model delete(int id){
         try{
@@ -39,8 +40,40 @@ public class Model {
         return this;
     }
     
-    public List<String> all(){
-        List<String> data = new ArrayList<>();
-        return data;
+    public Model find(int id){
+        try{
+            conn = ds.getConnection();
+            stmt = conn.createStatement();
+            sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+" where id='"+id+"'";
+            System.out.println(sql);
+            
+            stmt.execute(sql);
+            System.out.println("success to find "+this.getClass().getSimpleName().toLowerCase()+" where id = "+id);
+        }catch(SQLException se){
+            System.out.println("failed to find "+this.getClass().getSimpleName().toLowerCase()+"");
+            se.printStackTrace();
+        }
+        return this;
     }
+    
+//    public List<String> all(){
+//        List<String> data = new ArrayList<>();
+//        try{
+//            
+//        conn = ds.getConnection();
+//        stmt = conn.createStatement();
+//        sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+"";
+//        System.out.println(sql);
+//
+//        ResultSet rs = stmt.executeQuery(sql);
+//        
+//        while(rs.next()){
+//            
+//        }
+//        }catch(SQLException se){
+//            System.out.println("Failed to get Data"+this.getClass().getSimpleName());
+//            se.printStackTrace();
+//        }
+//        return data;
+//    }
 }

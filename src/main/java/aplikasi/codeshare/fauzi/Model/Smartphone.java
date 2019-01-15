@@ -6,8 +6,11 @@
 package main.java.aplikasi.codeshare.fauzi.Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sql.DataSource;
 import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
 
@@ -20,10 +23,20 @@ public class Smartphone extends Model{
     private String type = null;
     private Integer ram = null;
     private Integer camera = null;
+    private int id;
+
     
     
-    public Smartphone(DataSource ds){
-        this.ds = ds;
+    public Smartphone(){
+        
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public void setMerk(String merk){
@@ -56,7 +69,12 @@ public class Smartphone extends Model{
     public Integer getCamera(){
         return camera;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Smartphone{" + "merk=" + merk + ", type=" + type + ", ram=" + ram + ", camera=" + camera + ", id=" + id + '}';
+    }
+
     public Smartphone insert(){
         try{
             conn = ds.getConnection();
@@ -103,6 +121,31 @@ public class Smartphone extends Model{
         return this;
     }
     
+//    public List<String> all(){
+//        List<String> data = new ArrayList<>();
+//        try{
+//            
+//        conn = ds.getConnection();
+//        stmt = conn.createStatement();
+//        sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+"";
+//        System.out.println(sql);
+//
+//        ResultSet rs = stmt.executeQuery(sql);
+//        
+//        while(rs.next()){
+//            
+//            this.setMerk(rs.getString("merk"));
+//            this.setType(rs.getString("type"));
+//            this.setRam(Integer.parseInt(rs.getString("ram")));
+//            this.setCamera(Integer.parseInt(rs.getString("camera")));
+//        }
+//        }catch(SQLException se){
+//            System.out.println("Failed to get Data"+this.getClass().getSimpleName());
+//            se.printStackTrace();
+//        }
+//        return data;
+//    }
+//    
     
 }
 
