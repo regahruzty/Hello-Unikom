@@ -1,4 +1,4 @@
-package main.java.aplikasi.codeshare.puti.FinalProject.config;
+package main.java.aplikasi.codeshare.ariya.ariya_final.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
