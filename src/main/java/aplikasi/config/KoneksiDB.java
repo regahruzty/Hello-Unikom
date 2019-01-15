@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.aplikasi.config;
+package main.java.codeshare.aplikasi.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
