@@ -8,13 +8,33 @@ import main.java.aplikasi.codeshare.ariya.ariya_final.model.*;
 import main.java.aplikasi.codeshare.ariya.ariya_final.service.*;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
 
-        Migration.main(args);
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("1. Migrasi");
+        System.out.println("2. Menu CRUD");
+
+        if (input.nextInt() == 1){
+            Migration.main(args);
+        } else {
+            System.out.println("1. Input Data");
+            System.out.println("2. Edit Data");
+            System.out.println("3. Hapus Data");
+            System.out.println("4. Tampil All Data");
+
+            if (input.nextInt() == 1){
+
+            }
+        }
+
+
+
 
 
 
