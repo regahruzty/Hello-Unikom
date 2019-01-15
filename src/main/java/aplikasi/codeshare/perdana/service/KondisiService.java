@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.perdana.service;
 
-import model.Kondisi;
-import repository.KondisiRepository;
+import main.java.aplikasi.codeshare.perdana.model.Kondisi;
+import main.java.aplikasi.codeshare.perdana.repository.KondisiRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.perdana.migration;
 
-import config.KoneksiDB;
-import service.Joined_IDService;
+import main.java.aplikasi.codeshare.perdana.config.KoneksiDB;
+import main.java.aplikasi.codeshare.perdana.service.Joined_IDService;
 
 import java.sql.SQLException;
 
