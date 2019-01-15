@@ -26,14 +26,19 @@ public class JoinedIDRiyanService {
         preparedStatement.setLong(2, joined_id_riyan.getPengajar().getId_pengajar());
         preparedStatement.setLong(3, joined_id_riyan.getPeserta().getId_peserta());
 
+
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
         while (getGeneratedKeys.next()){
             generatedId = getGeneratedKeys.getLong(1);
         }
+
         joined_id_riyan.setId_joined_riyan(generatedId);
+
         return joined_id_riyan;
+
+
 
     }
 

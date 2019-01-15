@@ -47,10 +47,16 @@ public class Main {
         joined_id_riyan.setPengajar(pengajar);
         joined_id_riyan.setPeserta(peserta);
 
+
+
         //JoinedIDRiyanService joinedIDRiyanService = new JoinedIDRiyanService(KoneksiDB.getKoneksi());
+
+
         JoinedIDRiyanService joinedIDRiyanService = new JoinedIDRiyanService(KoneksiDB.getKoneksi());
+        //joined_id_riyan = joinedIDRiyanService.save(joined_id_riyan);
         joined_id_riyan = joinedIDRiyanService.save(joined_id_riyan);
 
+        
         System.out.println("Joined Id RIYAN : "+joined_id_riyan.toString());
 
 

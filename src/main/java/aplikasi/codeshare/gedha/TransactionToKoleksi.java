@@ -86,8 +86,8 @@ class Utils{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement statement = conn.createStatement();
-            String sql = " CREATE TABLE joined_id ( " +
-                    "   id_joined_id INT(11) not null PRIMARY KEY auto_increment, " +
+            String sql = " CREATE TABLE koleksi ( " +
+                    "   id_koleksi INT(11) not null PRIMARY KEY auto_increment, " +
                     "   id_buku INT(11) not null , " +
                     "   id_komik INT(11) not null , " +
                     "   id_majalah INT(11) not null  " +
@@ -105,16 +105,18 @@ class Utils{
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             Statement stmt= conn.createStatement();
             //Buku
-            String sql="alter table joined_id add constraint "+
-                    "fk_tabel_buku foreign key(id_buku) references table_buku (id_buku)";
+            String sql="alter table koleksi add constraint "+
+                    "fk_tabel_buku foreign key (id_buku) references tabel_buku (id_buku)";
             stmt.executeUpdate(sql);
+
             //Komik
-            sql="alter table joined_id add constraint "+
-                    "fk_tabel_komik foreign key(id_komik) references table_komik (id_komik)";
+            sql="alter table koleksi add constraint "+
+                    "fk_tabel_komik foreign key (id_komik) references tabel_komik (id_komik)";
             stmt.executeUpdate(sql);
-            //Join
-            sql="alter table tabel_join_gedha add constraint "+
-                    "fk_tabel_join_gedha foreign key(id_koleksi) references tabel_join_gedha (id_koleksi)";
+            //Majalah
+            sql="alter table koleksi add constraint "+
+                    "fk_tabel_majalah foreign key (id_majalah) references tabel_majalah (id_majalah)";
+
             stmt.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
         } catch (SQLException e){
