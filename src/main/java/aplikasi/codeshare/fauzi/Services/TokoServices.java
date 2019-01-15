@@ -5,11 +5,19 @@
  */
 package main.java.aplikasi.codeshare.fauzi.Services;
 
+import javax.sql.DataSource;
+
 /**
  *
  * @author acer
  */
-public class TokoHp {
-    public Toko Toko = new Toko();
-    public Smartphone Smartphone = new Smartphone();
+public class TokoServices {
+    
+    private DataSource ds;
+
+    public TokoServices(DataSource ds) {
+        this.ds = ds;
+    }
+    
+    
 }

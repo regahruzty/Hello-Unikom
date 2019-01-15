@@ -5,66 +5,40 @@
  */
 package main.java.aplikasi.codeshare.fauzi;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import main.java.aplikasi.codeshare.fauzi.Services.Smartphone;
+import main.java.aplikasi.codeshare.fauzi.Model.Smartphone;
+import main.java.aplikasi.codeshare.fauzi.Model.TokoHp;
+import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
 /**
  *
  * @author acer
  */
 public class Main {
-
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/belajar_jdbc";
-    
-    static final String USER = "root";
-    static final String PASS = "";
     
     public static void main(String[] args){
         
-        Connection conn = null;
-        Statement stmt = null;
-        
-        try{
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-            stmt = conn.createStatement();
-            
-            String sql = "select * from smartphones";
-            
-            ResultSet rs = stmt.executeQuery(sql);
-            List<Smartphone> smartList = new ArrayList<>();
-            while(rs.next()){
-                   
-                
-                Smartphone smart = new Smartphone();
-                smart.setMerk(rs.getString("merk"));
-                smart.setType(rs.getString("type"));
-                smart.setRam(rs.getInt("ram"));
-                smart.setCamera(rs.getInt("camera"));
-                
-                smartList.add(smart);
-            }
-            
-            for (Smartphone sm : smartList){
-                System.out.print("Merk "+sm.getMerk());
-                System.out.print(" Ram "+sm.getRam());
-                System.out.print(" Camera "+sm.getCamera()+" MP");
-                System.out.println(", Type "+sm.getType());
-                
-            }
+        TokoHp toko_hp = new TokoHp();
+// <<<<<<<<<<< Input Data HP        
+        toko_hp.Smartphone.setMerk("asdad");
+        toko_hp.Smartphone.setType("Lumiaasdas F");
+        toko_hp.Smartphone.setRam(3);
+        toko_hp.Smartphone.setCamera(4);
+        Smartphone st = toko_hp.Smartphone.update(7);
+        System.out.println(st.getMerk());
+//        toko_hp.Smartphone.setMerk("Nokia 1 ");
+//        toko_hp.Smartphone.setType("Lumia FX1 ");
+//        toko_hp.Smartphone.setRam(2);
+//        toko_hp.Smartphone.setCamera(2);
+//        toko_hp.Smartphone.insert();
+//    
+//        toko_hp.Smartphone.setMerk("Nokia");
+//        toko_hp.Smartphone.setType("Lumia Mi ");
+//        toko_hp.Smartphone.setRam(2);
+//        toko_hp.Smartphone.setCamera(1);
+//        toko_hp.Smartphone.insert();
+// >>>>>>>>
 
-        }catch(ClassNotFoundException cnfe){
-         
-            cnfe.printStackTrace();
-        
-        }catch(SQLException se){
-         
-            se.printStackTrace();
-        
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+// <<<<<<<<<<< delete Smartphone extends Class MODEL
+//          toko_hp.Smartphone.delete(3);
+// >>>>>>>>>>>>>>
     }
 }
