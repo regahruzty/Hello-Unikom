@@ -22,6 +22,8 @@ public class Toko extends Model{
     private String province;
     private String phone;
     private List<Toko> smartphones;
+    protected String table = "toko";
+
 
     public Toko(){
         

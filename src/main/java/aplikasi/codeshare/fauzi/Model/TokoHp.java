@@ -26,6 +26,8 @@ public class TokoHp extends Model {
     public Toko Toko = new Toko();
     public Smartphone Smartphone = new Smartphone();
     private int id;
+    protected String table = "toko_hp";
+
     
     public TokoHp(){
         

@@ -28,13 +28,13 @@ public class Model {
         try{
             conn = ds.getConnection();
             stmt = conn.createStatement();
-            sql = "delete from "+table+" where id='"+id+"'";
+            sql = "delete from "+this.getClass().getSimpleName().toLowerCase()+" where id='"+id+"'";
             System.out.println(sql);
             
             stmt.execute(sql);
-            System.out.println("success to delete "+table+" where id = "+id);
+            System.out.println("success to delete "+this.getClass().getSimpleName().toLowerCase()+" where id = "+id);
         }catch(SQLException se){
-            System.out.println("failed to delete "+table+"");
+            System.out.println("failed to delete "+this.getClass().getSimpleName().toLowerCase()+"");
             se.printStackTrace();
         }
         return this;
@@ -43,16 +43,16 @@ public class Model {
     public Model find(int id, String param){
         try{
             conn = ds.getConnection();
-            sql = "select * from "+table+" where id='"+id+"'";
+            sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+" where id='"+id+"'";
             ps = conn.prepareStatement(sql,
             Statement.RETURN_GENERATED_KEYS);
             
             System.out.println(sql);
             
             stmt.execute(sql);
-            System.out.println("success to find "+table+" where id = "+id);
+            System.out.println("success to find "+this.getClass().getSimpleName().toLowerCase()+" where id = "+id);
         }catch(SQLException se){
-            System.out.println("failed to find "+table+"");
+            System.out.println("failed to find "+this.getClass().getSimpleName().toLowerCase()+"");
             se.printStackTrace();
         }
         return this;

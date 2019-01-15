@@ -22,6 +22,7 @@ public class Smartphone extends Model{
     private Integer ram = null;
     private Integer camera = null;
     private int id;
+    protected String table = "smartphone";
 
     
     
