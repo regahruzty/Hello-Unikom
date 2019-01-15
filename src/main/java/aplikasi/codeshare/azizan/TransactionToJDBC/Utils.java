@@ -1,23 +1,89 @@
 package main.java.aplikasi.codeshare.azizan.TransactionToJDBC;
 
+import main.java.aplikasi.codeshare.azizan.Model.Batalyon;
+import main.java.aplikasi.codeshare.azizan.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.Model.TentaraAktif;
+import main.java.aplikasi.model.Kucing;
+
 import javax.swing.plaf.nimbus.State;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 class Azizan{
     private static final String DB_URL =
             "jdbc:mysql://localhost/belajar_jdbc";
     public static final String USER = "root";
     public static final String PASS = "";
-
     public static void Migrate(){
+        Tentara tentaraSatu = new Tentara();
+        tentaraSatu.setNama("jijan");
+        tentaraSatu.setTanggal_lahir(new Date(97, 02, 07));
+        tentaraSatu.setMatra("Angkatan Udara");
+        tentaraSatu.setPerwira(true);
+        tentaraSatu.setPangkat("Letnan Dua");
+
+        Tentara tentaraDua = new Tentara();
+        tentaraDua.setNama("elsa");
+        tentaraDua.setTanggal_lahir(new Date(96, 02, 07));
+        tentaraDua.setMatra("Angkatan Laut");
+        tentaraDua.setPerwira(false);
+        tentaraDua.setPangkat("Sersan");
+
+        TentaraAktif tentaraAktifSatu = new TentaraAktif();
+        tentaraAktifSatu.setId_tentara(2);
+
+        TentaraAktif tentaraAktifDua = new TentaraAktif();
+        tentaraAktifDua.setId_tentara(1);
+
+        Batalyon batalyonSatu = new Batalyon();
+        batalyonSatu.setId_tentara(2);
+        batalyonSatu.setJabatan("Komandan");
+
+        Batalyon batalyonDua = new Batalyon();
+        batalyonDua.setId_tentara(1);
+        batalyonDua.setJabatan("Staff");
+
+
+        List<Tentara> tentaraList = new ArrayList<>();
+        tentaraList.add(tentaraSatu);
+        tentaraList.add(tentaraDua);
+
+        List<TentaraAktif> tentaraAktifList = new ArrayList<>();
+        tentaraAktifList.add(tentaraAktifSatu);
+        tentaraAktifList.add(tentaraAktifDua);
+
+        List<Batalyon> batalyonList = new ArrayList<>();
+        batalyonList.add(batalyonSatu);
+        batalyonList.add(batalyonDua);
+
         createTabelTentara();
         createTabelBatalyon();
         createTabelTentaraAktif();
         createTabelTNI();
         addConstraintForeignKey();
+        insertIntoTentara(tentaraList);
+        insertIntoTentaraAktif(tentaraAktifList);
+        insertIntoBatalyon(batalyonList);
+
+//        dropDatabase();
+
+    }
+
+        public static void dropDatabase(){
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            String sql = "DROP DATABASE belajar_jdbc";
+            statement.executeUpdate(sql);
+            System.out.println("DROP DATABASE belajar_jdbc SUKSES!");
+        } catch (SQLException e) {
+            System.out.println("DROP DATABASE belajar_jdbc ERROR!");
+            e.printStackTrace();
+        }
     }
 
     public static void createTabelBatalyon(){
@@ -46,9 +112,7 @@ class Azizan{
             String sql = "CREATE TABLE `tentara` (" +
                     "  `id_tentara` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                     "  `nama` varchar(50) NOT NULL," +
-                    "  `umur` int(5) NOT NULL," +
                     "  `tanggal_lahir` date NOT NULL," +
-                    "  `alamat` varchar(100) NOT NULL," +
                     "  `matra` varchar(50) NOT NULL," +
                     "  `is_perwira` bit(1) NOT NULL," +
                     "  `pangkat` varchar(50) NOT NULL" +
@@ -107,6 +171,10 @@ class Azizan{
             statement.executeUpdate(sql);
             sql = "ALTER TABLE tni ADD FOREIGN KEY (id_batalyon) REFERENCES batalyon(id_batalyon)";
             statement.executeUpdate(sql);
+            sql = "ALTER TABLE tentara_aktif ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
+            statement.executeUpdate(sql);
+            sql = "ALTER TABLE batalyon ADD FOREIGN KEY (id_tentara) REFERENCES tentara(id_tentara)";
+            statement.executeUpdate(sql);
             System.out.println("ADD FOREIGN KEY SUKSES!");
 
         } catch (SQLException e) {
@@ -114,6 +182,65 @@ class Azizan{
             e.printStackTrace();
         }
     }
+
+    public static void insertIntoTentara(List<Tentara> tentaraList){
+        try {
+            int idx = 0;
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            for(Tentara tentara : tentaraList) {
+                String sql = "INSERT INTO tentara (nama, tanggal_lahir, matra, is_perwira, pangkat) " +
+                        "VALUES ('" + tentaraList.get(idx).getNama() + "', '"+ tentaraList.get(idx).getTanggal_lahir() +"', '" +
+                        tentaraList.get(idx).getMatra() + "'," + tentaraList.get(idx).isPerwira() + ", '" + tentaraList.get(idx).getPangkat() + "')";
+                idx++;
+                statement.executeUpdate(sql);
+            }
+            System.out.println("INSERT INTO TABEL TENTARA SUKSES!!");
+
+        } catch (SQLException e) {
+            System.out.println("INSERT INTO TABEL TENTARA GAGAL!");
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertIntoTentaraAktif(List<TentaraAktif> tentaraAktifList){
+        try {
+            int idx = 0;
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            for(TentaraAktif tentaraAktif : tentaraAktifList) {
+                String sql = "INSERT INTO tentara_aktif (id_tentara) " +
+                        "VALUES ('" + tentaraAktifList.get(idx).getId_tentara() + "')";
+                idx++;
+                statement.executeUpdate(sql);
+            }
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF SUKSES!!");
+
+        } catch (SQLException e) {
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF GAGAL!");
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertIntoBatalyon(List<Batalyon> batalyonList){
+        try {
+            int idx = 0;
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            Statement statement = conn.createStatement();
+            for(Batalyon batalyon : batalyonList) {
+                String sql = "INSERT INTO batalyon (id_tentara, jabatan) " +
+                        "VALUES ('" + batalyonList.get(idx).getId_tentara() + "','" + batalyonList.get(idx).getJabatan()+ "')";
+                idx++;
+                statement.executeUpdate(sql);
+            }
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF SUKSES!!");
+
+        } catch (SQLException e) {
+            System.out.println("INSERT INTO TABEL TENTARA AKTIF GAGAL!");
+            e.printStackTrace();
+        }
+    }
+
     /*public static void createTabelAnjing(){
 
         try {
