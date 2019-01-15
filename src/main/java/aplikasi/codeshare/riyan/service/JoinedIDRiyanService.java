@@ -3,9 +3,7 @@ package main.java.aplikasi.codeshare.riyan.service;
 import main.java.aplikasi.codeshare.riyan.model.Joined_id_riyan;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 
 public class JoinedIDRiyanService {
     private DataSource dataSource;
@@ -14,7 +12,7 @@ public class JoinedIDRiyanService {
         this.dataSource = dataSource;
     }
 
-    public Joined_id_riyan save (Joined_id_riyan joined_id_riyan){
+    public Joined_id_riyan save (Joined_id_riyan joined_id_riyan) throws SQLException {
         Connection connection = dataSource.getConnection();
 
         Long generatedId = null;
@@ -29,9 +27,22 @@ public class JoinedIDRiyanService {
         preparedStatement.setLong(3, joined_id_riyan.getPeserta().getId_peserta());
 
 
+        preparedStatement.executeUpdate();
+
+        ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
+        while (getGeneratedKeys.next()){
+            generatedId = getGeneratedKeys.getLong(1);
+        }
+
+        joined_id_riyan.setId_joined_riyan(generatedId);
+
+        return joined_id_riyan;
+
+
+
     }
 
-    public void migrate(){
+    public void migrate() throws SQLException {
         Connection connection = dataSource.getConnection();
 
         Statement statement = connection.createStatement();
