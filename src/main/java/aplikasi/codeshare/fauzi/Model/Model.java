@@ -6,10 +6,13 @@
 package main.java.aplikasi.codeshare.fauzi.Model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import javax.sql.DataSource;
 import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
@@ -22,7 +25,33 @@ public class Model {
     protected static DataSource ds = KoneksiDB.getDataSource();
     protected static Connection conn = null;
     protected static Statement stmt = null;
+    protected static PreparedStatement ps = null;
     protected static String sql = null;
+    protected String tableName = null;
+    
+    public Model insert(HashMap<String, String> dataMap) throws SQLException{
+        StringBuilder sqlInsert = new StringBuilder("INSERT INTO ").append(tableName).append(" (");
+        StringBuilder placeholders = new StringBuilder();
+
+        for (Iterator<String> iter = dataMap.keySet().iterator(); iter.hasNext();) {
+            sqlInsert.append(iter.next());
+            placeholders.append("?");
+
+            if (iter.hasNext()) {
+                sqlInsert.append(",");
+                placeholders.append(",");
+            }
+        }
+
+        sqlInsert.append(") VALUES (").append(placeholders).append(")");
+        ps = conn.prepareStatement(sqlInsert.toString());
+        int i = 0;
+
+        for (String value : dataMap.values()) {
+            ps.setObject(i++, value);
+        }
+        return this;
+    }
     
     public Model delete(int id){
         try{

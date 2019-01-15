@@ -6,6 +6,7 @@
 package main.java.aplikasi.codeshare.fauzi.Services;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import main.java.aplikasi.codeshare.fauzi.Model.Smartphone;
 import main.java.aplikasi.codeshare.fauzi.repository.SmartphoneRepository;
@@ -21,7 +22,11 @@ public class SmartphoneService implements SmartphoneRepository{
 
     @Override
     public Smartphone save(Smartphone value) throws SQLException {
-        return value.insert();
+        Smartphone smart = new Smartphone();
+        HashMap<String, String> map = new HashMap<String,String>();
+        smart.insert(map);
+        
+        return value;
     }
 
     @Override

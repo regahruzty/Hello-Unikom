@@ -5,14 +5,7 @@
  */
 package main.java.aplikasi.codeshare.fauzi.Model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import javax.sql.DataSource;
-import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
 
 /**
  *
@@ -24,11 +17,10 @@ public class Smartphone extends Model{
     private Integer ram = null;
     private Integer camera = null;
     private int id;
+    
+    protected String tableName = "smartphone";
 
-    
-    
     public Smartphone(){
-        
     }
 
     public int getId() {
@@ -75,30 +67,30 @@ public class Smartphone extends Model{
         return "Smartphone{" + "merk=" + merk + ", type=" + type + ", ram=" + ram + ", camera=" + camera + ", id=" + id + '}';
     }
 
-    public Smartphone insert(){
-        try{
-            conn = ds.getConnection();
-            stmt = conn.createStatement();
-            sql = "insert into "+this.getClass().getSimpleName().toLowerCase()+" ("
-                    + "merk, "
-                    + "type, "
-                    + "ram, "
-                    + "camera) "
-                    + "values ('"
-                    + merk +"', '"
-                    + type + "', '"
-                    + ram +"', '"
-                    + camera+"');";
-            System.out.println(sql);
-            
-            stmt.execute(sql);
-            System.out.println("success to save Smartphone");
-        }catch(SQLException se){
-            System.out.println("failed to save Smartphone");
-            se.printStackTrace();
-        }
-        return this;
-    }
+//    public Smartphone insert(){
+//        try{
+//            conn = ds.getConnection();
+//            stmt = conn.createStatement();
+//            sql = "insert into "+this.getClass().getSimpleName().toLowerCase()+" ("
+//                    + "merk, "
+//                    + "type, "
+//                    + "ram, "
+//                    + "camera) "
+//                    + "values ('"
+//                    + merk +"', '"
+//                    + type + "', '"
+//                    + ram +"', '"
+//                    + camera+"');";
+//            System.out.println(sql);
+//            
+//            stmt.execute(sql);
+//            System.out.println("success to save Smartphone");
+//        }catch(SQLException se){
+//            System.out.println("failed to save Smartphone");
+//            se.printStackTrace();
+//        }
+//        return this;
+//    }
     
     public Smartphone update(int id){
         try{
