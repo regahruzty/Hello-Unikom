@@ -36,10 +36,14 @@ public class Main {
         
         toko_hp.setSmartphone(toko_hp.Smartphone);
         toko_hp.setToko(toko_hp.Toko);
+        tokoHpSer.save(toko_hp);
         
         System.out.println(toko_hp.toString());
         
         System.out.print(smartSer.findAll());
+        
+        
+        System.out.print(tokoHpSer.findAll());
 //        toko_hp.Smartphone.setMerk("Nokia 1 ");
 //        toko_hp.Smartphone.setType("Lumia FX1 ");
 //        toko_hp.Smartphone.setRam(2);

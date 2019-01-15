@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.sql.DataSource;
 import static main.java.aplikasi.codeshare.fauzi.Model.Model.conn;
@@ -138,5 +140,36 @@ public class TokoHp extends Model {
         conn.close();
         
         return tokoHp;
+    }
+    
+    public List<TokoHp> all() throws SQLException{
+        List<TokoHp> tokoHps = new ArrayList<>();
+
+        conn = ds.getConnection();
+        stmt = conn.createStatement();
+
+        String sql = "select * from toko_hp th join smartphone on th.smartphone_id=smartphone.id "
+                + "join toko on th.toko_id=toko.id";
+
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        while (resultSet.next()) {
+            TokoHp th = new TokoHp();
+            th.setId(resultSet.getInt("id"));
+            th.Smartphone.setId(Integer.parseInt(resultSet.getString("smartphone.id")));
+            th.Toko.setId(Integer.parseInt(resultSet.getString("toko.id")));
+            th.Toko.setProvince(resultSet.getString("province"));
+            th.Toko.setPhone(resultSet.getString("phone"));
+            th.Smartphone.setMerk(resultSet.getString("merk"));
+            th.Smartphone.setRam(Integer.parseInt(resultSet.getString("ram")));
+            th.Smartphone.setCamera(Integer.parseInt(resultSet.getString("camera")));
+            tokoHps.add(th);
+        }
+
+        resultSet.close();
+        stmt.close();
+        conn.close();
+
+        return tokoHps;
     }
 }

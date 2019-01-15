@@ -127,7 +127,6 @@ public class Smartphone extends Model{
     
     public List<Smartphone> all() throws SQLException{
         List<Smartphone> smartphones = new ArrayList<>();
-
         conn = ds.getConnection();
         stmt = conn.createStatement();
 
@@ -136,11 +135,12 @@ public class Smartphone extends Model{
         ResultSet resultSet = stmt.executeQuery(sql);
 
         while (resultSet.next()) {
-            this.setId(resultSet.getInt("id"));
-            this.setMerk(resultSet.getString("merk"));
-            this.setRam(Integer.parseInt(resultSet.getString("ram")));
-            this.setCamera(Integer.parseInt(resultSet.getString("camera")));
-            smartphones.add(this);
+            Smartphone smart = new Smartphone();
+            smart.setId(resultSet.getInt("id"));
+            smart.setMerk(resultSet.getString("merk"));
+            smart.setRam(Integer.parseInt(resultSet.getString("ram")));
+            smart.setCamera(Integer.parseInt(resultSet.getString("camera")));
+            smartphones.add(smart);
         }
 
         resultSet.close();
