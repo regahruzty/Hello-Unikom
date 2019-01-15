@@ -6,6 +6,7 @@ import main.java.aplikasi.codeshare.ariya.ariya_final.repository.PembeliReposito
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PembeliService implements PembeliRepository {
@@ -43,22 +44,87 @@ public class PembeliService implements PembeliRepository {
     }
 
     @Override
-    public Pembeli update(Pembeli value) throws SQLException {
-        return null;
+    public Pembeli update(Pembeli pembeli) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String sql = "update pembeli set nama_pembeli = ?, alamat_pembeli = ? where id_pembeli = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, pembeli.getNama_pembeli());
+        preparedStatement.setString(2, pembeli.getAlamat_pembeli());
+        preparedStatement.setLong(3, pembeli.getId_pembeli());
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+        return pembeli;
     }
+
 
     @Override
     public List<Pembeli> findAll() throws SQLException {
-        return null;
+        List<Pembeli> pembeliList= new ArrayList<>();
+        Pembeli pembeli = new Pembeli();
+
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+
+        String sql = "select * from pembeli";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
+            pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
+            pembeli.setAlamat_pembeli(resultSet.getString("alamat_pembeli"));
+            pembeliList.add(pembeli);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return pembeliList;
     }
 
     @Override
     public Boolean exists(Long id) throws SQLException {
-        return null;
+        Long count = 0L;
+
+        Connection connection = dataSource.getConnection();
+
+        String sql = "select count(*) from pembeli where id_pembeli = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            count = count + resultSet.getLong(1);
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+
+        return count > 0;
     }
 
     @Override
     public void delete(Long id) throws SQLException {
+        Connection connection = dataSource.getConnection();
 
+        String sql = "delete from pembeli where id_pembeli = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
     }
 }
