@@ -1,10 +1,14 @@
 package main.java.aplikasi.codeshare.azizan.TNI.Service;
 
+import main.java.aplikasi.codeshare.azizan.TNI.Model.Batalyon;
 import main.java.aplikasi.codeshare.azizan.TNI.Model.TNI;
+import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.TNI.Model.TentaraAktif;
 import main.java.aplikasi.codeshare.azizan.TNI.Repository.TNIRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TNIService implements TNIRepository {
@@ -48,18 +52,107 @@ public class TNIService implements TNIRepository {
 
     @Override
     public List<TNI> findAll() throws SQLException {
-        return null;
+        List<TNI> tnis = new ArrayList<>();
+
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+
+        String sql = "SELECT tni.id_tni AS id_tni, tentara.id_tentara AS id_tentara, tentara.nama_tentara AS nama_tentara, tentara.pangkat AS pangkat, tentara.matra AS matra, tentara.is_perwira AS is_perwira, tentara_aktif.id_tentara_aktif AS id_tentara_aktif, tentara_aktif.status_tentara AS status_tentara, batalyon.id_batalyon AS id_batalyon, batalyon.nama_batalyon AS nama_batalyon FROM tni JOIN tentara ON tni.id_tentara = tentara.id_tentara JOIN batalyon ON tni.id_batalyon = batalyon.id_batalyon JOIN tentara_aktif ON tni.id_tentara_aktif = tentara_aktif.id_tentara_aktif";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()){
+            TNI tni = new TNI();
+            tni.setIdTNI(resultSet.getLong("id_tni"));
+            Tentara tentara = new Tentara();
+            tentara.setIdTentara(resultSet.getLong("id_tentara"));
+            tentara.setNamaTentara(resultSet.getString("nama_tentara"));
+            tentara.setPangkat(resultSet.getString("pangkat"));
+            tentara.setMatra(resultSet.getString("matra"));
+            tentara.setPerwira(resultSet.getBoolean("is_perwira"));
+
+            tni.setTentara(tentara);
+
+            TentaraAktif tentaraAktif = new TentaraAktif();
+            tentaraAktif.setIdTentaraAktif(resultSet.getLong("id_tentara_aktif"));
+            tentaraAktif.setStatusTentara(resultSet.getString("status_tentara"));
+
+            tni.setTentaraAktif(tentaraAktif);
+
+            Batalyon batalyon = new Batalyon();
+            batalyon.setIdBayalyon(resultSet.getLong("id_batalyon"));
+            batalyon.setNamaBatalyon(resultSet.getString("nama_batalyon"));
+
+            tni.setBatalyon(batalyon);
+
+            tnis.add(tni);
+
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return tnis;
     }
 
     @Override
     public Boolean exists(Long id) throws SQLException {
-        return null;
+        Long count = 0L;
+
+        Connection connection = dataSource.getConnection();
+
+        String sql = "SELECT COUNT(*) FROM tni WHERE id_tni = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()){
+            count = count + resultSet.getLong(1);
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+
+        return count > 0;
     }
 
     @Override
     public void delete(Long id) throws SQLException {
+        Connection connection = dataSource.getConnection();
 
+        String sql = "DELETE FROM tni WHERE id_tni = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
     }
+
+    @Override
+    public void deleteByIdTentaraAndIdTentaraAktifAndIdBatalyon(Long idTentara, Long idTentaraAktif, Long idBatalyon) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String  sql ="DELETE FROM tni WHERE id_tentara = ? AND id_tentara_aktif = ?" +
+                " AND id_batalyon = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, idTentara);
+        preparedStatement.setLong(2, idTentaraAktif);
+        preparedStatement.setLong(3, idBatalyon);
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+    }
+
     public void migrate() throws SQLException {
 
         Connection connection = dataSource.getConnection();
@@ -113,4 +206,6 @@ public class TNIService implements TNIRepository {
         statement.close();
         connection.close();
     }
+
+
 }
