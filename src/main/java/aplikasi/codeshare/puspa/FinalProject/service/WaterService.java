@@ -1,35 +1,30 @@
-package main.java.aplikasi.codeshare.ariya.ariya_final.service;
+package main.java.aplikasi.codeshare.puspa.FinalProject.service;
 
-import main.java.aplikasi.codeshare.ariya.ariya_final.model.Motor;
-import main.java.aplikasi.codeshare.ariya.ariya_final.repository.MotorRepository;
-
+import main.java.aplikasi.codeshare.puspa.FinalProject.model.Water;
+import main.java.aplikasi.codeshare.puspa.FinalProject.repository.WaterRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotorService implements MotorRepository {
-
+public class WaterService implements WaterRepository {
     private DataSource dataSource;
 
-    public MotorService(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    public WaterService(DataSource dataSource) { this.dataSource = dataSource; }
 
     @Override
-    public Motor save(Motor motor) throws SQLException {
+    public Water save(Water water) throws SQLException {
         Connection connection = dataSource.getConnection();
 
         Long generatedId = null;
 
-        String sql="insert into motor (nama_motor, merk_motor) values (?,?)";
+        String sql="insert into water (nama_water) values (?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, motor.getNama_motor());
-        preparedStatement.setString(2, motor.getMerk_motor());
+        preparedStatement.setString(1, water.getNamaWater());
 
         preparedStatement.executeUpdate();
 
@@ -38,55 +33,54 @@ public class MotorService implements MotorRepository {
             generatedId = getGeneratedKeys.getLong(1);
         }
 
-        motor.setId_motor(generatedId);
+        water.setIdWater(generatedId);
+     //   getGeneratedKeys.close();
+     //   preparedStatement.close();
 
-        return motor;
+        return water;
     }
 
     @Override
-    public Motor update(Motor motor) throws SQLException {
+    public Water update(Water water) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update motor set nama_motor = ?, merk_motor = ? where id_motor = ?";
+        String sql = "update water set nama_water = ? where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, motor.getNama_motor());
-        preparedStatement.setString(2, motor.getMerk_motor());
-        preparedStatement.setLong(3, motor.getId_motor());
+        preparedStatement.setString(1, water.getNamaWater());
+        preparedStatement.setLong(2, water.getIdWater());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return motor;
+        return water;
     }
 
     @Override
-    public List<Motor> findAll() throws SQLException {
-        List<Motor> motorList = new ArrayList<>();
+    public List<Water> findAll() throws SQLException {
+        List<Water> waters = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from motor";
+        String sql = "select * from water";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            Motor motor = new Motor();
-            motor.setId_motor(resultSet.getLong("id_motor"));
-            motor.setNama_motor(resultSet.getString("nama_motor"));
-            motor.setMerk_motor(resultSet.getString("merk_motor"));
-
-            motorList.add(motor);
+            Water water = new Water();
+            water.setIdWater(resultSet.getLong("id_water"));
+            water.setNamaWater(resultSet.getString("nama_water"));
+            waters.add(water);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return motorList;
+        return waters;
     }
 
     @Override
@@ -95,7 +89,7 @@ public class MotorService implements MotorRepository {
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from motor where id_motor = ?";
+        String sql = "select count(*) from water where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -110,14 +104,14 @@ public class MotorService implements MotorRepository {
         preparedStatement.close();
         connection.close();
 
-        return count > 0 ? true : false;
+        return count > 0;
     }
 
     @Override
     public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from motor where id_motor = ?";
+        String sql = "delete from water where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);

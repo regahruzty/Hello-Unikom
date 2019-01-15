@@ -1,101 +1,105 @@
-package main.java.aplikasi.codeshare.ariya.ariya_final.service;
+package main.java.aplikasi.codeshare.perdana.service;
 
-import main.java.aplikasi.codeshare.ariya.ariya_final.model.Motor;
-import main.java.aplikasi.codeshare.ariya.ariya_final.repository.MotorRepository;
-
+import main.java.aplikasi.codeshare.perdana.model.Kondisi;
+import main.java.aplikasi.codeshare.perdana.repository.KondisiRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotorService implements MotorRepository {
+public class KondisiService implements KondisiRepository {
 
     private DataSource dataSource;
 
-    public MotorService(DataSource dataSource) {
+    public KondisiService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+
     @Override
-    public Motor save(Motor motor) throws SQLException {
+    public Kondisi save(Kondisi kondisi) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        Long generatedId = null;
+        Integer generatedId = null;
 
-        String sql="insert into motor (nama_motor, merk_motor) values (?,?)";
+        String sql="insert into kondisi (body, mesin, create_date) values (?,?,?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, motor.getNama_motor());
-        preparedStatement.setString(2, motor.getMerk_motor());
+        preparedStatement.setString(1, kondisi.getBody());
+        preparedStatement.setString(2, kondisi.getMesin());
+        preparedStatement.setString(3, kondisi.getCreate_date());
 
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
         while (getGeneratedKeys.next()){
-            generatedId = getGeneratedKeys.getLong(1);
+            generatedId = getGeneratedKeys.getInt(1);
         }
 
-        motor.setId_motor(generatedId);
+        kondisi.setId_kondisi(generatedId);
 
-        return motor;
+        preparedStatement.close();
+        connection.close();
+
+        return kondisi;
     }
 
     @Override
-    public Motor update(Motor motor) throws SQLException {
+    public Kondisi update(Kondisi kondisi) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update motor set nama_motor = ?, merk_motor = ? where id_motor = ?";
+        String sql = "update kondisi set body = ? where id_kondisi = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, motor.getNama_motor());
-        preparedStatement.setString(2, motor.getMerk_motor());
-        preparedStatement.setLong(3, motor.getId_motor());
+        preparedStatement.setString(1, kondisi.getBody());
+        preparedStatement.setInt(2, kondisi.getId_kondisi());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return motor;
+        return kondisi;
+
     }
 
     @Override
-    public List<Motor> findAll() throws SQLException {
-        List<Motor> motorList = new ArrayList<>();
+    public List<Kondisi> findAll() throws SQLException {
+        List<Kondisi> kondisis = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from motor";
+        String sql = "select * from kondisi";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            Motor motor = new Motor();
-            motor.setId_motor(resultSet.getLong("id_motor"));
-            motor.setNama_motor(resultSet.getString("nama_motor"));
-            motor.setMerk_motor(resultSet.getString("merk_motor"));
-
-            motorList.add(motor);
+            Kondisi kondisi = new Kondisi();
+            kondisi.setId_kondisi(resultSet.getInt("id_kondisi"));
+            kondisi.setBody(resultSet.getString("body"));
+            kondisi.setMesin(resultSet.getString("mesin"));
+            kondisi.setCreate_date(resultSet.getString("create_date"));
+            kondisis.add(kondisi);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return motorList;
+        return kondisis;
     }
 
     @Override
-    public Boolean exists(Long id) throws SQLException {
+    public Boolean exists(Integer id) throws SQLException {
         Long count = 0L;
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from motor where id_motor = ?";
+        String sql = "select count(*) from kondisi where id_kondisi = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -114,10 +118,10 @@ public class MotorService implements MotorRepository {
     }
 
     @Override
-    public void delete(Long id) throws SQLException {
+    public void delete(Integer id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from motor where id_motor = ?";
+        String sql = "delete from kondisi where id_kondisi = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);

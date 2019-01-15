@@ -8,7 +8,7 @@ public class KoneksiDB {
 
     public static DataSource getKoneksi(){
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306/ariya_final");
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/faktur");
         basicDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("");

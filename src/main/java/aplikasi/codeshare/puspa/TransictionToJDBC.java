@@ -29,8 +29,14 @@ public class TransictionToJDBC {
         static void migrate() {
             createTableSatu();
             createTableDua();
+            createTableTiga();
             createTableJoinedId();
             addConstraintForeignKey();
+            insertIntoTableSatu();
+            insertIntoTableDua();
+            insertIntoTableTiga();
+            deletefromtablepembeli();
+            updatefromtablepohon1();
         }
 
         public static void createTableSatu() {
@@ -59,9 +65,8 @@ public class TransictionToJDBC {
                 Statement statement = conn.createStatement();
                 String sql = "CREATE TABLE harga (" +
                         "id_harga INT(11) not null PRIMARY KEY auto_increment," +
-                        "beratbuah INT(11) not null," +
-                        "harga INT(11) not null," +
-                        "tanggalbeli DATE not null" +
+                        "tinggipohon INT(11) not null," +
+                        "harga INT(11) not null" +
                         ")";
                 statement.executeUpdate(sql);
                 System.out.println("CREATE TABLE HARGA SUCCESS ");
@@ -71,6 +76,22 @@ public class TransictionToJDBC {
             }
         }
 
+        private static void createTableTiga() {
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = "CREATE TABLE pembeli (" +
+                        "id_pembeli INT(11) not null PRIMARY KEY auto_increment," +
+                        "nama_pembeli VARCHAR(255) not null," +
+                        "tanggalbeli DATE not null" +
+                        ")";
+                statement.executeUpdate(sql);
+                System.out.println("CREATE TABLE PEMBELI SUCCESS ");
+            } catch (SQLException e) {
+                System.out.println("CREATE TABLE PEMBELI FAILED ");
+                e.printStackTrace();
+            }
+        }
 
         private static void createTableJoinedId() {
             try {
@@ -79,7 +100,8 @@ public class TransictionToJDBC {
                 String sql = " CREATE TABLE joined_id_puspa ( " +
                         "   id_joined_puspa INT(11) not null PRIMARY KEY auto_increment, " +
                         "   id_pohon1 INT(11) not null , " +
-                        "   id_harga INT(11) not null " +
+                        "   id_harga INT(11) not null ," +
+                        "   id_pembeli INT(11) not null " +
                         "   )";
                 statement.executeUpdate(sql);
                 System.out.println("CREATE TABLE JOINED_ID_PUSPA SUCCESS ");
@@ -99,9 +121,77 @@ public class TransictionToJDBC {
                 sql = " alter table joined_id_puspa add constraint " +
                         " fk_harga foreign key (id_harga) references harga (id_harga) ";
                 statement.executeUpdate(sql);
+                sql = " alter table joined_id_puspa add constraint " +
+                        " fk_pembeli foreign key (id_pembeli) references pembeli (id_pembeli) ";
+                statement.executeUpdate(sql);
                 System.out.println("ADD FOREIGN KEY CONSTRAINT SUCCESS ");
             } catch (SQLException e) {
                 System.out.println("ADD FOREIGN KEY CONSTRAINT FAILED ");
+                e.printStackTrace();
+            }
+        }
+
+        private static void insertIntoTableSatu(){
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = " Insert into pohon1 (nama, jenispohon, jumlahdaun, jumlahbuah, tanggaltanam) " +
+                        "values ('mangga', 1, 2000, 1000, '2019-01-15') ";
+                statement.executeUpdate(sql);
+                System.out.println("INSERT TABLE SATU SUCCESS ");
+            } catch (SQLException e){
+                System.out.println("INSERT TABLE SATU FAILED ");
+                e.printStackTrace();
+            }
+        }
+        private static void insertIntoTableDua(){
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = " Insert into harga (tinggipohon, harga) " +
+                        "values (5, 2000000) ";
+                statement.executeUpdate(sql);
+                System.out.println("INSERT TABLE DUA SUCCESS ");
+            } catch (SQLException e){
+                System.out.println("INSERT TABLE DUA FAILED ");
+                e.printStackTrace();
+            }
+        }
+        private static void insertIntoTableTiga(){
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = " Insert into pembeli (nama_pembeli, tanggalbeli) " +
+                        "values ('Karen', '2019-01-15') ";
+                statement.executeUpdate(sql);
+                System.out.println("INSERT TABLE TIGA SUCCESS ");
+            } catch (SQLException e){
+                System.out.println("INSERT TABLE TIGA FAILED ");
+                e.printStackTrace();
+            }
+        }
+
+        private static void deletefromtablepembeli(){
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = " DELETE FROM `pembeli` WHERE `id_pembeli`  = 1; ";
+                statement.executeUpdate(sql);
+                System.out.println("HAPUS DATA TABLE PEMBELI SUCCESS ");
+            } catch (SQLException e){
+                System.out.println("HAPUS DATA TABLE PEMBELI FAILED ");
+                e.printStackTrace();
+            }
+        }
+        private static void updatefromtablepohon1(){
+            try {
+                Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+                Statement statement = conn.createStatement();
+                String sql = " UPDATE `pohon1` SET `nama` = 'apel' WHERE `id_pohon1` = 1; ";
+                statement.executeUpdate(sql);
+                System.out.println("UPDATE DATA TABLE POHON1 SUCCESS ");
+            } catch (SQLException e){
+                System.out.println("UPDATE DATA TABLE POHON1 FAILED ");
                 e.printStackTrace();
             }
         }
