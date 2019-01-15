@@ -77,7 +77,7 @@ public class JoinedHerdiService implements JoinedHerdiRepository {
                     "   id_jenis INT(11) not null , " +
                     "   id_sifat INT(11) not null  " +
                     "   )";
-            statement.executeUpdate(sql);
+//            statement.executeUpdate(sql);
 
             sql = " CREATE TABLE burung ( " +
                 "   id_burung INT(11) not null PRIMARY KEY auto_increment, " +
@@ -85,19 +85,19 @@ public class JoinedHerdiService implements JoinedHerdiRepository {
                 "   warna VARCHAR(50) not null , " +
                 "   paruh VARCHAR(50) not null  " +
                 "   )";
-        statement.executeUpdate(sql);
+//        statement.executeUpdate(sql);
 
         sql = " CREATE TABLE jenis ( " +
                 "   id_jenis INT(11) not null PRIMARY KEY auto_increment, " +
                 "   jenis VARCHAR(50) not null , " +
-                "   desc_jenis VARCHAR(255) not null , " +
+                "   desc_jenis VARCHAR(255) not null  " +
                 "   )";
         statement.executeUpdate(sql);
 
         sql = " CREATE TABLE sifat ( " +
                 "   id_sifat INT(11) not null PRIMARY KEY auto_increment, " +
                 "   sifat VARCHAR(50) not null , " +
-                "   desc_sifat VARCHAR(255) not null , " +
+                "   desc_sifat VARCHAR(255) not null  " +
                 "   )";
         statement.executeUpdate(sql);
 
