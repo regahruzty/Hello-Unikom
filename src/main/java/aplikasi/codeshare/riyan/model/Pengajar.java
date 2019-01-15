@@ -3,12 +3,12 @@ package main.java.aplikasi.codeshare.riyan.model;
 import java.util.Objects;
 
 public class Pengajar {
-    Integer id_pengajar;
-    String nama_pengajar;
-    String no_telp;
-    String spesialis;
+    private Long id_pengajar;
+    private String nama_pengajar;
+    private String no_telp;
+    private String spesialis;
 
-    public Pengajar(Integer id_pengajar, String nama_pengajar, String no_telp, String spesialis) {
+    public Pengajar(Long id_pengajar, String nama_pengajar, String no_telp, String spesialis) {
         this.id_pengajar = id_pengajar;
         this.nama_pengajar = nama_pengajar;
         this.no_telp = no_telp;
@@ -18,11 +18,11 @@ public class Pengajar {
     public Pengajar() {
     }
 
-    public Integer getId_pengajar() {
+    public Long getId_pengajar() {
         return id_pengajar;
     }
 
-    public void setId_pengajar(Integer id_pengajar) {
+    public void setId_pengajar(Long id_pengajar) {
         this.id_pengajar = id_pengajar;
     }
 

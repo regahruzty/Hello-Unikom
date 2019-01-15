@@ -162,9 +162,9 @@ class Azizan{
                     "  `id_batalyon` int(11) NOT NULL" +
                     ")";
             statement.executeUpdate(sql);
-            System.out.println("CREATE TABLE TNI SUKSES!");
+            System.out.println("CREATE TABLE TNIprojectFinal SUKSES!");
         } catch (SQLException e) {
-            System.out.println("CREATE TABLE TNI ERROR!");
+            System.out.println("CREATE TABLE TNIprojectFinal ERROR!");
             e.printStackTrace();
         }
     }

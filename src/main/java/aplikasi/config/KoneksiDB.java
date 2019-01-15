@@ -17,7 +17,7 @@ public class KoneksiDB {
     public static DataSource getDataSourceMysqlLearnJDBC() {
         BasicDataSource ds = new BasicDataSource();
         ds.setUsername("root");
-        ds.setPassword("");
+        ds.setPassword("root");
         ds.setUrl("jdbc:mysql://localhost:3306/learn_jdbc");
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         return ds;

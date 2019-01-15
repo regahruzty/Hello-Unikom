@@ -6,11 +6,9 @@
 package main.java.aplikasi.codeshare.fauzi.Model;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import javax.sql.DataSource;
 import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
 
@@ -22,35 +20,39 @@ public class Model {
     protected static DataSource ds = KoneksiDB.getDataSource();
     protected static Connection conn = null;
     protected static Statement stmt = null;
+    protected static PreparedStatement ps = null;
     protected static String sql = null;
+    protected String table = null;
     
     public Model delete(int id){
         try{
             conn = ds.getConnection();
             stmt = conn.createStatement();
-            sql = "delete from "+this.getClass().getSimpleName().toLowerCase()+" where id='"+id+"'";
+            sql = "delete from "+table+" where id='"+id+"'";
             System.out.println(sql);
             
             stmt.execute(sql);
-            System.out.println("success to delete "+this.getClass().getSimpleName().toLowerCase()+" where id = "+id);
+            System.out.println("success to delete "+table+" where id = "+id);
         }catch(SQLException se){
-            System.out.println("failed to delete "+this.getClass().getSimpleName().toLowerCase()+"");
+            System.out.println("failed to delete "+table+"");
             se.printStackTrace();
         }
         return this;
     }
     
-    public Model find(int id){
+    public Model find(int id, String param){
         try{
             conn = ds.getConnection();
-            stmt = conn.createStatement();
-            sql = "select * from "+this.getClass().getSimpleName().toLowerCase()+" where id='"+id+"'";
+            sql = "select * from "+table+" where id='"+id+"'";
+            ps = conn.prepareStatement(sql,
+            Statement.RETURN_GENERATED_KEYS);
+            
             System.out.println(sql);
             
             stmt.execute(sql);
-            System.out.println("success to find "+this.getClass().getSimpleName().toLowerCase()+" where id = "+id);
+            System.out.println("success to find "+table+" where id = "+id);
         }catch(SQLException se){
-            System.out.println("failed to find "+this.getClass().getSimpleName().toLowerCase()+"");
+            System.out.println("failed to find "+table+"");
             se.printStackTrace();
         }
         return this;

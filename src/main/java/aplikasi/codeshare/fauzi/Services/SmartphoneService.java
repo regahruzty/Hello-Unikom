@@ -26,19 +26,20 @@ public class SmartphoneService implements SmartphoneRepository{
 
     @Override
     public Smartphone update(Smartphone value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return value.update(value.getId());
     }
 
     @Override
     public List<Smartphone> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Smartphone smart = new Smartphone();
+        return smart.all();
     }
 
     @Override
     public Smartphone findOne(Integer id) throws SQLException {
         Smartphone smart = new Smartphone();
         
-        smart.find(id);
+//        smart.find(id);
         return smart;
     }
 

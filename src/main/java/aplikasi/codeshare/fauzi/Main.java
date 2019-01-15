@@ -5,16 +5,11 @@
  */
 package main.java.aplikasi.codeshare.fauzi;
 
-import java.sql.Array;
 import java.sql.SQLException;
-import java.util.Map;
-import main.java.aplikasi.codeshare.fauzi.Model.Smartphone;
 import main.java.aplikasi.codeshare.fauzi.Model.TokoHp;
 import main.java.aplikasi.codeshare.fauzi.Services.SmartphoneService;
 import main.java.aplikasi.codeshare.fauzi.Services.TokoHpService;
 import main.java.aplikasi.codeshare.fauzi.Services.TokoService;
-import main.java.aplikasi.codeshare.fauzi.config.KoneksiDB;
-import main.java.aplikasi.codeshare.fauzi.repository.SmartphoneRepository;
 /**
  *
  * @author acer
@@ -29,7 +24,7 @@ public class Main {
         
 // <<<<<<<<<<< Input Data HP        
         toko_hp.Smartphone.setMerk("asdad");
-        toko_hp.Smartphone.setType("Lumiaasdas F");
+        toko_hp.Smartphone.setType("Lumiaasdas 2 F");
         toko_hp.Smartphone.setRam(3);
         toko_hp.Smartphone.setCamera(4);
         smartSer.save(toko_hp.Smartphone);
@@ -43,6 +38,8 @@ public class Main {
         toko_hp.setToko(toko_hp.Toko);
         
         System.out.println(toko_hp.toString());
+        
+        System.out.print(smartSer.findAll());
 //        toko_hp.Smartphone.setMerk("Nokia 1 ");
 //        toko_hp.Smartphone.setType("Lumia FX1 ");
 //        toko_hp.Smartphone.setRam(2);

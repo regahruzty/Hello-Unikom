@@ -9,9 +9,9 @@ import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         KucingService kucingService = new KucingService(KoneksiDB.getDataSourceMysqlLearnJDBC());
-        try {
+
             Kucing kucing = new Kucing();
 
             kucing.setNama("Jasmine");
@@ -23,9 +23,7 @@ public class Main {
 
             kucing = kucingService.save(kucing);
             System.out.println(kucing.toString());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
 }

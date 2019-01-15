@@ -25,12 +25,19 @@ public class TokoService implements TokoRepository{
 
     @Override
     public Toko update(Toko value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return value.update(value);
     }
 
     @Override
     public List<Toko> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Toko toko = new Toko();
+        return toko.all();
+    }
+
+    @Override
+    public void delete(Integer id) throws SQLException {
+        Toko toko = new Toko();
+        toko.delete(id);
     }
 
     @Override
@@ -40,11 +47,6 @@ public class TokoService implements TokoRepository{
 
     @Override
     public Boolean exists(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(Integer id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

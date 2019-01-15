@@ -26,7 +26,7 @@ public class TokoHpService implements TokoHpRepository{
 
     @Override
     public TokoHp update(TokoHp value) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return value.update(value);
     }
 
     @Override
@@ -46,7 +46,8 @@ public class TokoHpService implements TokoHpRepository{
 
     @Override
     public void delete(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TokoHp tokoHp = new TokoHp();
+        tokoHp.delete(id);
     }
     
     
