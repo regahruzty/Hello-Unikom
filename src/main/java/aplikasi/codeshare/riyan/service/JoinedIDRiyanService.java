@@ -3,7 +3,9 @@ package main.java.aplikasi.codeshare.riyan.service;
 import main.java.aplikasi.codeshare.riyan.model.Joined_id_riyan;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class JoinedIDRiyanService {
     private DataSource dataSource;
@@ -12,7 +14,7 @@ public class JoinedIDRiyanService {
         this.dataSource = dataSource;
     }
 
-    public Joined_id_riyan save (Joined_id_riyan joined_id_riyan) throws SQLException {
+    public Joined_id_riyan save (Joined_id_riyan joined_id_riyan){
         Connection connection = dataSource.getConnection();
 
         Long generatedId = null;
@@ -23,21 +25,12 @@ public class JoinedIDRiyanService {
                 Statement.RETURN_GENERATED_KEYS);
 
         preparedStatement.setLong(1, joined_id_riyan.getBoothcamp().getId_boothcamp());
-        preparedStatement.setLong(2, joined_id_riyan.getPengajar().getId_pengajar());
-        preparedStatement.setLong(3, joined_id_riyan.getPeserta().getId_peserta());
+        preparedStatement.setLong(2, joined_id_riyan.getPengajar()).getIdP;
 
-        preparedStatement.executeUpdate();
-
-        ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
-        while (getGeneratedKeys.next()){
-            generatedId = getGeneratedKeys.getLong(1);
-        }
-        joined_id_riyan.setId_joined_riyan(generatedId);
-        return joined_id_riyan;
 
     }
 
-    public void migrate() throws SQLException {
+    public void migrate(){
         Connection connection = dataSource.getConnection();
 
         Statement statement = connection.createStatement();
@@ -91,6 +84,18 @@ public class JoinedIDRiyanService {
 
         statement.close();
         connection.close();
+
+
+
+
+
+
+        )
+
+
+
+
+
 
     }
 
