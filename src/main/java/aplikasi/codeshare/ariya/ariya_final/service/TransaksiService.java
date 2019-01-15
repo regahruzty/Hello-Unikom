@@ -1,12 +1,18 @@
 package main.java.aplikasi.codeshare.ariya.ariya_final.service;
 
 
-import main.java.aplikasi.codeshare.ariya.ariya_final.model.*;
+import main.java.aplikasi.codeshare.ariya.ariya_final.model.Motor;
+import main.java.aplikasi.codeshare.ariya.ariya_final.model.Pembeli;
+import main.java.aplikasi.codeshare.ariya.ariya_final.model.Transaksi;
+import main.java.aplikasi.codeshare.ariya.ariya_final.repository.*;
+
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class TransaksiService {
+public class TransaksiService implements TransaksiRepository {
 
     private DataSource dataSource;
 
@@ -41,6 +47,124 @@ public class TransaksiService {
 
         return transaksi;
     }
+
+    @Override
+    public Transaksi update(Transaksi transaksi) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String sql = "update transaksi set id_pembeli = ?, id_motor = ?, jumlah_pembelian where id_transaksi = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, transaksi.getPembeli().getId_pembeli());
+        preparedStatement.setLong(2, transaksi.getMotor().getId_motor());
+        preparedStatement.setLong(3, transaksi.getJumlah_pembelian());
+        preparedStatement.setLong(3, transaksi.getId_transaksi());
+
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+        return transaksi;
+    }
+
+    @Override
+    public List<Transaksi> findAll() throws SQLException {
+        List<Transaksi> transaksiList= new ArrayList<>();
+        Transaksi transaksi = new Transaksi();
+
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+
+        String sql = "select transaksi.id_transaksi as id_transaksi, motor.id_motor as id_motor, motor.nama_motor as nama_motor, pembeli.id_pembeli as id_tumbuhan, pembeli.nama_pembeli as nama_pembeli from transaksi transaksi join motor motor on transaksi.id_motor = motor.id_motor join pembeli pembeli on transaksi.id_pembeli = pembeli.id_pembeli";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            transaksi.setId_transaksi(resultSet.getLong("id_transaksi"));
+
+            Motor motor = new Motor();
+            motor.setId_motor(resultSet.getLong("id_motor"));
+            motor.setNama_motor(resultSet.getString("nama_motor"));
+
+            transaksi.setMotor(motor);
+
+            Pembeli pembeli = new Pembeli();
+            pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
+            pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
+
+            transaksi.setPembeli(pembeli);
+
+            transaksiList.add(transaksi);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+
+        return transaksiList;
+    }
+
+
+    @Override
+    public Boolean exists(Long id) throws SQLException {
+        Long count = 0L;
+
+        Connection connection = dataSource.getConnection();
+
+        String sql = "select count(*) from transaksi where id_transaksi = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            count = count + resultSet.getLong(1);
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+
+        return count > 0;
+    }
+
+
+    @Override
+    public void delete(Long id) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String sql = "delete from transaksi where id_transaksi = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id);
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+    }
+
+
+    @Override
+    public void deleteByIdMotorAndIdPembeli(Long id_motor, Long id_pembeli) throws SQLException {
+        Connection connection = dataSource.getConnection();
+
+        String sql = "delete from transaksi where id_motor = ? and id_pembeli = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, id_motor);
+        preparedStatement.setLong(2, id_pembeli);
+
+        preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+    }
+
 
     public void migrate() throws SQLException {
 

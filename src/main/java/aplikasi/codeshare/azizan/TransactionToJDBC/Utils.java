@@ -33,6 +33,13 @@ class Azizan{
         tentaraDua.setPerwira(false);
         tentaraDua.setPangkat("Sersan");
 
+        Tentara tentaraTiga = new Tentara();
+        tentaraTiga.setNama("yelian");
+        tentaraTiga.setTanggal_lahir(new Date(96, 04, 07));
+        tentaraTiga.setMatra("Angkatan Darat");
+        tentaraTiga.setPerwira(false);
+        tentaraTiga.setPangkat("Prajurit");
+
         TentaraAktif tentaraAktifSatu = new TentaraAktif();
         tentaraAktifSatu.setId_tentara(2);
 
@@ -51,6 +58,7 @@ class Azizan{
         List<Tentara> tentaraList = new ArrayList<>();
         tentaraList.add(tentaraSatu);
         tentaraList.add(tentaraDua);
+        tentaraList.add(tentaraTiga);
 
         List<TentaraAktif> tentaraAktifList = new ArrayList<>();
         tentaraAktifList.add(tentaraAktifSatu);

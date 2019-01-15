@@ -1,92 +1,86 @@
-package main.java.aplikasi.codeshare.ariya.ariya_final.service;
+package main.java.aplikasi.codeshare.azizan.TNI.Service;
 
-import main.java.aplikasi.codeshare.ariya.ariya_final.model.Pembeli;
-import main.java.aplikasi.codeshare.ariya.ariya_final.repository.PembeliRepository;
-
+import main.java.aplikasi.codeshare.azizan.TNI.Model.Batalyon;
+import main.java.aplikasi.codeshare.azizan.TNI.Model.Tentara;
+import main.java.aplikasi.codeshare.azizan.TNI.Repository.BatalyonRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PembeliService implements PembeliRepository {
+public class BatalyonService implements BatalyonRepository {
 
     private DataSource dataSource;
 
-    public PembeliService(DataSource dataSource) {
+    public BatalyonService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public Pembeli save(Pembeli pembeli) throws SQLException {
+    public Batalyon save(Batalyon batalyon) throws SQLException {
         Connection connection = dataSource.getConnection();
-        
+
         Long generatedId = null;
-        
-        String sql="insert into pembeli (nama_pembeli, alamat_pembeli) values (?,?)";
-        
+
+        String sql = "INSERT INTO batalyon(nama_batalyon) " +
+                "VALUES (?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
-        
-        preparedStatement.setString(1, pembeli.getNama_pembeli());
-        preparedStatement.setString(2, pembeli.getAlamat_pembeli());
-        
+        preparedStatement.setString(1, batalyon.getNamaBatalyon());
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
         while (getGeneratedKeys.next()){
             generatedId = getGeneratedKeys.getLong(1);
         }
-        
-        pembeli.setId_pembeli(generatedId);
-        
-        return pembeli;
+
+        batalyon.setIdBayalyon(generatedId);
+
+        return batalyon;
     }
 
     @Override
-    public Pembeli update(Pembeli pembeli) throws SQLException {
+    public Batalyon update(Batalyon batalyon) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update pembeli set nama_pembeli = ?, alamat_pembeli = ? where id_pembeli = ?";
+        String sql = "UPDATE batalyon SET nama_batalyon = ? WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, pembeli.getNama_pembeli());
-        preparedStatement.setString(2, pembeli.getAlamat_pembeli());
-        preparedStatement.setLong(3, pembeli.getId_pembeli());
+        preparedStatement.setString(1, batalyon.getNamaBatalyon());
+        preparedStatement.setLong(2, batalyon.getIdBayalyon());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return pembeli;
+        return batalyon;
     }
 
-
     @Override
-    public List<Pembeli> findAll() throws SQLException {
-        List<Pembeli> pembeliList= new ArrayList<>();
-        Pembeli pembeli = new Pembeli();
+    public List<Batalyon> findAll() throws SQLException {
+        List<Batalyon> batalyons = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from pembeli";
+        String sql = "SELECT * FROM batalyon";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
-        while (resultSet.next()) {
-            pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
-            pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
-            pembeli.setAlamat_pembeli(resultSet.getString("alamat_pembeli"));
-            pembeliList.add(pembeli);
+        while (resultSet.next()){
+            Batalyon batalyon = new Batalyon();
+            batalyon.setIdBayalyon(resultSet.getLong("id_batalyon"));
+            batalyon.setNamaBatalyon(resultSet.getString("nama_batalyon"));
+            batalyons.add(batalyon);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return pembeliList;
+        return batalyons;
     }
 
     @Override
@@ -95,14 +89,14 @@ public class PembeliService implements PembeliRepository {
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from pembeli where id_pembeli = ?";
+        String sql = "SELECT COUNT(*) FROM batalyon WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
+        while (resultSet.next()){
             count = count + resultSet.getLong(1);
         }
 
@@ -117,7 +111,7 @@ public class PembeliService implements PembeliRepository {
     public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from pembeli where id_pembeli = ?";
+        String sql = "DELETE FROM batalyon WHERE id_batalyon = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);

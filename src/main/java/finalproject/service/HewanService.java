@@ -1,92 +1,91 @@
-package main.java.aplikasi.codeshare.ariya.ariya_final.service;
+package main.java.finalproject.service;
 
-import main.java.aplikasi.codeshare.ariya.ariya_final.model.Pembeli;
-import main.java.aplikasi.codeshare.ariya.ariya_final.repository.PembeliRepository;
-
+import main.java.finalproject.model.Hewan;
+import main.java.finalproject.repository.HewanRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PembeliService implements PembeliRepository {
+public class HewanService implements HewanRepository {
 
     private DataSource dataSource;
 
-    public PembeliService(DataSource dataSource) {
+    public HewanService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public Pembeli save(Pembeli pembeli) throws SQLException {
+    public Hewan save(Hewan hewan) throws SQLException {
         Connection connection = dataSource.getConnection();
-        
+
         Long generatedId = null;
-        
-        String sql="insert into pembeli (nama_pembeli, alamat_pembeli) values (?,?)";
-        
+
+        String sql = "insert into hewan (nama_hewan) values (?)";
+
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
-        
-        preparedStatement.setString(1, pembeli.getNama_pembeli());
-        preparedStatement.setString(2, pembeli.getAlamat_pembeli());
-        
+
+        preparedStatement.setString(1, hewan.getNamaHewan());
+
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
-        while (getGeneratedKeys.next()){
+        while (getGeneratedKeys.next()) {
             generatedId = getGeneratedKeys.getLong(1);
         }
-        
-        pembeli.setId_pembeli(generatedId);
-        
-        return pembeli;
+
+        hewan.setIdHewan(generatedId);
+
+        getGeneratedKeys.close();
+        preparedStatement.close();
+        connection.close();
+
+        return hewan;
     }
 
     @Override
-    public Pembeli update(Pembeli pembeli) throws SQLException {
+    public Hewan update(Hewan hewan) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update pembeli set nama_pembeli = ?, alamat_pembeli = ? where id_pembeli = ?";
+        String sql = "update hewan set nama_hewan = ? where id_hewan = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, pembeli.getNama_pembeli());
-        preparedStatement.setString(2, pembeli.getAlamat_pembeli());
-        preparedStatement.setLong(3, pembeli.getId_pembeli());
+        preparedStatement.setString(1, hewan.getNamaHewan());
+        preparedStatement.setLong(2, hewan.getIdHewan());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return pembeli;
+        return hewan;
     }
 
-
     @Override
-    public List<Pembeli> findAll() throws SQLException {
-        List<Pembeli> pembeliList= new ArrayList<>();
-        Pembeli pembeli = new Pembeli();
+    public List<Hewan> findAll() throws SQLException {
+        List<Hewan> hewans = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from pembeli";
+        String sql = "select * from hewan";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
-            pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
-            pembeli.setAlamat_pembeli(resultSet.getString("alamat_pembeli"));
-            pembeliList.add(pembeli);
+            Hewan hewan = new Hewan();
+            hewan.setIdHewan(resultSet.getLong("id_hewan"));
+            hewan.setNamaHewan(resultSet.getString("nama_hewan"));
+            hewans.add(hewan);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return pembeliList;
+        return hewans;
     }
 
     @Override
@@ -95,7 +94,7 @@ public class PembeliService implements PembeliRepository {
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from pembeli where id_pembeli = ?";
+        String sql = "select count(*) from hewan where id_hewan = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -110,14 +109,14 @@ public class PembeliService implements PembeliRepository {
         preparedStatement.close();
         connection.close();
 
-        return count > 0;
+        return count > 0 ? true : false;
     }
 
     @Override
     public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from pembeli where id_pembeli = ?";
+        String sql = "delete from hewan where id_hewan = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
