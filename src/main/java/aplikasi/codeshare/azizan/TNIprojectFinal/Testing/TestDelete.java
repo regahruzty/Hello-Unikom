@@ -26,17 +26,17 @@ public class TestDelete {
         List<Tentara> tentaras = new ArrayList<>();
         Tentara tentara = new Tentara();
         tentaras = tentaraService.findAll();
-        tentara = tentaras.get(0);
+        tentara = tentaras.get(1);
 
         List<TentaraAktif> tentaraAktifs = new ArrayList<>();
         TentaraAktif tentaraAktif = new TentaraAktif();
         tentaraAktifs = tentaraAktifService.findAll();
-        tentaraAktif = tentaraAktifs.get(0);
+        tentaraAktif = tentaraAktifs.get(1);
 
         List<Batalyon> batalyons = new ArrayList<>();
         Batalyon batalyon = new Batalyon();
         batalyons = batalyonService.findAll();
-        batalyon = batalyons.get(0);
+        batalyon = batalyons.get(1);
 
         tniService.deleteByIdTentaraAndIdTentaraAktifAndIdBatalyon(tentara.getIdTentara(), tentaraAktif.getIdTentaraAktif(), batalyon.getIdBayalyon());
 

@@ -11,22 +11,46 @@ import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TentaraAktifS
 import main.java.aplikasi.codeshare.azizan.TNIprojectFinal.Service.TentaraService;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+        System.out.println("Masukkan nama tentara : ");
+        Scanner scannerNamaTentara = new Scanner(System.in);
+        String namaTentara = scannerNamaTentara.nextLine();
+
+        System.out.println("Masukkan pangkat tentara : ");
+        Scanner scannerPangkat = new Scanner(System.in);
+        String pangkat = scannerPangkat.nextLine();
+
+        System.out.println("Masukkan matra tentara : ");
+        Scanner scannerMatra = new Scanner(System.in);
+        String matra = scannerMatra.nextLine();
+
+        System.out.println("apakah tentara perwira? ");
+        Scanner scannerPerwira = new Scanner(System.in);
+        Boolean perwira = Boolean.valueOf(scannerPerwira.nextLine());
+
+        System.out.println("status tentara");
+        Scanner scannerStatus = new Scanner(System.in);
+        String statusTentara = scannerStatus.nextLine();
+
+        System.out.println("nama batalyon tentara");
+        Scanner scannerNamaBatalyon = new Scanner(System.in);
+        String namaBatalyon = scannerNamaBatalyon.nextLine();
 
         Tentara tentara = new Tentara();
-        tentara.setNamaTentara("ujang");
-        tentara.setPangkat("kolonel");
-        tentara.setMatra("Angkatan Darat");
-        tentara.setPerwira(true);
+        tentara.setNamaTentara(namaTentara);
+        tentara.setPangkat(pangkat);
+        tentara.setMatra(matra);
+        tentara.setPerwira(perwira);
 
         TentaraAktif tentaraAktif = new TentaraAktif();
-        tentaraAktif.setStatusTentara("aktif");
+        tentaraAktif.setStatusTentara(statusTentara);
 
         Batalyon batalyon = new Batalyon();
-        batalyon.setNamaBatalyon("Kompi A");
+        batalyon.setNamaBatalyon(namaBatalyon);
 
         TentaraService tentaraService = new TentaraService(KoneksiDB.getKoneksi());
         tentara = tentaraService.save(tentara);

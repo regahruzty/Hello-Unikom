@@ -1,6 +1,5 @@
 package main.java.aplikasi;
 
-import main.java.aplikasi.config.KoneksiDB;
 import main.java.aplikasi.model.Kucing;
 import main.java.aplikasi.service.KucingService;
 
@@ -10,7 +9,7 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        KucingService kucingService = new KucingService(KoneksiDB.getDataSourceMysqlLearnJDBC());
+        KucingService kucingService = new KucingService(main.java.codeshare.aplikasi.config.KoneksiDB.getDataSourceMysqlLearnJDBC());
 
             Kucing kucing = new Kucing();
 

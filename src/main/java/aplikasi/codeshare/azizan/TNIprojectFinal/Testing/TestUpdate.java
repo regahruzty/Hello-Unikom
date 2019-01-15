@@ -15,13 +15,13 @@ public class TestUpdate {
 
         Tentara tono = new Tentara();
         tono.setIdTentara(2L);
-        tono.setNamaTentara("Tono");
+        tono.setNamaTentara("Budi");
 
         tentaraService.update(tono);
 
         Tentara joni = new Tentara();
-        joni.setIdTentara(1L);
-        joni.setNamaTentara("Joni");
+        joni.setIdTentara(6L);
+        joni.setNamaTentara("Steward");
 
         tentaraService.update(joni);
 
