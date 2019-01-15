@@ -12,6 +12,6 @@ public class KoneksiDB {
         basicDataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         basicDataSource.setUsername("root");
         basicDataSource.setPassword("root");
-        return  basicDataSource;
+        return basicDataSource;
     }
 }
