@@ -52,13 +52,14 @@ public class TransaksiService implements TransaksiRepository {
     public Transaksi update(Transaksi transaksi) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update transaksi set id_pembeli = ?, id_motor = ?, jumlah_pembelian where id_transaksi = ?";
+        String sql = "update transaksi set id_pembeli = ?, id_motor = ?, tanggal_pembelian = ?, jumlah_pembelian = ? where id_transaksi = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, transaksi.getPembeli().getId_pembeli());
         preparedStatement.setLong(2, transaksi.getMotor().getId_motor());
-        preparedStatement.setLong(3, transaksi.getJumlah_pembelian());
-        preparedStatement.setLong(3, transaksi.getId_transaksi());
+        preparedStatement.setDate(3, (Date) transaksi.getTanggal_pembelian());
+        preparedStatement.setLong(4, transaksi.getJumlah_pembelian());
+        preparedStatement.setLong(5, transaksi.getId_transaksi());
 
 
         preparedStatement.executeUpdate();
@@ -77,7 +78,7 @@ public class TransaksiService implements TransaksiRepository {
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select transaksi.id_transaksi as id_transaksi, motor.id_motor as id_motor, motor.nama_motor as nama_motor, pembeli.id_pembeli as id_tumbuhan, pembeli.nama_pembeli as nama_pembeli from transaksi transaksi join motor motor on transaksi.id_motor = motor.id_motor join pembeli pembeli on transaksi.id_pembeli = pembeli.id_pembeli";
+        String sql = "select * from transaksi transaksi join motor motor on transaksi.id_motor = motor.id_motor join pembeli pembeli on transaksi.id_pembeli = pembeli.id_pembeli";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
@@ -87,14 +88,18 @@ public class TransaksiService implements TransaksiRepository {
             Motor motor = new Motor();
             motor.setId_motor(resultSet.getLong("id_motor"));
             motor.setNama_motor(resultSet.getString("nama_motor"));
+            motor.setMerk_motor(resultSet.getString("merk_motor"));
 
             transaksi.setMotor(motor);
 
             Pembeli pembeli = new Pembeli();
             pembeli.setId_pembeli(resultSet.getLong("id_pembeli"));
             pembeli.setNama_pembeli(resultSet.getString("nama_pembeli"));
-
+            pembeli.setAlamat_pembeli(resultSet.getString("alamat_pembeli"));
             transaksi.setPembeli(pembeli);
+
+            transaksi.setJumlah_pembelian(resultSet.getLong("jumlah_pembelian"));
+            transaksi.setTanggal_pembelian(resultSet.getDate("tanggal_pembelian"));
 
             transaksiList.add(transaksi);
         }

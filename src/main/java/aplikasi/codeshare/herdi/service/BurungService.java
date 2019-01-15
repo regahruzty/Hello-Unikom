@@ -46,12 +46,9 @@ public class BurungService implements BurungRepository {
     }
 
     @Override
-    public Burung update(Burung burung) {
-
-
-        try {
+    public Burung update(Burung burung) throws SQLException {
             Connection connection = dataSource.getConnection();
-            String sql = "UPDATE burung SET nama = ?, warna = ?, paruh = ? where id_burung = ?";
+            String sql = "update burung set nama = ? , warna = ? , paruh = ? where id_burung = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, burung.getNama());
@@ -59,18 +56,10 @@ public class BurungService implements BurungRepository {
             preparedStatement.setString(3, burung.getParuh());
             preparedStatement.setInt(4, burung.getId_burung());
 
-            preparedStatement.executeUpdate(sql);
+            preparedStatement.executeUpdate();
 
             preparedStatement.close();
             connection.close();
-        }catch (SQLException ex){
-            System.out.println(ex.getErrorCode());
-            ex.printStackTrace();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
 
         return burung;
 

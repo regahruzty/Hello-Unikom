@@ -64,7 +64,7 @@ public class MotorService implements MotorRepository {
 
     @Override
     public List<Motor> findAll() throws SQLException {
-        List<Motor> mototList = new ArrayList<>();
+        List<Motor> motorList = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
@@ -79,14 +79,14 @@ public class MotorService implements MotorRepository {
             motor.setNama_motor(resultSet.getString("nama_motor"));
             motor.setMerk_motor(resultSet.getString("merk_motor"));
 
-            mototList.add(motor);
+            motorList.add(motor);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return mototList;
+        return motorList;
     }
 
     @Override

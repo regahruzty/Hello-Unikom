@@ -9,6 +9,9 @@ import main.java.aplikasi.codeshare.ariya.ariya_final.service.*;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import static javax.swing.JOptionPane.showInputDialog;
@@ -21,6 +24,7 @@ public class Main {
         Pembeli pembeli = new Pembeli();
         Transaksi transaksi = new Transaksi();
         Scanner input = new Scanner(System.in);
+        java.sql.Date dateSql = new java.sql.Date(new java.util.Date().getTime());
 
         System.out.println("1. Migrasi");
         System.out.println("2. Menu CRUD");
@@ -59,8 +63,17 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Data Motor Berhasil Diubah");
                         break;
                     case 4 :
-                        System.out.println("Tampil Data Motor");
-                        motorService.findAll().toString();
+                        List<Motor> motorList= new ArrayList<>();
+                        motorList = motorService.findAll();
+
+                        for (Motor motors: motorList) {
+//
+                            System.out.println("======================================");
+                            System.out.println("id_motor: " + motors.getId_motor());
+                            System.out.println("nama_motor: " + motors.getNama_motor());
+                            System.out.println("merk_motor: " + motors.getMerk_motor());
+                            System.out.println("======================================");
+                        }
                 }
             } else if (pilihMenu == 2){
                 System.out.println("1. Tambah Data Pembeli");
@@ -90,8 +103,72 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Data Pembeli Berhasil Diubah ");
                         break;
                     case 4 :
-                        System.out.println("Tampil Data Motor");
-                        pembeliService.findAll().toString();
+                        List<Pembeli> pembeliList= new ArrayList<>();
+                        pembeliList = pembeliService.findAll();
+
+                        for (Pembeli pembelis : pembeliList) {
+//
+                            System.out.println("======================================");
+                            System.out.println("id_pembeli: " + pembelis.getId_pembeli());
+                            System.out.println("nama_pembeli: " + pembelis.getNama_pembeli());
+                            System.out.println("alamat_pembeli: " + pembelis.getAlamat_pembeli());
+                            System.out.println("======================================");
+                        }
+
+
+                }
+            } else if (pilihMenu == 3){
+                System.out.println("1. Tambah Data Transaksi");
+                System.out.println("2. Hapus Data Transaksi");
+                System.out.println("3. Edit Data Transaksi");
+                System.out.println("4. Tampil Data Transaksi");
+                TransaksiService transaksiService = new TransaksiService(KoneksiDB.getKoneksi());
+                int pilihMenuTransaksi = input.nextInt();
+                switch (pilihMenuTransaksi){
+                    case 1 :
+                        pembeli.setId_pembeli(Long.parseLong(showInputDialog("Masukkan ID Pembeli : ")));
+                        motor.setId_motor(Long.parseLong(showInputDialog("Masukkan ID Motor: ")));
+                        transaksi.setTanggal_pembelian(dateSql);
+                        transaksi.setJumlah_pembelian(Long.parseLong(showInputDialog("Masukkan Jumlah Pembelian: ")));
+                        transaksi.setPembeli(pembeli);
+                        transaksi.setMotor(motor);
+                        transaksiService.save(transaksi);
+                        JOptionPane.showMessageDialog(null, "Data Transaksi Berhasil Ditambah");
+                        break;
+                    case 2 :
+                        transaksi.setId_transaksi(Long .parseLong(showInputDialog("Masukkan Id Transaksi : ")));
+                        transaksiService.delete(transaksi.getId_transaksi());
+                        JOptionPane.showMessageDialog(null, "Data Transaksi Berhasil Dihapus");
+                        break;
+                    case 3 :
+                        transaksi.setId_transaksi(Long.parseLong(showInputDialog("Masukkan ID Transaksi : ")));
+                        pembeli.setId_pembeli(Long.parseLong(showInputDialog("Masukkan ID Pembeli ")));
+                        motor.setId_motor(Long.parseLong(showInputDialog("Masukkan ID Motor  ")));
+                        transaksi.setTanggal_pembelian(dateSql);
+                        transaksi.setJumlah_pembelian(Long.parseLong(showInputDialog("Masukkan Jumlah Pembelian")));
+                        transaksi.setPembeli(pembeli);
+                        transaksi.setMotor(motor);
+                        transaksiService.update(transaksi);
+                        JOptionPane.showMessageDialog(null, "Data Transaksi Berhasil Diubah ");
+                        break;
+                    case 4 :
+                        List<Transaksi> transaksiList= new ArrayList<>();
+                        transaksiList = transaksiService.findAll();
+
+                        for (Transaksi transaksis : transaksiList) {
+//
+                        System.out.println("======================================");
+                        System.out.println("id_transaksi: " + transaksis.getId_transaksi());
+                        System.out.println("merk_motor: " + transaksis.getMotor().getMerk_motor());
+                        System.out.println("nama_motor: " + transaksis.getMotor().getNama_motor());
+                        System.out.println("nama_pembeli: " + transaksis.getPembeli().getNama_pembeli());
+                        System.out.println("Alamat Pembeli: " + transaksis.getPembeli().getAlamat_pembeli());
+                        System.out.println("jumlah_pembelian: " + transaksis.getJumlah_pembelian());
+                        System.out.println("tanggal_pembelian: " + transaksis.getTanggal_pembelian());
+                        System.out.println("======================================");
+                        }
+
+
                 }
             }
         }
