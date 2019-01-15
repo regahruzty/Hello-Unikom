@@ -19,13 +19,16 @@ public class TransaksiService {
 
         Long generatedId = null;
 
-        String sql="insert into transaksi (id_pembeli, id_motor) values (?,?)";
+        String sql="insert into transaksi (id_pembeli, id_motor, tanggal_pembelian, jumlah_pembelian) values (?,?,?,?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
 
         preparedStatement.setLong(1, transaksi.getPembeli().getId_pembeli());
         preparedStatement.setLong(2, transaksi.getMotor().getId_motor());
+        preparedStatement.setDate(3, (Date) transaksi.getTanggal_pembelian());
+        preparedStatement.setLong(4, transaksi.getJumlah_pembelian());
+
 
         preparedStatement.executeUpdate();
 
@@ -62,7 +65,9 @@ public class TransaksiService {
         sql = " CREATE TABLE transaksi (" +
                 " id_transaksi bigint not null primary key auto_increment, " +
                 " id_pembeli bigint not null, " +
-                " id_motor bigint not null )";
+                " id_motor bigint not null, " +
+                " tanggal_pembelian date not null," +
+                " jumlah_pembelian bigint not null)";
 
         statement.executeUpdate(sql);
 

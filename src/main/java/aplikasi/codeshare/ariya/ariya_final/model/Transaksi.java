@@ -1,5 +1,6 @@
 package main.java.aplikasi.codeshare.ariya.ariya_final.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Transaksi {
@@ -7,14 +8,18 @@ public class Transaksi {
     private Long id_transaksi;
     private Pembeli pembeli;
     private Motor motor;
+    private Date tanggal_pembelian;
+    private Long jumlah_pembelian;
 
-    public Transaksi() {
-    }
-
-    public Transaksi(Long id_transaksi, Pembeli pembeli, Motor motor) {
+    public Transaksi(Long id_transaksi, Pembeli pembeli, Motor motor, Date tanggal_pembelian, Long jumlah_pembelian) {
         this.id_transaksi = id_transaksi;
         this.pembeli = pembeli;
         this.motor = motor;
+        this.tanggal_pembelian = tanggal_pembelian;
+        this.jumlah_pembelian = jumlah_pembelian;
+    }
+
+    public Transaksi() {
     }
 
     @Override
@@ -24,12 +29,14 @@ public class Transaksi {
         Transaksi transaksi = (Transaksi) o;
         return id_transaksi.equals(transaksi.id_transaksi) &&
                 pembeli.equals(transaksi.pembeli) &&
-                motor.equals(transaksi.motor);
+                motor.equals(transaksi.motor) &&
+                tanggal_pembelian.equals(transaksi.tanggal_pembelian) &&
+                jumlah_pembelian.equals(transaksi.jumlah_pembelian);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_transaksi, pembeli, motor);
+        return Objects.hash(id_transaksi, pembeli, motor, tanggal_pembelian, jumlah_pembelian);
     }
 
     @Override
@@ -38,6 +45,8 @@ public class Transaksi {
                 "id_transaksi=" + id_transaksi +
                 ", pembeli=" + pembeli +
                 ", motor=" + motor +
+                ", tanggal_pembelian=" + tanggal_pembelian +
+                ", jumlah_pembelian=" + jumlah_pembelian +
                 '}';
     }
 
@@ -63,5 +72,21 @@ public class Transaksi {
 
     public void setMotor(Motor motor) {
         this.motor = motor;
+    }
+
+    public Date getTanggal_pembelian() {
+        return tanggal_pembelian;
+    }
+
+    public void setTanggal_pembelian(Date tanggal_pembelian) {
+        this.tanggal_pembelian = tanggal_pembelian;
+    }
+
+    public Long getJumlah_pembelian() {
+        return jumlah_pembelian;
+    }
+
+    public void setJumlah_pembelian(Long jumlah_pembelian) {
+        this.jumlah_pembelian = jumlah_pembelian;
     }
 }
