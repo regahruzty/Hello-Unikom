@@ -31,7 +31,8 @@ public class TokoHpService implements TokoHpRepository{
 
     @Override
     public List<TokoHp> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TokoHp th = new TokoHp();
+        return th.all();
     }
 
     @Override
@@ -46,9 +47,10 @@ public class TokoHpService implements TokoHpRepository{
 
     @Override
     public void delete(Integer id) throws SQLException {
-        TokoHp tokoHp = new TokoHp();
-        tokoHp.delete(id);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
     
 }

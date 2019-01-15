@@ -118,18 +118,19 @@ public class Toko extends Model{
         ResultSet resultSet = stmt.executeQuery(sql);
 
         while (resultSet.next()) {
-            this.setId(resultSet.getInt("id"));
-            this.setName(resultSet.getString("name"));
-            this.setProvince(resultSet.getString("province"));
-            this.setPhone(resultSet.getString("phone"));
-            tokos.add(this);
+            Toko toko = new Toko();
+            toko.setId(resultSet.getInt("id"));
+            toko.setName(resultSet.getString("name"));
+            toko.setProvince(resultSet.getString("province"));
+            toko.setPhone(resultSet.getString("phone"));
+            tokos.add(toko);
         }
 
         resultSet.close();
         stmt.close();
         conn.close();
 
-        return smartphones;
+        return tokos;
     }
 
     @Override
