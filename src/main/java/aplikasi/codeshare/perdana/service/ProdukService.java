@@ -1,7 +1,7 @@
 package main.java.aplikasi.codeshare.perdana.service;
 
-import model.Produk;
-import repository.ProdukRepository;
+import main.java.aplikasi.codeshare.perdana.model.Produk;
+import main.java.aplikasi.codeshare.perdana.repository.ProdukRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

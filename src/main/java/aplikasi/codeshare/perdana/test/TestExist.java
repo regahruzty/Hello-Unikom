@@ -1,7 +1,10 @@
 package main.java.aplikasi.codeshare.perdana.test;
-import config.KoneksiDB;
-import model.Produk;
-import service.ProdukService;
+
+
+
+import main.java.aplikasi.codeshare.perdana.config.KoneksiDB;
+import main.java.aplikasi.codeshare.perdana.model.Produk;
+import main.java.aplikasi.codeshare.perdana.service.ProdukService;
 
 import java.sql.SQLException;
 
