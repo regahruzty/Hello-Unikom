@@ -68,7 +68,7 @@ public class Joined_id_riyan {
 
     @Override
     public String toString() {
-        return "joined_id_riyan{" +
+        return "Joined_id_riyan{" +
                 "id_joined_riyan=" + id_joined_riyan +
                 ", boothcamp=" + boothcamp +
                 ", pengajar=" + pengajar +

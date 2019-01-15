@@ -25,7 +25,8 @@ public class JoinedIDRiyanService {
                 Statement.RETURN_GENERATED_KEYS);
 
         preparedStatement.setLong(1, joined_id_riyan.getBoothcamp().getId_boothcamp());
-        preparedStatement.setLong(2, joined_id_riyan.getPengajar()).getIdP;
+        preparedStatement.setLong(2, joined_id_riyan.getPengajar().getId_pengajar());
+        preparedStatement.setLong(3, joined_id_riyan.getPeserta().getId_peserta());
 
 
     }
@@ -84,18 +85,6 @@ public class JoinedIDRiyanService {
 
         statement.close();
         connection.close();
-
-
-
-
-
-
-        )
-
-
-
-
-
 
     }
 
