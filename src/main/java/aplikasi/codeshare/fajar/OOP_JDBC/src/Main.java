@@ -1,11 +1,9 @@
 import Config.ConnectionDB;
 import Model.*;
 import Service.*;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Operators;
 
 import javax.swing.*;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
 

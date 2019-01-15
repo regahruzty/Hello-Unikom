@@ -1,6 +1,6 @@
 package main.java.aplikasi.codeshare.perdana.repository;
 
-import model.Produk;
+import main.java.aplikasi.codeshare.perdana.model.Produk;
 
 public interface ProdukRepository extends BaseRepository<Produk, Integer> {
 }

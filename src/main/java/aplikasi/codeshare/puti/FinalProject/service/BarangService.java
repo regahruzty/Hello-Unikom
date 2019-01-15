@@ -1,105 +1,97 @@
-package main.java.aplikasi.codeshare.perdana.service;
+package main.java.aplikasi.codeshare.puti.FinalProject.service;
 
-import main.java.aplikasi.codeshare.perdana.model.Produk;
-import main.java.aplikasi.codeshare.perdana.repository.ProdukRepository;
+import model.Barang;
+import repository.BarangRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdukService implements ProdukRepository {
+public class BarangService implements BarangRepository {
 
     private DataSource dataSource;
 
-    public ProdukService(DataSource dataSource) {
+    public BarangService(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-
     @Override
-    public Produk save(Produk produk) throws SQLException {
+    public Barang save(Barang barang) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        Integer generatedId = null;
+        Long generatedId = null;
 
-        String sql="insert into produk (nama, merk, waktu_pembuatan) values (?,?,?)";
+        String sql = "insert into barang (nama_barang) values (?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, produk.getNama());
-        preparedStatement.setString(2, produk.getMerk());
-        preparedStatement.setString(3, produk.getWaktu_pembuatan());
+        preparedStatement.setString(1, barang.getNamaBarang());
 
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
-        while (getGeneratedKeys.next()){
-            generatedId = getGeneratedKeys.getInt(1);
+        while (getGeneratedKeys.next()) {
+            generatedId = getGeneratedKeys.getLong(1);
         }
 
-        produk.setId_produk(generatedId);
+        barang.setIdBarang(generatedId);
 
-        preparedStatement.close();
-        connection.close();
-
-        return produk;
+        return barang;
     }
 
     @Override
-    public Produk update(Produk produk) throws SQLException {
+    public Barang update(Barang barang) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update produk set nama = ? where id_produk = ?";
+        String sql = "update barang set nama_barang = ? where id_barang = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, produk.getNama());
-        preparedStatement.setInt(2, produk.getId_produk());
+        preparedStatement.setString(1, barang.getNamaBarang());
+        preparedStatement.setLong(2, barang.getIdBarang());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return produk;
+        return barang;
 
     }
 
     @Override
-    public List<Produk> findAll() throws SQLException {
-        List<Produk> produks = new ArrayList<>();
+    public List<Barang> findAll() throws SQLException {
+        List<Barang> barangs = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from produk";
+        String sql = "select * from barang";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            Produk produk = new Produk();
-            produk.setId_produk(resultSet.getInt("id_produk"));
-            produk.setNama(resultSet.getString("nama"));
-            produk.setMerk(resultSet.getString("merk"));
-            produk.setWaktu_pembuatan(resultSet.getString("waktu_pembuatan"));
-            produks.add(produk);
+            Barang barang = new Barang();
+            barang.setIdBarang(resultSet.getLong("id_barang"));
+            barang.setNamaBarang(resultSet.getString("nama_barang"));
+            barangs.add(barang);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return produks;
+        return barangs;
     }
 
     @Override
-    public Boolean exists(Integer id) throws SQLException {
+    public Boolean exists(Long id) throws SQLException {
         Long count = 0L;
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from produk where id_produk = ?";
+        String sql = "select count(*) from barang where id_barang = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -118,10 +110,10 @@ public class ProdukService implements ProdukRepository {
     }
 
     @Override
-    public void delete(Integer id) throws SQLException {
+    public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from produk where id_produk = ?";
+        String sql = "delete from barang where id_barang = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);

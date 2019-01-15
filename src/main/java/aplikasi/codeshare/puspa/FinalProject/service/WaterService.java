@@ -1,104 +1,95 @@
-package main.java.aplikasi.codeshare.perdana.service;
+package main.java.aplikasi.codeshare.puspa.FinalProject.service;
 
-import main.java.aplikasi.codeshare.perdana.model.Jenis;
-import main.java.aplikasi.codeshare.perdana.repository.JenisRepository;
-
+import model.Water;
+import repository.WaterRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JenisService implements JenisRepository {
-
+public class WaterService implements WaterRepository {
     private DataSource dataSource;
 
-    public JenisService(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
+    public WaterService(DataSource dataSource) { this.dataSource = dataSource; }
 
     @Override
-    public Jenis save(Jenis jenis) throws SQLException {
+    public Water save(Water water) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        Integer generatedId = null;
+        Long generatedId = null;
 
-        String sql="insert into jenis (jenis, keterangan) values (?,?)";
+        String sql="insert into water (nama_water) values (?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, jenis.getJenis());
-        preparedStatement.setString(2, jenis.getKeterangan());
+        preparedStatement.setString(1, water.getNamaWater());
 
         preparedStatement.executeUpdate();
 
         ResultSet getGeneratedKeys = preparedStatement.getGeneratedKeys();
         while (getGeneratedKeys.next()){
-            generatedId = getGeneratedKeys.getInt(1);
+            generatedId = getGeneratedKeys.getLong(1);
         }
 
-        jenis.setId_jenis(generatedId);
+        water.setIdWater(generatedId);
+     //   getGeneratedKeys.close();
+     //   preparedStatement.close();
 
-        preparedStatement.close();
-        connection.close();
-
-        return jenis;
+        return water;
     }
 
     @Override
-    public Jenis update(Jenis jenis) throws SQLException {
+    public Water update(Water water) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "update jenis set jenis = ? where id_jenis = ?";
+        String sql = "update water set nama_water = ? where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, jenis.getJenis());
-        preparedStatement.setInt(2, jenis.getId_jenis());
+        preparedStatement.setString(1, water.getNamaWater());
+        preparedStatement.setLong(2, water.getIdWater());
 
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
         connection.close();
 
-        return jenis;
-
+        return water;
     }
 
     @Override
-    public List<Jenis> findAll() throws SQLException {
-        List<Jenis> jeniss = new ArrayList<>();
+    public List<Water> findAll() throws SQLException {
+        List<Water> waters = new ArrayList<>();
 
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
 
-        String sql = "select * from jenis";
+        String sql = "select * from water";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            Jenis jenis = new Jenis();
-            jenis.setId_jenis(resultSet.getInt("id_jenis"));
-            jenis.setJenis(resultSet.getString("nama"));
-            jenis.setKeterangan(resultSet.getString("merk"));
-            jeniss.add(jenis);
+            Water water = new Water();
+            water.setIdWater(resultSet.getLong("id_water"));
+            water.setNamaWater(resultSet.getString("nama_water"));
+            waters.add(water);
         }
 
         resultSet.close();
         statement.close();
         connection.close();
 
-        return jeniss;
+        return waters;
     }
 
     @Override
-    public Boolean exists(Integer id) throws SQLException {
+    public Boolean exists(Long id) throws SQLException {
         Long count = 0L;
 
         Connection connection = dataSource.getConnection();
 
-        String sql = "select count(*) from jenis where id_jenis = ?";
+        String sql = "select count(*) from water where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);
@@ -113,14 +104,14 @@ public class JenisService implements JenisRepository {
         preparedStatement.close();
         connection.close();
 
-        return count > 0 ? true : false;
+        return count > 0;
     }
 
     @Override
-    public void delete(Integer id) throws SQLException {
+    public void delete(Long id) throws SQLException {
         Connection connection = dataSource.getConnection();
 
-        String sql = "delete from jenis where id_jenis = ?";
+        String sql = "delete from water where id_water = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, id);

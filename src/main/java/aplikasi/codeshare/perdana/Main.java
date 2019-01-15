@@ -1,21 +1,23 @@
 package main.java.aplikasi.codeshare.perdana;
 
-import config.KoneksiDB;
-import model.Jenis;
-import model.Joined_ID;
-import model.Kondisi;
-import model.Produk;
-import service.JenisService;
-import service.Joined_IDService;
-import service.KondisiService;
-import service.ProdukService;
+
+
+import main.java.aplikasi.codeshare.perdana.config.KoneksiDB;
+import main.java.aplikasi.codeshare.perdana.model.Jenis;
+import main.java.aplikasi.codeshare.perdana.model.Joined_ID;
+import main.java.aplikasi.codeshare.perdana.model.Kondisi;
+import main.java.aplikasi.codeshare.perdana.model.Produk;
+import main.java.aplikasi.codeshare.perdana.service.JenisService;
+import main.java.aplikasi.codeshare.perdana.service.Joined_IDService;
+import main.java.aplikasi.codeshare.perdana.service.KondisiService;
+import main.java.aplikasi.codeshare.perdana.service.ProdukService;
 
 import java.sql.SQLException;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        Produk  produk = new Produk();
+        Produk produk = new Produk();
         produk.setNama("Camry");
         produk.setMerk("Toyota");
         produk.setWaktu_pembuatan("2019-01-01");

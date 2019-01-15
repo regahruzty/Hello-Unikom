@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-class Main {
+class MainMobil {
     //    JDBC driver name and database URL
     static final String JDBC_DRIVER =
             "com.mysql.cj.jdbc.Driver";

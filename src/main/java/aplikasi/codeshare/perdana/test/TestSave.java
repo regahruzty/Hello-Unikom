@@ -1,8 +1,10 @@
 package main.java.aplikasi.codeshare.perdana.test;
 
-import config.KoneksiDB;
-import model.Kondisi;
-import service.KondisiService;
+
+
+import main.java.aplikasi.codeshare.perdana.config.KoneksiDB;
+import main.java.aplikasi.codeshare.perdana.model.Kondisi;
+import main.java.aplikasi.codeshare.perdana.service.KondisiService;
 
 import java.sql.SQLException;
 

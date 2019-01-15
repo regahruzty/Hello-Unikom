@@ -1,10 +1,12 @@
 package main.java.aplikasi.codeshare.perdana.service;
 
-import model.Jenis;
-import model.Joined_ID;
-import model.Kondisi;
-import model.Produk;
-import repository.Joined_IDRepository;
+
+
+import main.java.aplikasi.codeshare.perdana.model.Jenis;
+import main.java.aplikasi.codeshare.perdana.model.Joined_ID;
+import main.java.aplikasi.codeshare.perdana.model.Kondisi;
+import main.java.aplikasi.codeshare.perdana.model.Produk;
+import main.java.aplikasi.codeshare.perdana.repository.Joined_IDRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;
