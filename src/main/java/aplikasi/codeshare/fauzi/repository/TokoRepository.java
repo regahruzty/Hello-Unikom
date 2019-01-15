@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.aplikasi.codeshare.fauzi.Services;
+package main.java.aplikasi.codeshare.fauzi.repository;
+
+import main.java.aplikasi.codeshare.fauzi.Model.Toko;
 
 /**
  *
  * @author acer
  */
-public class TokoHp {
-    public Toko Toko = new Toko();
-    public Smartphone Smartphone = new Smartphone();
+public interface TokoRepository extends BaseRepository<Toko, Integer>{
+    
 }
